@@ -1,0 +1,8 @@
+swaybg -i /usr/share/lxqt/wallpapers/waves-logo.png >/dev/null 2>&1 &
+lxqt-runner >/dev/null 2>&1 &
+lxqt-notificationd >/dev/null 2>&1 &
+lxqt-policykit-agent >/dev/null 2>&1 &
+lxqt-powermanagement >/dev/null 2>&1 &
+yatbfw >/dev/null 2>&1 &
+firefox >/dev/null 2>&1 &
+pcmanfm-qt --desktop >/dev/null 2>&1 &
