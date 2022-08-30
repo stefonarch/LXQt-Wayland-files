@@ -7,6 +7,7 @@ Needed files for an LXQt wayland session - beside the wayland compositor - are:
 * `/usr/bin/startlxqt<compositor>`
 * `/usr/share/wayland-session/<session>.desktop`
 * `swaybg` for background image
+* `wofi` for the menu
 
 The first can be executed also on tty. In wayland-ready display managers like SDDM you should see the new session type.
 
@@ -15,7 +16,7 @@ The first can be executed also on tty. In wayland-ready display managers like SD
 
 [Source](https://github.com/hyprwm/Hyprland#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
 
-Config file: `~/.config/lxqt/lxqt-hyprland/hyprland.conf'
+Config file: `~/.config/lxqt/lxqt-hyprland/hyprland.conf`
 
 Scripts and example configuration in `hyprland` folder. Don't forget to `chmod +x`  `/usr/bin/startlxqthyprland`.
 
@@ -30,7 +31,7 @@ Needs many window rules, some windows (like "save, discard, close" when closing 
 
 ### Sway (tiling)
 
-See [LXQt Sway](https://github.com/selairi/lxqt-sway)
+See [LXQt Sway](https://github.com/selairi/lxqt-sway).
 
 ### Labwc (stacking)
 

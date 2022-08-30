@@ -64,9 +64,9 @@
     },
     {
       "type" : "launcher",
-      "icon" : "firefox-nightly",
-      "tooltip" : "Firefox Anna & Yiannis",
-      "exec" : "firefox -p Yiannis"
+      "icon" : "firefox",
+      "tooltip" : "Firefox",
+      "exec" : "firefox"
     },
     {
       "type" : "launcher",
