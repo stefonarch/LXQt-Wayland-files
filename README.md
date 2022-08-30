@@ -15,6 +15,8 @@ Please note that this here is experimental and work in progress, meant for testi
 
 ### Hyprland (tiling)
 
+![Screenshot Hyprland](hyprland.png)
+
 [Source](https://github.com/hyprwm/Hyprland#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
 
 Config file: `~/.config/lxqt/lxqt-hyprland/hyprland.conf`
@@ -35,6 +37,8 @@ Needs many window rules, some windows (like "save, discard, close" when closing 
 See [LXQt Sway](https://github.com/selairi/lxqt-sway).
 
 ### Labwc (stacking)
+
+![Screenshot labwc](labwc.png)
 
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
