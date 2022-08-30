@@ -10,6 +10,7 @@ Needed files for an LXQt wayland session - beside the wayland compositor - are:
 * `wofi` for the menu
 
 The first can be executed also on tty. In wayland-ready display managers like SDDM you should see the new session type.
+Please note that this here is experimental and work in progress, meant for testing purposes.
 
 
 ### Hyprland (tiling)
@@ -40,13 +41,15 @@ See [LXQt Sway](https://github.com/selairi/lxqt-sway).
 
 
 Scripts and example configurations in `labwc` folder.  Don't forget to chmod +x `startlxqtlabwc`.
-Configation path: `~/.config/labwc/`
+Configuration path: `~/.config/labwc/`
 
 * environment: keyboard layout
 * rc.xml: old friend
 * autostart: well...
 * menu.xml: click on desktop menu, close session, reload configuration.
-* openbox menu themes
+* openbox menu themes in `~/.local/share/themes`
+
+lxqt-runner shortcut: `A+Space`.
 
 
 #### Pro
