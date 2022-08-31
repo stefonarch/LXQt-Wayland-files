@@ -62,8 +62,10 @@ export QT_QPA_PLATFORMTHEME=lxqt
 
 # use lxqt-applications.menu for main app menu
 export XDG_MENU_PREFIX="lxqt-"
-
 export XDG_CURRENT_DESKTOP="LXQt"
+export XDG_SESSION_DESKTOP="LXQt"
+export MOZ_ENABLE_WAYLAND=1
+
 
 ## End LXQt common settings
 

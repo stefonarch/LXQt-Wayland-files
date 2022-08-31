@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
-
 <!--
   This file contains all supported config elements & attributes with
   default values.
 -->
-
 <labwc_config>
-
   <core>
     <decoration>server</decoration>
     <gap>0</gap>
@@ -14,46 +11,47 @@
     <cycleViewPreview>yes</cycleViewPreview>
     <cycleViewOutlines>no</cycleViewOutlines>
   </core>
-
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Vent-dark</name>
-    <cornerRadius>12</cornerRadius>
-    <font place="ActiveWindow"><name>sans</name><size>13</size></font>
-    <font place="MenuItem"><name>sans</name><size>12</size></font>
-    <font place="OSD"><name>sans</name><size>13</size></font>
+    <cornerRadius>10</cornerRadius>
+    <font place="ActiveWindow">
+      <name>sans</name>
+      <size>13</size>
+    </font>
+    <font place="MenuItem">
+      <name>sans</name>
+      <size>12</size>
+    </font>
+    <font place="OSD">
+      <name>dejavu</name>
+      <size>14</size>
+    </font>
   </theme>
-
   <!-- edge strength is in pixels -->
   <resistance>
     <screenEdgeStrength>20</screenEdgeStrength>
   </resistance>
-
   <focus>
     <followMouse>no</followMouse>
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
-
   <!-- Set range to 0 to disable window snapping completely -->
   <snapping>
     <range>1</range>
     <topMaximize>yes</topMaximize>
   </snapping>
-
-
   <!--
     Use GoToDesktop left | right to switch workspaces.
     Use SendToDesktop left | right to move windows.
     See man labwc-actions for futher information.
     Workspaces can be configured like this:-->
-    <desktops>
-      <popupTime>1000</popupTime>
-      <names>
-        <name>Rete</name>
-        <name>Git</name>
-      </names>
-
-
+  <desktops>
+    <popupTime>1000</popupTime>
+    <names>
+      <name>Rete</name>
+      <name>Git</name>
+    </names>
     <!--
       popupTime defaults to 1000 so could be left out.
       Set to 0 to completely disable the workspace OSD.
@@ -63,7 +61,6 @@
       <name>Default</name>
     </names>
   </desktops>
-
   <!--
     Keybind actions are specified in labwc-actions(5)
     The following keybind modifiers are supported:
@@ -81,77 +78,141 @@
     <repeatRate>25</repeatRate>
     <repeatDelay>600</repeatDelay>
     <keybind key="A-Tab">
-      <action name="NextWindow" />
+      <action name="NextWindow"/>
+    </keybind>
+    <!--  Applications -->
+    <keybind key="A-Space">
+      <action name="Execute" command="lxqt-runner"/>
+    </keybind>
+    <keybind key="W-F">
+      <action name="Execute">
+        <command>featherpad</command>
+      </action>
+    </keybind>
+    <keybind key="W-P">
+      <action name="Execute">
+        <command>pcmanfm-qt</command>
+      </action>
+    </keybind>
+    <keybind key="W-K">
+      <action name="Execute">
+        <command>keepassxc</command>
+      </action>
+    </keybind>
+    <keybind key="W-Q">
+      <action name="Execute">
+        <command>qps</command>
+      </action>
     </keybind>
     <keybind key="W-Return">
-      <action name="Execute"><command>qterminal</command></action>
+      <action name="Execute">
+        <command>qterminal</command>
+      </action>
     </keybind>
     <keybind key="A-F3">
-      <action name="Execute"><command>bemenu-run</command></action>
+      <action name="Execute">
+        <command>bemenu-run</command>
+      </action>
     </keybind>
+    <!-- Window Management -->
     <keybind key="A-F4">
-      <action name="Close" />
+      <action name="Close"/>
+    </keybind>
+    <keybind key="C-Q">
+      <action name="Close"/>
+    </keybind>
+    <keybind key="C-S-Q">
+      <action name="Exit"/>
     </keybind>
     <keybind key="W-a">
-      <action name="ToggleMaximize" />
+      <action name="ToggleMaximize"/>
     </keybind>
     <keybind key="A-Left">
-      <action name="MoveToEdge"><direction>left</direction></action>
+      <action name="MoveToEdge">
+        <direction>left</direction>
+      </action>
     </keybind>
     <keybind key="A-Right">
-      <action name="MoveToEdge"><direction>right</direction></action>
+      <action name="MoveToEdge">
+        <direction>right</direction>
+      </action>
     </keybind>
-    <keybind key="A-Up">
-      <action name="MoveToEdge"><direction>up</direction></action>
+    <keybind key="C-A-Up">
+      <action name="MoveToEdge">
+        <direction>up</direction>
+      </action>
     </keybind>
-    <keybind key="A-Down">
-      <action name="MoveToEdge"><direction>down</direction></action>
+    <keybind key="C-A-Down">
+      <action name="MoveToEdge">
+        <direction>down</direction>
+      </action>
     </keybind>
     <keybind key="W-Left">
-      <action name="SnapToEdge"><direction>left</direction></action>
+      <action name="SnapToEdge">
+        <direction>left</direction>
+      </action>
     </keybind>
     <keybind key="W-Right">
-      <action name="SnapToEdge"><direction>right</direction></action>
+      <action name="SnapToEdge">
+        <direction>right</direction>
+      </action>
     </keybind>
     <keybind key="W-Up">
-      <action name="SnapToEdge"><direction>up</direction></action>
+      <action name="SnapToEdge">
+        <direction>up</direction>
+      </action>
     </keybind>
     <keybind key="W-Down">
-      <action name="SnapToEdge"><direction>down</direction></action>
+      <action name="SnapToEdge">
+        <direction>down</direction>
+      </action>
     </keybind>
+    <!-- Menus -->
     <keybind key="A-C-Space">
-      <action name="ShowMenu"><menu>client-menu</menu></action>
+      <action name="ShowMenu">
+        <menu>client-menu</menu>
+      </action>
     </keybind>
-    <keybind key="A-Space">
-      <action name="Execute" command="lxqt-runner" />
+    <keybind key="A-W-Space">
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
     </keybind>
+    <!-- Multimedia -->
     <keybind key="XF86_AudioLowerVolume">
-      <action name="Execute"><command>amixer sset Master 5%-</command></action>
+      <action name="Execute">
+        <command>amixer sset Master 5%-</command>
+      </action>
     </keybind>
     <keybind key="XF86_AudioRaiseVolume">
-      <action name="Execute"><command>amixer sset Master 5%+</command></action>
+      <action name="Execute">
+        <command>amixer sset Master 5%+</command>
+      </action>
     </keybind>
     <keybind key="XF86_AudioMute">
-      <action name="Execute"><command>amixer sset Master toggle</command></action>
+      <action name="Execute">
+        <command>amixer sset Master toggle</command>
+      </action>
     </keybind>
     <keybind key="XF86_MonBrightnessUp">
-      <action name="Execute"><command>brightnessctl set +10%</command></action>
+      <action name="Execute">
+        <command>brightnessctl set +10%</command>
+      </action>
     </keybind>
     <keybind key="XF86_MonBrightnessDown">
-      <action name="Execute"><command>brightnessctl set 10%-</command></action>
+      <action name="Execute">
+        <command>brightnessctl set 10%-</command>
+      </action>
     </keybind>
   </keyboard>
-
   <!--
     Multiple <mousebind> can exist within one <context>
     Multiple <actions> can exist within one <mousebind>
     Currently, the only openbox-action not supported is "Unshade"
   -->
   <mouse>
-
     <!-- time is in ms -->
     <doubleClickTime>500</doubleClickTime>
-
     <context name="Frame">
       <mousebind button="A-Left" action="Press">
         <action name="Focus"/>
@@ -168,7 +229,6 @@
         <action name="Resize"/>
       </mousebind>
     </context>
-
     <context name="Top">
       <mousebind button="Left" action="Drag">
         <action name="Resize"/>
@@ -209,7 +269,6 @@
         <action name="Resize"/>
       </mousebind>
     </context>
-
     <context name="TitleBar">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -219,8 +278,8 @@
         <action name="Move"/>
       </mousebind>
       <mousebind button="Right" action="Click">
-        <action name="Focus" />
-        <action name="Raise" />
+        <action name="Focus"/>
+        <action name="Raise"/>
         <action name="ShowMenu">
           <menu>client-menu</menu>
         </action>
@@ -231,7 +290,6 @@
         <action name="ToggleMaximize"/>
       </mousebind>
     </context>
-
     <context name="Maximize">
       <mousebind button="Left" action="Click">
         <action name="Focus"/>
@@ -239,7 +297,6 @@
         <action name="ToggleMaximize"/>
       </mousebind>
     </context>
-
     <context name="WindowMenu">
       <mousebind button="Left" action="Click">
         <action name="ShowMenu">
@@ -247,19 +304,16 @@
         </action>
       </mousebind>
     </context>
-
     <context name="Iconify">
       <mousebind button="left" action="Click">
         <action name="Iconify"/>
       </mousebind>
     </context>
-
     <context name="Close">
       <mousebind button="Left" action="Click">
         <action name="Close"/>
       </mousebind>
     </context>
-
     <context name="Client">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -274,21 +328,24 @@
         <action name="Raise"/>
       </mousebind>
     </context>
-
     <context name="Root">
       <mousebind button="Left" action="Press">
-        <action name="ShowMenu"><menu>root-menu</menu></action>
+        <action name="ShowMenu">
+          <menu>root-menu</menu>
+        </action>
       </mousebind>
       <mousebind button="Right" action="Press">
-        <action name="ShowMenu"><menu>root-menu</menu></action>
+        <action name="ShowMenu">
+          <menu>root-menu</menu>
+        </action>
       </mousebind>
       <mousebind button="Middle" action="Press">
-        <action name="ShowMenu"><menu>root-menu</menu></action>
+        <action name="ShowMenu">
+          <menu>root-menu</menu>
+        </action>
       </mousebind>
     </context>
-
   </mouse>
-
   <!--
     The *category* element can be set to touch, non-touch, default or the name
     of a device. You can obtain device names by running *libinput list-devices*
@@ -303,14 +360,13 @@
   <libinput>
     <device category="default">
       <naturalScroll>no</naturalScroll>
-      <leftHanded></leftHanded>
+      <leftHanded/>
       <pointerSpeed>0.7</pointerSpeed>
       <accelProfile>adaptive</accelProfile>
       <tap>yes</tap>
-      <tapButtonMap></tapButtonMap>
-      <middleEmulation></middleEmulation>
-      <disableWhileTyping></disableWhileTyping>
+      <tapButtonMap/>
+      <middleEmulation/>
+      <disableWhileTyping/>
     </device>
   </libinput>
-
 </labwc_config>
