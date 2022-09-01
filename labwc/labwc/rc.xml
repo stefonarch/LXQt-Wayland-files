@@ -77,13 +77,24 @@
   <keyboard>
     <repeatRate>25</repeatRate>
     <repeatDelay>600</repeatDelay>
-    <keybind key="A-Tab">
-      <action name="NextWindow"/>
-    </keybind>
-    <!--  Applications -->
+
+    <!-- Launchers, labwc -->
     <keybind key="A-Space">
       <action name="Execute" command="lxqt-runner"/>
     </keybind>
+    <keybind key="A-F3">
+      <action name="Execute">
+        <command>bemenu-run</command>
+      </action>
+    </keybind>
+    <keybind key="C-S-R">
+      <action name="Exit"/>
+    </keybind>
+    <keybind key="C-S-Q">
+      <action name="Exit"/>
+    </keybind>
+
+    <!--  Applications -->
     <keybind key="W-F">
       <action name="Execute">
         <command>featherpad</command>
@@ -109,20 +120,23 @@
         <command>qterminal</command>
       </action>
     </keybind>
-    <keybind key="A-F3">
+    <keybind key="Print">
       <action name="Execute">
-        <command>bemenu-run</command>
+        <command>screenshot</command>
       </action>
     </keybind>
     <!-- Window Management -->
+    <keybind key="A-Tab">
+      <action name="NextWindow"/>
+    </keybind>
+<!--    <keybind key="C-A-right">
+      <action name="GoToDesktop right"/>
+    </keybind>-->
     <keybind key="A-F4">
       <action name="Close"/>
     </keybind>
     <keybind key="C-Q">
       <action name="Close"/>
-    </keybind>
-    <keybind key="C-S-Q">
-      <action name="Exit"/>
     </keybind>
     <keybind key="W-a">
       <action name="ToggleMaximize"/>
@@ -361,7 +375,7 @@
     <device category="default">
       <naturalScroll>no</naturalScroll>
       <leftHanded/>
-      <pointerSpeed>0.7</pointerSpeed>
+      <pointerSpeed>0.9</pointerSpeed>
       <accelProfile>adaptive</accelProfile>
       <tap>yes</tap>
       <tapButtonMap/>
