@@ -32,20 +32,22 @@ Configuration path: `~/.config/labwc/`
 #### Things working
 
 * Launchers:
- * `lxqt-runner` (`Alt+Space`)
- * PCmanFM-qt's application view as full menu in panel
- *  bemenu-run on top screen (Alt+F3)
+  * `lxqt-runner` (Alt+Space)
+  * PCmanFM-qt's application view as full menu in panel
+  *  bemenu-run on top screen (Alt+F3)
 * Desktop (titlebar has to be removed manually)
-* Notifications
+* Palettes, theming (affects atm only runner), other LXQt settings
+* Notifications (only at center)
 * Policykit
+* Alt+Tab
 * Panel/bar (yatbfw):
- * close on middle click, toggle maximize on click
- * Clock and calendar popup,
- * basic "Show Desktop"
- * Launchers
- * Battery (works also in tray)
- * Network (works also in tray)
- * Volume, Brightness
+  * close on middle click, toggle maximize on click
+  * Clock and calendar popup,
+  * basic "Show Desktop"
+  * Launchers
+  * Battery (works also in tray)
+  * Network (works also in tray)
+  * Volume, Brightness
 
 #### Things missing or half working
 
