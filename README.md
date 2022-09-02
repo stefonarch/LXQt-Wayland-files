@@ -29,6 +29,10 @@ Configuration path: `~/.config/labwc/`
 * menu.xml: click on desktop menu, close session, reload configuration.
 * openbox themes in `~/.local/share/themes`
 
+A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
+
+![labwc-tweaks](tweaks.png)
+
 #### Things working
 
 * Launchers:
@@ -48,15 +52,20 @@ Configuration path: `~/.config/labwc/`
   * Battery (works also in tray)
   * Network (works also in tray)
   * Volume, Brightness
+* Tray/Notification area (swaybar, only show if at least one app uses it)
 
 #### Things missing or half working
 
+* Window focus change on clicks from other apps (links)
 * Desktop effects
 * Multiple desktops (in next version 0.6)
 * Window rules (no title bar for runner and desktop for example)
 * autostart has some issues not starting all
-* Featherpad not starting when clicking text files in PCmanFm-qt
+* Featherpad and Gimp not starting when clicking associated files in PCmanFm-qt
 * yatbwf and waybar not hiding in fullscreen
+* window activations from notifications
+* some general icons in taskbar (telegram, keepassxc)
+* no keybord layout switching without restart
 
 #### Application replacements:
 
