@@ -2,14 +2,14 @@
   /*"icon_theme" is theme for icons in the taskbar. If no theme is set, the default icon theme will be used.
    * Uncomment "icon_theme" line to set theme.
 
-  "icon_theme" : "Papirus-dark",
+  //"icon_theme" : "ePapirus",
   //"font" : "Cantarell",
   "font_size" : 20,
   /* "color" and "background_color" must be set with number from 0.0 to 1.0 [red, green, blue]*/
   "color" : [1.0 ,1.0 ,1.0],
   	"background_color" : [0.5, 0.5, 0.5],
   /*"size" of taskbar in pixels. If not set, default size is 49 pixels*/
- /* "size" : 40,
+  "size" : 40,
   /*The taskbar can be overlayed by other windows. Default "exclusive_zone" is "size"*/
   "exclusive_zone" : 50,
   /*"position" values allowed are "top" and "bottom". Default is "bottom"*/
@@ -59,13 +59,13 @@
     {
       "type" : "launcher",
       "icon" : "lxqt",
-      "exec" : "pcmanfm-qt 'menu://applications/'"
+      "exec" : "pcmanfm-qt --profile=lxqt 'menu://applications/'"
     },
-     {
+        {
       "type" : "launcher",
       "icon" : "user-desktop",
-      "tooltip" : "Show Desktop",
-      "exec" : "pcmanfm-qt --desktop-off && pcmanfm-qt --desktop"
+      "tooltip": "Show Desktop",
+      "exec" : "wlrctl toplevel minimize && wlrctl toplevel focus pcmanfm-qt --desktop"
     },
      {
       "type" : "launcher",
@@ -84,53 +84,27 @@
       "icon" : "preferences-system",
       "tooltip" : "Preferenze",
       "exec" : "lxqt-config"
-    }
+    },
+
   ],
   "end_items" : [
    {
       "type" : "launcher",
       "icon" : "system-shutdown",
       "tooltip" : "Leave options",
-      "exec" : "lxqt-leave"
+      "exec" : "wlogout"
     },
     {
       "type" : "clock",
-      "time_format" : "%a %d %b | %H:%M",
+      "time_format" : " %a %e %b | %H:%M",
       "exec" : "qarma --calendar --text= --title=`date +%Y-%m-%d`"
     },
-    {
-      "type" : "battery",
-      "icon_battery_full" : "battery-full-symbolic",
-      "icon_battery_good" : "battery-good-symbolic",
-      "icon_battery_medium" : "battery-medium-symbolic",
-      "icon_battery_low" : "battery-low-symbolic",
-      "icon_battery_empty" : "battery-empty-symbolic",
-      "icon_battery_charging" : "battery-low-charging-symbolic",
-      "icon_battery_charged" : "battery-full-charged-symbolic",
-      "no_text" : "empty",
-      "exec" : "qps"
-    },
-    {
-      "type" : "launcher",
-      "icon" : "network-wired",
-      "tooltip" : "Connman GUI",
-      "exec" : "cmst -d"
-    },
+
     {
       "type" : "launcher",
       "icon" : "pavucontrol",
       "tooltip" : "Mixer",
       "exec" : "pavucontrol-qt"
-    },
-    {
-      "type" : "launcher",
-      "icon" : "audio-volume-medium",
-      "exec" : "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-    },
-    {
-      "type" : "launcher",
-      "icon" : "audio-volume-high",
-      "exec" : "pactl set-sink-volume @DEFAULT_SINK@ +5%"
     },
      {
       "type" : "launcher",

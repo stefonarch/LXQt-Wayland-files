@@ -1,3 +1,4 @@
 #!/bin/bash
-grim -g "$(slurp)" /tmp/screen_$(date +'%a_%T_.png')
+# If KEY_PRINT doesn't work try:
+grim -g "$(slurp)" /tmp/screen_$(date +'%a_%T_.png') &&  notify-send -a grim -i image -t 2000 "Screenshot saved"
 

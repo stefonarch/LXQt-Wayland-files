@@ -1,12 +1,12 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "right", // Waybar position (top|bottom|left|right)
-    "height": 405, // Waybar height (to be removed for auto height)
-//    "width": 30, // Waybar width
-    "spacing": 0, // Gaps between modules (4px)
+//    "height": 405, // Waybar height (to be removed for auto height)
+   "width": 70, // Waybar width
+    "spacing": 6, // Gaps between modules (4px)
     // Choose the order of the modules
-//    "modules-left": ["cpu"],
-    "modules-center": ["tray"],
+//    "modules-left": [],
+    "modules-center": ["cpu", "memory","disk","disk#1", "temperature","tray", "keyboard-state", "idle_inhibitor"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -23,18 +23,19 @@
     //         "default": ""
     //     }
     // },
+
     "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
+    "numlock": true,
+    "capslock": true,
+    "format": {
+        "numlock": "N {icon}",
+        "capslock": "C {icon}"
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
+    "format-icons": {
+        "locked": "",
+        "unlocked": ""
+    }
+},
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -43,23 +44,42 @@
         }
     },
     "tray": {
-        "icon-size": 30,
+        "icon-size": 34,
         "spacing": 8
     },
 
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false,
+     "format": " {usage}%",
+        "tooltip": true,
         "on-click": "qps",
-        "interval": 3
+        "interval": "2"
     },
     "memory": {
-        "format": "{}% "
+        "format": " {}%",
+        "tooltip": "true"
     },
 
-    "battery#bat2": {
-        "bat": "BAT2"
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": " temperatureC}°C",
+        "format": " {temperatureC}°C",
     },
+    "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "tooltip": "true",
+    "on-click": "filelight /",
+    "path": "/"
+},
+    "disk#1": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "tooltip": "true",
+    "on-click": "filelight /home",
+    "path": "/home"
+},
 
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

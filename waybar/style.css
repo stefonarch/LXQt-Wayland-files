@@ -72,16 +72,16 @@ window#waybar.chromium {
 #cpu,
 #memory,
 #disk,
-#temperature,
 #backlight,
 #network,
 #pulseaudio,
 #custom-media,
 #tray,
 #mode,
+temperature,
 #idle_inhibitor,
 #mpd {
-    padding: 0 10px;
+    padding: 2px;
     color: #ffffff;
 }
 
@@ -154,6 +154,8 @@ label:focus {
     background-color: #964B00;
 }
 
+
+
 #backlight {
     background-color: #90b1b1;
 }
@@ -191,15 +193,20 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: #5555ff;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: #a51d13;
 }
 
 #tray {
     background-color: rgba(0, 0, 0, 0.0);
+    border: 1px solid grey;
+    border-radius:8px;
+    padding-top:8px;
+    padding-bottom:8px;
+    margin: 1px;
 }
 
 /*#tray > .passive {
@@ -246,11 +253,11 @@ label:focus {
 }
 
 #keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
+    color: white;
+    padding: 0 1px;
     margin: 0 5px;
     min-width: 16px;
+    font-size: 13px;
 }
 
 #keyboard-state > label {
@@ -258,5 +265,5 @@ label:focus {
 }
 
 #keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+    background: #a8190d;
 }
