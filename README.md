@@ -1,30 +1,41 @@
 # Wayland Implementations for the LXQt Desktop
 
-## Wayland Compositors
+Needed files and components for a LXQt wayland session - beside the wayland compositor itself - are:
 
-Needed files for a basic LXQt wayland session - beside the wayland compositor itself - are:
-
-* `/usr/bin/startlxqt<compositor>`
-* `/usr/share/wayland-session/<compositor>-lxqt.desktop`
-* `swaybg` for background image
-* `swayidle` idle settings
-* `yatbfw` taskbar, clock, quicklaunch
-* `waybar` tray, cpu/ram/temp monitor, can do much more
-* `wlogout` leave option
+* `/usr/bin/startlxqt<compositor>` : ENV variables
+* `/usr/share/wayland-session/<compositor>-lxqt.desktop` : Entry in SDDM
+* `swaybg` : background image
+* `swayidle` : idle settings
+* `yatbfw` : taskbar, clock, quicklaunch
+* `waybar` : tray, cpu/ram/temp monitor, can do much more
+* `wlogout` : leave options
 * `wmctrl` for some keybindings
 
+#### Optional
+
+* `clipman`, `dmenu` : cliboard manager
+* `grim`,`slurp` : screenshots
+* `wf-info` : get window information for creating window rules (wayfire only)
+* `wofi` alternative launcher
+* `wcm` Wayfire configuration editor GUI (GTK). Not recommended if you also edit manually `wayfire.ini`.
 
 
-The first can be executed also directly on tty. In wayland-ready display managers like SDDM you should see the new session type.
-Please note that this here is experimental and work in progress, meant for testing purposes.
+`startlxqt<compositor>` can be executed also directly in tty. In wayland-ready display managers like SDDM you should see the new session type. Please note that this here is experimental and work in progress, meant for testing purposes.
 
-### Main overall issues in wayland:
-* window activation on clicks from other windows
+### Working LXQt components:
+
+`lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively.
+
+
+#### Main overall issues in those compositors:
+
+* window activation on clicks from other windows or notifications.
+Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks) )
 * placement of submenus
-* no support for keyboard variants like `*.pt_Br or de_CH`
+* no support for keyboard variants like `pt_Br or de_CH`
 
 
-### Wayfire (stacking)
+## Wayfire (stacking)
 
 ![Screenshot](lxqt-wayfire.png)
 
@@ -33,12 +44,11 @@ Please note that this here is experimental and work in progress, meant for testi
 Scripts and example configurations in `wayfire` folder.  Don't forget to chmod +x `startlxqtwayfire`.
 Configuration file: `~/.config/lxqt/lxqt-wayfire/wayfire.ini`
 
-The most usable atm for a traditional LXQt experience, notifications, lxqt-runner, pcmanfm-qt, multiple desktops, notifications all working; nice animations (remember compiz?)
+The most usable atm for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt, multiple desktops, notifications all working; many resource-friendly desktop effects and animations.
 
- Editing config file(s) is mandatory for customizing.
+Editing config file(s) is mandatory for customizing.
 
-
-### Labwc (stacking)
+## Labwc (stacking)
 
 ![Screenshot labwc](labwc.png)
 
@@ -49,7 +59,7 @@ The most usable atm for a traditional LXQt experience, notifications, lxqt-runne
 Scripts and example configurations in `labwc` folder.  Don't forget to chmod +x `startlxqtlabwc`.
 Configuration path: `~/.config/labwc/`
 
-* environment: keyboard layout
+* environment: keyboard layouhttps://github.com/stefonarch/LXQt-Wayland-files#things-workingt
 * rc.xml: old friend
 * autostart: well...
 * menu.xml: click on desktop menu, close session, reload configuration.
@@ -87,17 +97,8 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 * Multiple desktops (in next version 0.6)
 * Window rules (no title bar for runner and desktop for example)
 * autostart has some issues not starting all
-* applications like Featherpad and Gimp running under xwayland are not starting when clicking associated files in PCmanFm-qt
 * yatbwf and waybar not hiding in fullscreen
-* window activations from notifications
-* some general icons in taskbar (telegram, keepassxc)
 * no keybord layout switching without restart
-
-#### Application replacements:
-
-* grim (screenshot)
-* wf-recorder (screencasting)
-
 
 ### Hyprland (tiling)
 
@@ -145,6 +146,27 @@ See `waybar` folder; used here _only_ for systray/notification area and cpu/ram/
 For `keyboard-state` working make sure your user is member of the "input" group.
 
 Some icons need "font-icon" and "font-awesome" to be displayed.
+
+
+## Tipps & Tricks
+
+### Activate browser window on links clicked
+
+Example for Firefox, similar approach should work for all browser:
+
+Executable `/usr/bin/firefox_wayland`:
+ ```
+#!/bin/sh
+wlrctl toplevel focus firefox
+exec /usr/lib/firefox/firefox "$@"
+```
+
+Local `firefox.desktop` file in `~/.local/share/applications/` :
+
+```
+#Exec=/usr/lib/firefox/firefox %u
+Exec=/usr/bin/firefox_wayland %u
+```
 
 
 
