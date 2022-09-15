@@ -44,9 +44,6 @@ else
 fi
 mkdir -p "$XDG_DESKTOP_DIR"
 
-# Clean up after GDM (GDM sets the number of desktops to one)
-xprop -root -remove _NET_NUMBER_OF_DESKTOPS -remove _NET_DESKTOP_NAMES -remove _NET_CURRENT_DESKTOP 2> /dev/null
-
 # Launch DBus if needed
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     if [ -z "$XDG_RUNTIME_DIR" ] || ! [ -S "$XDG_RUNTIME_DIR/bus" ] || ! [ -O "$XDG_RUNTIME_DIR/bus" ]; then
@@ -61,18 +58,23 @@ export QT_PLATFORM_PLUGIN=lxqt
 export QT_QPA_PLATFORMTHEME=lxqt
 
 # use lxqt-applications.menu for main app menu
-export XDG_MENU_PREFIX="lxqt-"
+#export XDG_MENU_PREFIX="lxqt-"
 
 export XDG_CURRENT_DESKTOP="LXQt"
-export XDG_SESSION_DESKTOP="LXQt"
+## End LXQt common settings
 
 export MOZ_ENABLE_WAYLAND=1
 
-## End LXQt common settings
+# Export language setting and scale factor
+# To do: script for readiing and exporting most of session.conf [Environment]
 
-# Set cursor theme and size
-export XCURSOR_SIZE=`lxqt-settings session --get Mouse/cursor_size`
-export XCURSOR_THEME=`lxqt-settings session --get Mouse/cursor_theme`
+export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
+export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
+
+# End LXQt settings
+
+# Faster startup for GTK applications
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XAUTHORITY
 
 mkdir -p "$XDG_CONFIG_HOME"/lxqt/lxqt-hyprland/
 

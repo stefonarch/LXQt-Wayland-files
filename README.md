@@ -20,7 +20,8 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 * `wcm` Wayfire configuration editor GUI (GTK). Not recommended if you also edit manually `wayfire.ini`.
 
 
-`startlxqt<compositor>` can be executed also directly in tty. In wayland-ready display managers like SDDM you should see the new session type. Please note that this here is experimental and work in progress, meant for testing purposes.
+`startlxqt<compositor>` can be executed also directly in tty. In wayland-ready display managers like SDDM
+ you should see the new session type. Please note that this here is experimental and work in progress, meant for testing purposes.
 
 ### Working LXQt components:
 
@@ -29,10 +30,10 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 
 #### Main overall issues in those compositors:
 
-* window activation on clicks from other windows or notifications.
-Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks) )
-* placement of submenus
-* no support for keyboard variants like `pt_Br or de_CH`
+* Window activation on clicks from other windows or notifications.
+Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
+* Placement of submenus
+* No support for keyboard variants like `pt_Br or de_CH`
 
 
 ## Wayfire (stacking)
@@ -44,7 +45,8 @@ Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps
 Scripts and example configurations in `wayfire` folder.  Don't forget to chmod +x `startlxqtwayfire`.
 Configuration file: `~/.config/lxqt/lxqt-wayfire/wayfire.ini`
 
-The most usable atm for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt, multiple desktops, notifications all working; many resource-friendly desktop effects and animations.
+The most usable atm for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
+multiple desktops, notifications - all works; many resource-friendly desktop effects and animations.
 
 Editing config file(s) is mandatory for customizing.
 
@@ -124,6 +126,9 @@ Needs many window rules, some windows (like "save, discard, close" when closing 
 See [LXQt Sway](https://github.com/selairi/lxqt-sway).
 ## Panels
 
+'lxqt-panel' can be started if "Desktop switcher" plugin is removed from config file first. Positioning, taskbar and
+some other few plugins do not work. Menu and notification area do.
+
 ### Yatbfw
 
 [Source](https://github.com/selairi/yatbfw)
@@ -161,13 +166,15 @@ wlrctl toplevel focus firefox
 exec /usr/lib/firefox/firefox "$@"
 ```
 
-Local `firefox.desktop` file in `~/.local/share/applications/` :
+Copy  `firefox.desktop` file from  `/usr/share/applications/` to  `~/.local/share/applications/` :
 
 ```
 #Exec=/usr/lib/firefox/firefox %u
 Exec=/usr/bin/firefox_wayland %u
 ```
+### Telegram does not open multimedia files
 
+If images and video do not open: unset "animation"" and eventually "opengl" in Preferences > Advanced
 
 
 
