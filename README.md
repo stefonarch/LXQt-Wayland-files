@@ -7,34 +7,25 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 * `swaybg` : background image
 * `swayidle` : idle settings
 * `yatbfw` : taskbar, clock, quicklaunch
-* `waybar` : tray, cpu/ram/temp monitor, can do much more
+* `waybar` : notification area, cpu/ram/temp monitor; can do much more
 * `wlogout` : leave options
-* `wmctrl` for some keybindings
+* `wmctrl` : for some keybindings
+* `wev` : xev for wayland
 
 #### Optional
 
-* `clipman`, `dmenu` : cliboard manager
-* `grim`,`slurp` : screenshots
+* `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
+* `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
 * `wf-info` : get window information for creating window rules (wayfire only)
 * `wofi` alternative launcher
-* `wcm` Wayfire configuration editor GUI (GTK). Not recommended if you also edit manually `wayfire.ini`.
+* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini`.
 
-
-`startlxqt<compositor>` can be executed also directly in tty. In wayland-ready display managers like SDDM
- you should see the new session type. Please note that this here is experimental and work in progress, meant for testing purposes.
+## Starting LXQt Session
+`startlxqt<compositor>` can be executed also directly in tty; enviroment variables are set here before starting the compositor. In wayland-ready display managers like SDDM you should see the new session type. Please note that this here is experimental and work in progress, meant for testing purposes.
 
 ### Working LXQt components:
 
 `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively.
-
-
-#### Main overall issues in those compositors:
-
-* Window activation on clicks from other windows or notifications.
-Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
-* Placement of submenus
-* No support for keyboard variants like `pt_Br or de_CH`
-
 
 ## Wayfire (stacking)
 
@@ -106,7 +97,7 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 ![Screenshot Hyprland](hyprland.png)
 
-[Source](https://github.com/hyprwm/Hyprland#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
+[Source](https://github.com/hyprwm/Hyprlasettingsnd#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
 
 Config file: `~/.config/lxqt/lxqt-hyprland/hyprland.conf`
 
@@ -123,11 +114,14 @@ Needs many window rules, some windows (like "save, discard, close" when closing 
 
 ### Sway (tiling)
 
-See [LXQt Sway](https://github.com/selairi/lxqt-sway).
+See [LXQt Sway](https://github.com/selairi/lxqt-sway)  and [Richard Rogalski](https://github.com/Richard-Rogalski/LXQt-and-Sway)
+
 ## Panels
 
+### lxqt-panel
+
 'lxqt-panel' can be started if "Desktop switcher" plugin is removed from config file first. Positioning, taskbar and
-some other few plugins do not work. Menu and notification area do.
+some few other plugins do not work. Menu and notification area do.
 
 ### Yatbfw
 
@@ -152,6 +146,14 @@ For `keyboard-state` working make sure your user is member of the "input" group.
 
 Some icons need "font-icon" and "font-awesome" to be displayed.
 
+## Main overall issues in those compositors:
+
+* Window activation on clicks from other windows or notifications.
+Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
+* Placement of submenus
+* No support for keyboard variants like `pt_Br or de_CH`
+* DND issues
+
 
 ## Tipps & Tricks
 
@@ -174,7 +176,7 @@ Exec=/usr/bin/firefox_wayland %u
 ```
 ### Telegram does not open multimedia files
 
-If images and video do not open: unset "animation"" and eventually "opengl" in Preferences > Advanced
+If images and video do not open: unset "animation"" and eventually "opengl" in `Preferences > Advanced`.
 
 
 
