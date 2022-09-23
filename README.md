@@ -10,7 +10,6 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 * `waybar` : notification area, cpu/ram/temp monitor; can do much more
 * `wlogout` : leave options
 * `wmctrl` : for some keybindings
-* `wev` : xev for wayland
 
 #### Optional
 
@@ -19,13 +18,27 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 * `wf-info` : get window information for creating window rules (wayfire only)
 * `wofi` alternative launcher
 * `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini`.
+* `wf-dock` dock/taskbar
+* `wev` : xev for wayland
 
 ## Starting LXQt Session
-`startlxqt<compositor>` can be executed also directly in tty; enviroment variables are set here before starting the compositor. In wayland-ready display managers like SDDM you should see the new session type. Please note that this here is experimental and work in progress, meant for testing purposes.
+
+`startlxqt<compositor>` can be executed also directly in tty; enviroment variables are set here before starting the compositor. In wayland-ready display managers like SDDM you should see the new session type. Please note that this here is experimental and work in progress.
+
 
 ### Working LXQt components:
 
-`lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively.
+`lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
+
+### Using lxqt-session
+
+Using [this commit](https://github.com/lxqt/lxqt-session/pull/368) `lxqt-session` can be started in the autostart section of the compositors configuration.
+
+* Systray/Notification area (using waybar or lxqt-panel) should start first (`sleep 2 && lxqt-session`)
+* Module`lxqt-globalshortcuts`  loads but doesn't register anything
+* Some applications in autostart may not work under wayland and/or cause high cpu usage - see "autostart_scripts" folder for selective autostart.
+* Lock settings are not applied in wayland
+
 
 ## Wayfire (stacking)
 
@@ -62,34 +75,13 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 ![labwc-tweaks](tweaks.png)
 
-#### Things working
 
-* Launchers:
-  * `lxqt-runner` (Alt+Space)
-  * PCmanFM-qt's application view as full menu in panel
-  *  bemenu-run on top screen (Alt+F3)
-* Desktop (titlebar has to be removed manually)
-* Palettes, theming (affects atm only runner), other LXQt settings
-* Notifications (only at center)
-* Policykit
-* Alt+Tab
-* Panel/bar (yatbfw):
-  * close on middle click, toggle maximize on click
-  * Clock and calendar popup,
-  * basic "Show Desktop"
-  * Launchers
-  * Battery (works also in tray)
-  * Network (works also in tray)
-  * Volume, Brightness
-* Tray/Notification area (swaybar, only show if at least one app uses it)
+#### Missing or half working
 
-#### Things missing or half working
-
-* Window focus change on clicks from other apps (links)
 * Desktop effects
 * Multiple desktops (in next version 0.6)
 * Window rules (no title bar for runner and desktop for example)
-* autostart has some issues not starting all
+* autostart has some issues; not starting all
 * yatbwf and waybar not hiding in fullscreen
 * no keybord layout switching without restart
 
@@ -120,8 +112,7 @@ See [LXQt Sway](https://github.com/selairi/lxqt-sway)  and [Richard Rogalski](ht
 
 ### lxqt-panel
 
-'lxqt-panel' can be started if "Desktop switcher" plugin is removed from config file first. Positioning, taskbar and
-some few other plugins do not work. Menu and notification area do.
+`lxqt-panel` can be started if the "Desktop switcher" plugin is removed from config file first. Positioning, taskbar and some few other plugins do not work. For a working configuration with replacement for kbindicator see  `panel.conf`, add a window rule for placing at top. Menu and notification area do work fine.
 
 ### Yatbfw
 
@@ -174,6 +165,11 @@ Copy  `firefox.desktop` file from  `/usr/share/applications/` to  `~/.local/shar
 #Exec=/usr/lib/firefox/firefox %u
 Exec=/usr/bin/firefox_wayland %u
 ```
+
+### Autostart scripts
+
+If `lxqt-session` is used scripts that select the application to launch depending of `XDG_SESSION_TYPE` are useful. Examples in autostart_scripts folder.
+
 ### Telegram does not open multimedia files
 
 If images and video do not open: unset "animation"" and eventually "opengl" in `Preferences > Advanced`.

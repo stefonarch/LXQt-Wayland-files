@@ -1,0 +1,10 @@
+#!/bin/sh
+# check session and select apps in autostart
+SESSION=$(env |grep SESSION_TYPE|cut -c18-25)
+
+if [ "$SESSION" = "x11" ];
+   then
+       lxqt-config-input --load-touchpad
+       lxqt-config-monitor -l
+       notify-send "Monitor and Touchpad Settings applied"
+fi

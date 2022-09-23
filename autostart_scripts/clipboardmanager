@@ -1,0 +1,9 @@
+#!/bin/sh
+# check session and select apps in autostart
+SESSION=$(env |grep SESSION_TYPE|cut -d "=" -f2)
+if [ "$SESSION" = "wayland" ];
+   then
+       wl-paste --watch clipman store -P --max-items=30 --histpath="/tmp/clipman.json"
+   else
+       qlipper
+fi
