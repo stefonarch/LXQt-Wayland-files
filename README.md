@@ -23,7 +23,9 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 
 ## Starting LXQt Session
 
-`startlxqt<compositor>` can be executed also directly in tty; enviroment variables are set here before starting the compositor. In wayland-ready display managers like SDDM you should see the new session type. Please note that this here is experimental and work in progress.
+`startlxqt<compositor>` can be executed also directly in tty; enviroment variables are set here before starting the compositor. In wayland-ready display managers like SDDM you should see the new session type.
+
+Please note that this here is experimental and work in progress.
 
 
 ### Working LXQt components:
@@ -32,12 +34,12 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 
 ### Using lxqt-session
 
-Using [this commit](https://github.com/lxqt/lxqt-session/pull/368) `lxqt-session` can be started in the autostart section of the compositors configuration.
+From version 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file.
 
 * Systray/Notification area (using waybar or lxqt-panel) should start first (`sleep 2 && lxqt-session`)
 * Module`lxqt-globalshortcuts`  loads but doesn't register anything
-* Some applications in autostart may not work under wayland and/or cause high cpu usage - see "autostart_scripts" folder for selective autostart.
-* Lock settings are not applied in wayland
+* Some applications in autostart may not work under wayland and/or cause high cpu usage - see "autostart_scripts" folder for selective autostart x11/wayland.
+* Lock settings are not applied in wayland.
 
 
 ## Wayfire (stacking)
@@ -131,19 +133,18 @@ Note: for `startlxqthyprland` change  position to "top".
 
 ### Waybar
 
-See `waybar` folder; used here _only_ for systray/notification area and cpu/ram/temp/disk/keyboard-state and idle-inhibitor, see screenshot wayfire.
+See `waybar` folder; used here _only_ for systray/notification area, cpu/ram/temp/disk/keyboard-state - see screenshot wayfire.
 
 For `keyboard-state` working make sure your user is member of the "input" group.
 
 Some icons need "font-icon" and "font-awesome" to be displayed.
 
-## Main overall issues in those compositors:
+## Main overall issues in compositors:
 
 * Window activation on clicks from other windows or notifications.
-Fixed in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
-* Placement of submenus
-* No support for keyboard variants like `pt_Br or de_CH`
-* DND issues
+Fixed for browser in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
+* lxqt-notifications steal the focus
+
 
 
 ## Tipps & Tricks
