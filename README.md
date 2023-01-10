@@ -1,6 +1,6 @@
 # Wayland Implementations for the LXQt Desktop
 
-Needed files and components for a LXQt wayland session - beside the wayland compositor itself - are:
+Most needed files and components for a LXQt wayland session - beside the wayland compositor itself - are:
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables
 * `/usr/share/wayland-session/<compositor>-lxqt.desktop` : Entry in SDDM
@@ -11,7 +11,7 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 * `wlogout` : leave options
 * `wmctrl` : for some keybindings
 
-#### Optional
+#### Accessories
 
 * `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
 * `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
@@ -20,6 +20,7 @@ Needed files and components for a LXQt wayland session - beside the wayland comp
 * `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini`.
 * `wf-dock` dock/taskbar
 * `wev` : xev for wayland
+* wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
 
 ## Starting LXQt Session
 
@@ -30,7 +31,7 @@ Please note that this here is experimental and work in progress.
 
 ### Working LXQt components:
 
-`lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
+`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
 
 ### Using lxqt-session
 
