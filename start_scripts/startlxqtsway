@@ -52,31 +52,36 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
 fi
 
 # Qt4 platform plugin
-export QT_PLATFORM_PLUGIN=lxqt
+export QT_PLATFORM_PLUGIN="lxqt"
 
 # Qt5 platform plugin
-export QT_QPA_PLATFORMTHEME=lxqt
+export QT_QPA_PLATFORMTHEME="lxqt"
 
 # use lxqt-applications.menu for main app menu
-#export XDG_MENU_PREFIX="lxqt-"
+export XDG_MENU_PREFIX="lxqt-"
 
 export XDG_CURRENT_DESKTOP="LXQt"
-## End LXQt common settings
 
-export MOZ_ENABLE_WAYLAND=1
+# Import compositor from  LXQt settings:
+#export $(cat $XDG_CONFIG_HOME/lxqt/session.conf |grep wayland_compositor)
+export wayland_compositor=sway
 
-# Export language setting and scale factor
-# To do: script for readiing and exporting most of session.conf [Environment]
-
+# Import and set locale and scale factor from lxqt (not needed if using lxqt-session)
 export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
 export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
-
-# End LXQt settings
 
 # Faster startup for GTK applications
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XAUTHORITY
 
-mkdir -p "$XDG_CONFIG_HOME"/lxqt/lxqt-hyprland/
+# Firefox
+export MOZ_ENABLE_WAYLAND=1
 
-# Start the LXQt Wayland session
-exec Hyprland  --config "$XDG_CONFIG_HOME"/lxqt/lxqt-hyprland/hyprland.conf
+# Grim (screenshots)
+#export GRIM_DEFAULT_DIR=/tmp
+
+# Create wayland settings dir if not existing
+mkdir -p -- "$XDG_CONFIG_HOME/lxqt-wayland"
+
+# Start the compositor
+exec sway -c $XDG_CONFIG_HOME/lxqt-wayland/sway/config
+

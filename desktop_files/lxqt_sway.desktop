@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=LXQt Sway
+Comment=Wayland compositor for LXQT
+Exec=startlxqtsway
+Type=Application

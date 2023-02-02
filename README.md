@@ -1,33 +1,24 @@
 # Wayland Implementations for the LXQt Desktop
 
-Most needed files and components for a LXQt wayland session - beside the wayland compositor itself - are:
+Files and components for a LXQt wayland session - beside the wayland compositor itself - are:
 
-* `/usr/bin/startlxqt<compositor>` : ENV variables
+* `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>-lxqt.desktop` : Entry in SDDM
 * `swaybg` : background image
 * `swayidle` : idle settings
 * `yatbfw` : taskbar, clock, quicklaunch
 * `waybar` : notification area, cpu/ram/temp monitor; can do much more
-* `wlogout` : leave options
+* `lxqt-wlogout` : Close session
 * `wmctrl` : for some keybindings
 
-#### Accessories
-
-* `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
-* `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
-* `wf-info` : get window information for creating window rules (wayfire only)
-* `wofi` alternative launcher
-* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini`.
-* `wf-dock` dock/taskbar
-* `wev` : xev for wayland
-* wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
 
 ## Starting LXQt Session
 
-`startlxqt<compositor>` can be executed also directly in tty; enviroment variables are set here before starting the compositor. In wayland-ready display managers like SDDM you should see the new session type.
+Copy the `lxqt-wayland` folder to `~/.config/`. The `startlxqt*` scripts will use the configuration in this location; copy the desired file(s) from `desktop_files` to `/usr/share/wayland-sessions/` if using a display manager like SDDM to choose session type. Copy the desired scripts from `startup_scripts` to `/usr/bin/` and make them executable.
+
+`startlxqt<compositor>` scripts can be executed also directly in tty; environment variables are set here before starting the compositor.
 
 Please note that this here is experimental and work in progress.
-
 
 ### Working LXQt components:
 
@@ -35,11 +26,11 @@ Please note that this here is experimental and work in progress.
 
 ### Using lxqt-session
 
-From version 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file.
+From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file.
 
-* Systray/Notification area (using waybar or lxqt-panel) should start first (`sleep 2 && lxqt-session`)
-* Module`lxqt-globalshortcuts`  loads but doesn't register anything
-* Some applications in autostart may not work under wayland and/or cause high cpu usage - see "autostart_scripts" folder for selective autostart x11/wayland.
+* Systray/Notification area (using waybar or lxqt-panel) should start first (`sleep 2 && lxqt-session`) (fixed in git)
+* Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart_scripts" folder for a selective autostart under x11/wayland.
 * Lock settings are not applied in wayland.
 
 
@@ -49,13 +40,18 @@ From version 1.2.0 on `lxqt-session` can be started in the autostart section of 
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-Scripts and example configurations in `wayfire` folder.  Don't forget to chmod +x `startlxqtwayfire`.
-Configuration file: `~/.config/lxqt/lxqt-wayfire/wayfire.ini`
-
 The most usable atm for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
-multiple desktops, notifications - all works; many resource-friendly desktop effects and animations.
+multiple desktops, - all works; many resource-friendly desktop effects and animations.
 
 Editing config file(s) is mandatory for customizing.
+
+### Sway (tiling)
+
+![Screenshot LXQt Sway](sway.png)
+
+Preconfigured with panels, lxqt-runner (alt+space) and 2 keyboard layouts (toggle: alt+shift).
+
+See also [LXQt Sway](https://github.com/selairi/lxqt-sway)
 
 ## Labwc (stacking)
 
@@ -64,29 +60,11 @@ Editing config file(s) is mandatory for customizing.
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
-
-Scripts and example configurations in `labwc` folder.  Don't forget to chmod +x `startlxqtlabwc`.
-Configuration path: `~/.config/labwc/`
-
-* environment: keyboard layouhttps://github.com/stefonarch/LXQt-Wayland-files#things-workingt
-* rc.xml: old friend
-* autostart: well...
-* menu.xml: click on desktop menu, close session, reload configuration.
 * openbox themes in `~/.local/share/themes`
 
 A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
 
-![labwc-tweaks](tweaks.png)
-
-
-#### Missing or half working
-
-* Desktop effects
-* Multiple desktops (in next version 0.6)
-* Window rules (no title bar for runner and desktop for example)
-* autostart has some issues; not starting all
-* yatbwf and waybar not hiding in fullscreen
-* no keybord layout switching without restart
+![labwc-tweaks](tweaks.png).
 
 ### Hyprland (tiling)
 
@@ -94,9 +72,6 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 [Source](https://github.com/hyprwm/Hyprlasettingsnd#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
 
-Config file: `~/.config/lxqt/lxqt-hyprland/hyprland.conf`
-
-Scripts and example configuration in `hyprland` folder. Don't forget to `chmod +x`  `/usr/bin/startlxqthyprland`.
 
 #### Pro
 
@@ -106,22 +81,17 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 
 Needs many window rules, some windows (like "save, discard, close" when closing unsaved texts) need manual resizing (mod + right mouse button + drag) to see all. lxqt-runner cannot resize it's window. Tray menus open below windows, windows on the right open submenu on the left and will lose focus.
 
-
-### Sway (tiling)
-
-See [LXQt Sway](https://github.com/selairi/lxqt-sway)  and [Richard Rogalski](https://github.com/Richard-Rogalski/LXQt-and-Sway)
-
 ## Panels
 
 ### lxqt-panel
 
-`lxqt-panel` can be started if the "Desktop switcher" plugin is removed from config file first. Positioning, taskbar and some few other plugins do not work. For a working configuration with replacement for kbindicator see  `panel.conf`, add a window rule for placing at top. Menu and notification area do work fine.
+`lxqt-panel` can be started if no "Desktop switcher" is present in its configuration file. Positioning, taskbar and some few other plugins do not work automatically For a working configuration with replacement for kbindicator see  `lxqt-wayland/panel.conf`, add a window rule for placing at top, other positions are not usable atm.
 
 ### Yatbfw
 
 [Source](https://github.com/selairi/yatbfw)
 
-See `yatbfw.json`, located in `~/.config/	`
+See `lxqt-wayland/yatbfw.json`.
 
 #### Features
 
@@ -134,19 +104,29 @@ Note: for `startlxqthyprland` change  position to "top".
 
 ### Waybar
 
-See `waybar` folder; used here _only_ for systray/notification area, cpu/ram/temp/disk/keyboard-state - see screenshot wayfire.
+See `waybar` folder; used here _only_ for systray/notification area, cpu/ram/temp/disk/keyboard-state - see screenshot hyprland.
 
 For `keyboard-state` working make sure your user is member of the "input" group.
 
 Some icons need "font-icon" and "font-awesome" to be displayed.
+
+#### Accessories
+
+* `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
+* `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
+* `wf-info` : get window information for creating window rules (wayfire only)
+* `wofi` alternative launcher
+* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini`.
+* `wf-dock` dock/taskbar
+* `wev` : xev for wayland
+* wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
+
 
 ## Main overall issues in compositors:
 
 * Window activation on clicks from other windows or notifications.
 Fixed for browser in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
 * lxqt-notifications steal the focus
-
-
 
 ## Tipps & Tricks
 

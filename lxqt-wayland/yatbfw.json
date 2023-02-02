@@ -1,0 +1,99 @@
+{
+  /*"icon_theme" is theme for icons in the taskbar. If no theme is set, the default icon theme will be used.
+   * Uncomment "icon_theme" line to set theme.
+
+  //"icon_theme" : "ePapirus",
+  //"font" : "Cantarell",
+  "font_size" : 20,
+  /* "color" and "background_color" must be set with number from 0.0 to 1.0 [red, green, blue]*/
+  "color" : [1.0 ,1.0 ,1.0],
+  	"background_color" : [0.2, 0.2, 0.2],
+  /*"size" of taskbar in pixels. If not set, default size is 49 pixels*/
+  "size" : 47,
+  /*The taskbar can be overlayed by other windows. Default "exclusive_zone" is "size"*/
+  "exclusive_zone" : 50,
+  /*"position" values allowed are "top" and "bottom". Default is "bottom"*/
+  "position" : "bottom",
+  /*
+   * items can be at start or end of the taskbar.
+   * Yatbfw can use the next types of items:
+   *  - launcher: Runs a command when it is clicked. The "icon" and command to be run, "exec", must be set.
+   *    Example:
+   *      {
+   *        "type" : "launcher",
+   *        "icon" : "lxqt",
+   *        "tooltip" : "LXQt Launcher",
+   *        "exec" : " wofi --show drun"
+   *      }
+   *  - clock: It is a clock. "time_format" can be set using the strftime format. Read "man strftime".
+   *    Command can be runned if it is clicked. Example:
+   *      {
+   *        "type" : "clock",
+   *        "icon" : "battery-symbolic", // icon can be removed
+   *        "time_format" : "%D - %H:%M",
+   *        "exec" : "zenity --calendar --text= --title=`date +%Y-%m-%d`"
+   *      }
+   *  - battery: Shows percent of battery capacity.
+   *      The minimal settings for battery are:
+   *      {
+   *           "type" : "battery",
+   *           "exec" : "qps"
+   *      }
+   *      The full arguments for battery settings are:
+   *      {
+   *        "type" : "battery",
+   *        "icon_battery_full" : "battery-full-symbolic",
+   *        "icon_battery_good" : "battery-good-symbolic",
+   *        "icon_battery_medium" : "battery-medium-symbolic",
+   *        "icon_battery_low" : "battery-low-symbolic",
+   *        "icon_battery_empty" : "battery-empty-symbolic",
+   *        "icon_battery_charging" : "battery-low-charging-symbolic",
+   *        "icon_battery_charged" : "battery-full-charged-symbolic",
+   *        "no_text" : "empty", // The battery level label can be removed
+   *        "exec" : "qps"
+   *      }
+   */
+   /* "start_items" and "end_items" are list of items that will be placed at start or end of the panel.
+    */
+
+   "start_items" : [
+    {
+      "type" : "launcher",
+      "icon" : "lxqt-about",
+      "tooltip" : "Launcher",
+      "exec" : "lxqt-runner"
+    },
+        {
+      "type" : "launcher",
+      "icon" : "firefox",
+      "tooltip" : "Firefox",
+      "exec" : "firefox"
+    },
+     {
+      "type" : "launcher",
+      "icon" : "system-shutdown",
+      "tooltip" : "Esci",
+      "exec" : "lxqt-wlogout"
+    },
+    {
+      "type" : "launcher",
+      "icon" : "featherpad",
+      "tooltip": "Featherpad",
+      "exec" : "featherpad"
+    },
+    {
+      "type" : "launcher",
+      "icon" : "user-desktop",
+      "tooltip": "Lower inactive windows",
+      "exec" : "wlrctl toplevel minimize state:inactive"
+    },
+
+  ],
+  "end_items" : [
+    {
+      "type" : "clock",
+      "time_format" : "%A %e %B %k:%M",
+      "exec" : "kalendar"
+    }
+  ]
+}
