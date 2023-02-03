@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 
 <!--
-  This is a very simple config file with many options missing. For a complete
+  This is a very basic config file for labwc with LXQt with many options missing. For a complete
   set of options with comments, see docs/rc.xml.all
+  Theme "Vent-dark" has to be copied to ~/.local/share/themes/Vent-dark"
 -->
 
 <labwc_config>
@@ -11,17 +12,37 @@
     <gap>10</gap>
   </core>
 
-  <theme>
-    <name></name>
-    <cornerRadius>8</cornerRadius>
-    <font name="sans" size="10" />
+ <theme>
+    <name>Vent-dark</name>
+    <cornerRadius>10</cornerRadius>
+    <font place="ActiveWindow">
+      <name>sans</name>
+      <size>13</size>
+      <slant>normal</slant>
+      <weight>bold</weight>
+    </font>
+    <font place="MenuItem">
+      <name>sans</name>
+      <size>12</size>
+      <slant>normal</slant>
+      <weight>normal</weight>
+    </font>
+    <font place="OnScreenDisplay">
+      <name>sans</name>
+      <size>13</size>
+      <slant>normal</slant>
+      <weight>normal</weight>
+    </font>
   </theme>
 
   <keyboard>
     <default />
     <!-- Use a different terminal emulator -->
     <keybind key="W-Return">
-      <action name="Execute" command="foot" />
+      <action name="Execute" command="qterminal" />
+    </keybind>
+    <keybind key="A-Space">
+      <action name="Execute" command="lxqt-runner" />
     </keybind>
   </keyboard>
 

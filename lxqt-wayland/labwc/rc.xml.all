@@ -231,7 +231,7 @@
     <context name="Right">
       <mousebind button="Left" action="Drag">
         <action name="Resize" />
-      </mousebind>
+      </mousebind>simple
     </context>
     <context name="Bottom">
       <mousebind button="Left" action="Drag">
@@ -355,11 +355,11 @@
       - tapButtonMap [lrm|lmr]
   -->
   <libinput>
-    <device category="">
+    <device category="*">
       <naturalScroll></naturalScroll>
       <leftHanded></leftHanded>
-      <pointerSpeed></pointerSpeed>
-      <accelProfile></accelProfile>
+      <pointerSpeed>0.9</pointerSpeed>
+      <accelProfile>adaptive</accelProfile>
       <tap>yes</tap>
       <tapButtonMap></tapButtonMap>
       <middleEmulation></middleEmulation>

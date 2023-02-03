@@ -1,9 +1,7 @@
 # Example autostart file
 
-# Set background color or image.
-swaybg swaybg -i /usr/share/lxqt/wallpapers/origami-dark.png
-
-#tray = waybar >/dev/null 2>&1 &
+# Set background color or image:
+swaybg -i /usr/share/lxqt/wallpapers/origami-dark.png  >/dev/null 2>&1 &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
@@ -12,15 +10,16 @@ swaybg swaybg -i /usr/share/lxqt/wallpapers/origami-dark.png
 #     output HDMI-A-1 position 1366,0
 #     output eDP-1 position 0,0
 #   }
-kanshi >/dev/null 2>&1 &
+# kanshi >/dev/null 2>&1 &
 
-# Launch a panel containing a systray - waybar or
-lxqt-panel -c  $XDG_CONFIG_HOME/lxqt/wayland/panel.conf >/dev/null 2>&1 &
+# Launch a panel containing a systray - waybar is recommended
+tray = waybar >/dev/null 2>&1 &
+#lxqt-panel -c  $XDG_CONFIG_HOME/lxqt/wayland/panel.conf >/dev/null 2>&1 &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
 # as mako to function correctly. Thunderbird is an example of this.
-mako >/dev/null 2>&1 &
+# mako >/dev/null 2>&1 &
 
 # Lock screen after 5 minutes; turn off display after another 5 minutes.
 #

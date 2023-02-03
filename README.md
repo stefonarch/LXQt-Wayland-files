@@ -22,7 +22,7 @@ Please note that this here is experimental and work in progress.
 
 ### Working LXQt components:
 
-`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-polkit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
+`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-policykit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
 
 ### Using lxqt-session
 
@@ -40,18 +40,28 @@ From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-The most usable atm for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
-multiple desktops, - all works; many resource-friendly desktop effects and animations.
+The most usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
+multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations.
 
-Editing config file(s) is mandatory for customizing.
+Reading and editing config file(s) is mandatory for customizing.
 
-### Sway (tiling)
+#### Issues
+
+* lxqt-notificationd steals focus
+* `PCmanFm-qt --desktop` can be used, windows can go under it, sticky needs a rule.
+* positioning of windows needs rules
+* With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
+
+## Sway (tiling)
 
 ![Screenshot LXQt Sway](sway.png)
 
-Preconfigured with panels, lxqt-runner (alt+space) and 2 keyboard layouts (toggle: alt+shift).
+Preconfigured with panels and lxqt-runner (alt+space) and 2 keyboard layouts (toggle: alt+shift).
+Quite usable. See also [LXQt Sway](https://github.com/selairi/lxqt-sway).
 
-See also [LXQt Sway](https://github.com/selairi/lxqt-sway)
+#### Issues
+
+* none
 
 ## Labwc (stacking)
 
@@ -60,11 +70,18 @@ See also [LXQt Sway](https://github.com/selairi/lxqt-sway)
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
+Old openbox in wayland mode. Usable LXQt components are `lxqt-session`,`-powermanagement`,`-policykit`, `-runner`, `-config` and `pcmanfm-qt`.
+
 * openbox themes in `~/.local/share/themes`
 
 A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
 
 ![labwc-tweaks](tweaks.png).
+
+#### Issues
+
+* No window rules with version 0.6, lxqt-panel not usable (manual placement)
+* `lxqt-notificationd` window steals focus and has title bar
 
 ### Hyprland (tiling)
 
@@ -72,20 +89,15 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 [Source](https://github.com/hyprwm/Hyprlasettingsnd#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
 
+Nice window effects like dim inactive, fading and other animations, opacity, desktop change gesture (3 finger swipe). LXQt-panel doesn't preserve space and windows go under it. Usable LXQt components are `lxqt-session`,`-powermanagement`,`-policykit`, `-runner`, `-config`, `-notificationd`.
 
-#### Pro
 
-Nice window effects like dim inactive, fading and other animations, opacity, desktop change gesture (3 finger swipe).
-
-#### Contro
-
-Needs many window rules, some windows (like "save, discard, close" when closing unsaved texts) need manual resizing (mod + right mouse button + drag) to see all. lxqt-runner cannot resize it's window. Tray menus open below windows, windows on the right open submenu on the left and will lose focus.
 
 ## Panels
 
 ### lxqt-panel
 
-`lxqt-panel` can be started if no "Desktop switcher" is present in its configuration file. Positioning, taskbar and some few other plugins do not work automatically For a working configuration with replacement for kbindicator see  `lxqt-wayland/panel.conf`, add a window rule for placing at top, other positions are not usable atm.
+`lxqt-panel` can be started if no "Desktop switcher" is present in its configuration file. Positioning, taskbar and some few other plugins do not work automatically For a working configuration with replacement for kbindicator see  `lxqt-wayland/panel.conf`, add a window rule for placing at top, other positions are not usable atm. Usable only in sway and wayfire.
 
 ### Yatbfw
 
@@ -95,12 +107,11 @@ See `lxqt-wayland/yatbfw.json`.
 
 #### Features
 
-* taskbar/dock (close on middleclick, toggle maximize on click)
+* taskbar/dock (close on middleclick, toggle maximize on click, minimize on right click)
 * launchers
 * brightness and speakers
 * clock
 
-Note: for `startlxqthyprland` change  position to "top".
 
 ### Waybar
 
@@ -126,7 +137,6 @@ Some icons need "font-icon" and "font-awesome" to be displayed.
 
 * Window activation on clicks from other windows or notifications.
 Fixed for browser in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
-* lxqt-notifications steal the focus
 
 ## Tipps & Tricks
 
