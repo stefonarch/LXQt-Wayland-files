@@ -1,9 +1,8 @@
-#!/bin/sh (added only for syntax highlighting)
-# Default config for sway with LXQt
 #
-# Copy this to ~/.config/sway/config and edit it to your liking.
+# LXQt Sway configuration
 #
-# Read `man 5 sway` for a complete reference.
+
+# Read 'man 5 sway' for a complete reference.
 
 ### Variables
 #
@@ -24,22 +23,28 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/lxqt/wallpapers/origami-dark.png fill
+
+# Set cursor theme
+# seat seat0 xcursor_theme Oxygen_White 28
+# Cursor theme for GTK
+#exec_always gsettings set org.gnome.desktop.interface cursor-theme 'Oxygen_White'
+#exec_always gsettings set org.gnome.desktop.interface cursor-size '28'
+
+
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+# output * scale 1
 
 ### Idle configuration
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w #          timeout 300 'swaylock -f -c 000000' #          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' #          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -49,31 +54,33 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+   input "*" {
 #       dwt enabled
-#       tap enabled
+       tap enabled
+       accel_profile adaptive
+       pointer_accel 0.9
 #       natural_scroll enabled
 #       middle_emulation enabled
-#   }
- input * {
-        xkb_layout "en,de"
-        xkb_options = grp:alt_shift_toggle,grp_led:scroll
-        # used for layout display in lxqt-panel
-}
+   }
+    input "type:keyboard"  {
+       xkb_layout it,ch
+       xkb_options grp:alt_shift_toggle,grp_led:scroll
+   }
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+# Read 'man 5 sway-input' for more information about this section.
 
 ### Key bindings
 #
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec qterminal
+
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -89,7 +96,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' -B 'Power off' 'systemctl poweroff'
 #
 # Moving around:
 #
@@ -141,6 +148,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    assign [class="firefox"] $ws1
+    assign [class="qterminal"] $ws2
+    assign [class="thunderbird"] $ws1
+    workspace_layout stacking
+
 #
 # Layout stuff:
 #
@@ -162,10 +174,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+z   focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
 #
 # Scratchpad:
 #
@@ -206,36 +219,69 @@ bindsym $mod+r mode "resize"
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# Read 'man 5 sway-bar' for more information about this section.
+#bar {
+#    position bottom
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#    #status_command while date +'%Y-%m-%d %I:%M %p'; do sleep 60; done
+#    status_command bash /home/lucas/.config/sway/mi_status_bar.sh
+#
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+xwayland enable
 
-## LXQt-panel config
-gaps top 45px
-gaps outer 4px
-gaps inner 4px
-# This is so the bar doesn't partially cover tiled windows
-exec --no-startup-id lxqt-panel
+include /etc/sway/config.d/*
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 1-
+bindsym XF86MonBrightnessUp exec brightnessctl set +1
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec bemenu-run
+
+# Screenshot
+bindsym Print exec grim - | tee "$(xdg-user-dir DOWNLOAD)/$(date +'%Y-%m-%d %H;%M;%S.png')" | wl-copy
+# Capture the specified screen area to clipboard
+bindsym Shift+Print exec grim -g "$(slurp)" - | tee "$(xdg-user-dir DOWNLOAD)/$(date +'%Y-%m-%d %H;%M;%S.png')" | wl-copy
+
+## LXQt settings
+
+# start panel with status notifier first (fixed in git, can be startet by lxqt-session)
+exec --no-startup-id lxqt-panel -c $XDG_CONFIG_HOME/lxqt-wayland/panel.conf
 no_focus [app_id="lxqt-panel"]
-for_window [app_id="lxqt-panel"] floating enable, sticky enable, border none,move up 520 px,
+for_window [app_id="lxqt-panel"] floating enable, sticky enable, border none,move position 0 -38
+# 508px works for a 1080p monitor with a 38px high panel. You can use ppt (percantage point) instead of px (pixels).
+# Preserve space
+gaps top 38
 
-# You can use ppt (percantage point) instead of px (pixels). 550px seems to work for a 1080p monitor with a 32px high bar
+exec --no-startup-id yatbfw --settings $XDG_CONFIG_HOME/lxqt/wayland/yatbfw.json
+#exec lxqt-session
+
+# if not using lxqt-session: uncomment components here:
+#exec --no-startup-id lxqt-notificationd
+#exec --no-startup-id lxqt-powermanagement
+#exec --no-startup-id lxqt-policykit-agent
+
+no_focus [app_id="lxqt-notificationd"]
+for_window [app_id="lxqt-notificationd"] floating enable, sticky enable, border none, move position 900 40,
+#move down 400 px, move right 700 px
 
 exec --no-startup-id lxqt-runner
 for_window [app_id="lxqt-runner"] floating enable, sticky enable, border none,move position 800 280,
-
-
 bindsym alt+space exec lxqt-runner
 
-include /etc/sway/config.d/*
+bindsym $mod+p exec pcmanfm-qt
+
+include ~/.config/lxqt/lxqt-sway/user/*
