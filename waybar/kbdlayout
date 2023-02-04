@@ -1,0 +1,2 @@
+#!/bin/sh
+if [ "$(cat /sys/class/leds/input3\:\:scrolllock/brightness)" == '1' ]; then echo 'CH';else echo 'IT'; fi

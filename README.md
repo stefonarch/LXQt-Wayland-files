@@ -7,8 +7,8 @@ Files and components for a LXQt wayland session - beside the wayland compositor 
 * `swaybg` : background image
 * `swayidle` : idle settings
 * `yatbfw` : taskbar, clock, quicklaunch
-* `waybar` : notification area, cpu/ram/temp monitor; can do much more
-* `lxqt-wlogout` : Close session
+* `waybar` : notification area, cpu/ram/temp monitor, keyboard layout display
+* `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
 * `wmctrl` : for some keybindings
 
 
@@ -18,7 +18,7 @@ Copy the `lxqt-wayland` folder to `~/.config/`. The `startlxqt*` scripts will us
 
 `startlxqt<compositor>` scripts can be executed also directly in tty; environment variables are set here before starting the compositor.
 
-Please note that this here is experimental and work in progress.
+Please note that this here is experimental work in progress.
 
 ### Working LXQt components:
 

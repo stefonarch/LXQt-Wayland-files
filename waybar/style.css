@@ -5,11 +5,10 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.4);
-    /*border-top: 1px solid rgba(70, 70, 70, 0.5);*/
-    color: #ffffff;
+    background-color: rgba(40, 40, 40, 0.6);
+    /*border-top: 1px solid rgba(70, 70, 70, 0.5);
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: .5s;*/
     border:1px solid black;
     border-radius: 5px;
 }
@@ -34,6 +33,22 @@ window#waybar.termite {
 window#waybar.chromium {
     background-color: #000000;
     border: none;
+}
+
+
+
+button {
+  border: none;
+}
+
+label:disabled,
+button:disabled {
+  color: inherit;
+  background: inherit;
+}
+
+button:hover {
+  background: inherit;
 }
 
 #workspaces button {
@@ -78,7 +93,8 @@ window#waybar.chromium {
 #custom-media,
 #tray,
 #mode,
-temperature,
+#taskbar,
+#temperature,
 #idle_inhibitor,
 #mpd {
     padding: 2px;
@@ -147,7 +163,7 @@ label:focus {
 }
 
 #memory {
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color:blue;
 }
 
 #disk {
@@ -193,7 +209,8 @@ label:focus {
 }
 
 #temperature {
-    background-color: #5555ff;
+    background-color:#71efef;
+    color: #000;
 }
 
 #temperature.critical {
@@ -227,23 +244,11 @@ label:focus {
     color: #000000;
 }
 
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
 
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
+#kbdlayout{
+    background:blue;
+    color:red;
+    }
 #language {
     background: #00b093;
     color: #740864;
@@ -266,4 +271,7 @@ label:focus {
 
 #keyboard-state > label.locked {
     background: #a8190d;
+}
+#custom-kbdlayout{
+  color: white;
 }
