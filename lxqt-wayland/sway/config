@@ -255,20 +255,19 @@ bindsym Shift+Print exec grim -g "$(slurp)" - | tee "$(xdg-user-dir DOWNLOAD)/$(
 
 ## LXQt settings
 
-# start panel with status notifier first (fixed in git, can be startet by lxqt-session)
+# start panel with status notifier first (this is fixed in git, can be started by lxqt-session)
 exec --no-startup-id lxqt-panel -c $XDG_CONFIG_HOME/lxqt-wayland/panel.conf
 no_focus [app_id="lxqt-panel"]
 for_window [app_id="lxqt-panel"] floating enable, sticky enable, border none,move position 0 -38
-# 508px works for a 1080p monitor with a 38px high panel. You can use ppt (percantage point) instead of px (pixels).
 # Preserve space
 gaps top 38
 
 exec --no-startup-id yatbfw --settings $XDG_CONFIG_HOME/lxqt/wayland/yatbfw.json
-#exec lxqt-session
+#exec sleep 3 && lxqt-session
 
 # If using lxqt-session: comment components here as they will be started by it
-exec --no-startup-id lxqt-notificationd
-exec --no-startup-id lxqt-powermanagement
+exec --no-startup-id  lxqt-notificationd
+exec --no-startup-id sleep 3 && lxqt-powermanagement
 exec --no-startup-id lxqt-policykit-agent
 
 no_focus [app_id="lxqt-notificationd"]
