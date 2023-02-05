@@ -1,6 +1,6 @@
 # Wayland Implementations for the LXQt Desktop
 
-Files and components for a LXQt wayland session - beside the wayland compositor itself - are:
+> Files and dotfiles for a LXQt Wayland session
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>-lxqt.desktop` : Entry in SDDM
@@ -28,9 +28,9 @@ Please note that this here is experimental work in progress.
 
 From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file.
 
-* Systray/Notification area (using waybar or lxqt-panel) should start first (`sleep 2 && lxqt-session`) (fixed in git)
+* Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in git)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart_scripts" folder for a selective autostart under x11/wayland.
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" folder for a selective autostart of applications depending on session type.
 * Lock settings are not applied in wayland.
 
 
@@ -56,12 +56,20 @@ Reading and editing config file(s) is mandatory for customizing.
 
 ![Screenshot LXQt Sway](sway.png)
 
-Preconfigured with panels and lxqt-runner (alt+space) and 2 keyboard layouts (toggle: alt+shift).
+Configured with panels and lxqt-runner (alt+space),2 keyboard layouts (toggle: alt+shift) and some window rules.
 Quite usable. See also [LXQt Sway](https://github.com/selairi/lxqt-sway).
+
+* Mouse gestures (swipe to switch desktop): `~/.config//libinput-gestures.conf`
+```
+gesture: swipe left 3   swaymsg -t command workspace next_on_output
+gesture: swipe right 3  swaymsg -t command workspace prev_on_output
+```
+See `autostart/sway_scripts.desktop`.
+
 
 #### Issues
 
-* none
+* Panel volume popup opens at 0,0
 
 ## Labwc (stacking)
 
@@ -82,6 +90,7 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 * No window rules with version 0.6, lxqt-panel not usable (manual placement)
 * `lxqt-notificationd` window steals focus and has title bar
+* `lxqt-runner` has title bar
 
 ### Hyprland (tiling)
 
@@ -158,9 +167,9 @@ Copy  `firefox.desktop` file from  `/usr/share/applications/` to  `~/.local/shar
 Exec=/usr/bin/firefox_wayland %u
 ```
 
-### Autostart scripts
+### Autostart scripts and .desktop files
 
-If `lxqt-session` is used scripts that select the application to launch depending of `XDG_SESSION_TYPE` are useful. Examples in autostart_scripts folder.
+If `lxqt-session` is used scripts that select the application to launch depending of `XDG_SESSION_TYPE` or `$wayland_compositor` can be useful. Examples in `autostart` folder.
 
 ### Telegram does not open multimedia files
 

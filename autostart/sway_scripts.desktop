@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=bash -c "if [ $wayland_compositor = "sway" ];then libinput-gestures-setup restart && dim_inactive_sway;fi"
+Name=Sway scripts
+Type=Application
+Version=1.0
+X-LXQt-Module=true

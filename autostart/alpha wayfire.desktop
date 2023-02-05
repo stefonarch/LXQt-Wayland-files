@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=bash -c "if [ $wayland_compositor = "wayfire" ];then /home/stef/bin/alpha-script.py;fi"
+Name=alpha wayfire
+Type=Application
+Version=1.0
+X-LXQt-Module=true

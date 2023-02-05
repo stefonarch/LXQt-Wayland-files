@@ -63,8 +63,9 @@ output * bg /usr/share/lxqt/wallpapers/origami-dark.png fill
 #       middle_emulation enabled
    }
     input "type:keyboard"  {
-       xkb_layout us,de
+       xkb_layout it,ch
        xkb_options grp:alt_shift_toggle,grp_led:scroll
+       xkb_model "pc105"
    }
 
 #
@@ -270,14 +271,30 @@ exec --no-startup-id  lxqt-notificationd
 exec --no-startup-id sleep 3 && lxqt-powermanagement
 exec --no-startup-id lxqt-policykit-agent
 
+# Window rules
 no_focus [app_id="lxqt-notificationd"]
-for_window [app_id="lxqt-notificationd"] floating enable, sticky enable, border none, move position 900 40,
-#move down 400 px, move right 700 px
-
+for_window [app_id="lxqt-notificationd"] floating enable, sticky enable, border none, move position 1200 40,
 exec --no-startup-id lxqt-runner
 for_window [app_id="lxqt-runner"] floating enable, sticky enable, border none,move position 800 280,
-bindsym alt+space exec lxqt-runner
 
-bindsym $mod+p exec pcmanfm-qt
+# LXQT config Windows
+    for_window [title="LXQt|config|Modify|file"] floating enable
+    bindsym alt+space exec lxqt-runner
+    bindsym $mod+p exec pcmanfm-qt
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #dddddd #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans 11
+
 
 include ~/.config/lxqt/lxqt-sway/user/*
+
+

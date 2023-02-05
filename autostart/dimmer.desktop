@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=PATH/TO/dimmer
+Name=Dimmer
+Type=Application
+Version=1.0
+X-LXQt-Module=true
