@@ -43,13 +43,11 @@ From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the
 The most usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
 multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations.
 
-Reading and editing config file(s) is mandatory for customizing.
-
 #### Issues
 
-* lxqt-notificationd steals focus
-* `PCmanFm-qt --desktop` can be used, windows can go under it, sticky needs a rule.
-* positioning of windows needs rules
+* `lxqt-notificationd` steals focus
+* `PCmanFm-qt --desktop` can be used, windows can go under it, sticky needs a window rule.
+* positioning of windows needing rules
 * With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
 
 ## Sway (tiling)
