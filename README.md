@@ -10,6 +10,7 @@
 * `waybar` : notification area, cpu/ram/temp monitor, keyboard layout display
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
 * `wmctrl` : for some keybindings
+* `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 
 
 ## Starting LXQt Session
@@ -47,7 +48,6 @@ multiple desktops and lxqt-panel with some limits and quirks do work. In additio
 
 * `lxqt-notificationd` steals focus
 * `PCmanFm-qt --desktop` can be used, windows can go under it, sticky needs a window rule.
-* positioning of windows needing rules
 * With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
 
 ## Sway (tiling)
@@ -67,7 +67,7 @@ See `autostart/sway_scripts.desktop`.
 
 #### Issues
 
-* Panel volume popup opens at 0,0
+* Panel volume popup opens at 0,0 (fixed in git)
 
 ## Labwc (stacking)
 
@@ -88,7 +88,7 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 * No window rules with version 0.6, lxqt-panel not usable (manual placement)
 * `lxqt-notificationd` window steals focus and has title bar
-* `lxqt-runner` has title bar
+* `lxqt-runner` and others have title bar
 
 ### Hyprland (tiling)
 
@@ -96,9 +96,11 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 [Source](https://github.com/hyprwm/Hyprlasettingsnd#readme), [Wiki](https://wiki.hyprland.org/Configuring/Basic-Config/)
 
-Nice window effects like dim inactive, fading and other animations, opacity, desktop change gesture (3 finger swipe). LXQt-panel doesn't preserve space and windows go under it. Usable LXQt components are `lxqt-session`,`-powermanagement`,`-policykit`, `-runner`, `-config`, `-notificationd`.
+Nice window effects like dim inactive, fading and other animations, opacity, desktop swipe gesture (3 finger swipe). Usable LXQt components are `lxqt-panel`,`-powermanagement`,`-policykit`, `-runner`, `-config`, `-notificationd`.
 
+#### Issues
 
+* `lxqt-session` doesn't load some modules, autostart works fine.
 
 ## Panels
 
