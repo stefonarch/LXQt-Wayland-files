@@ -1,8 +1,6 @@
 #!/bin/sh
 # check session and select apps in autostart
-SESSION=$(env |grep SESSION_TYPE|cut -c18-25)
-
-if [ "$SESSION" = "wayland" ];
+if [ "$XDG_SESSION_TYPE" = "wayland" ];
    then
        gammastep-indicator
    else
