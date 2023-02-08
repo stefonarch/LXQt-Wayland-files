@@ -130,7 +130,12 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 
 ### lxqt-panel
 
-`lxqt-panel` can be started if no "Desktop switcher" is present in its configuration file. Positioning, taskbar and some few other plugins do not work automatically For a working configuration with replacement for kbindicator see  `lxqt-wayland/panel.conf`, add a window rule for placing at top, other positions are not usable atm. Usable only in sway and wayfire.
+`lxqt-panel` can be started if no "Desktop switcher" is present in its configuration file. Recommended is `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator see  `lxqt-wayland/panel.conf`.
+
+* Window rule needed for position 0 0; only top and left panels are usable.
+* Smaller with than 100% can lead to issues
+* Usable in sway, hyrpland, kwin_wayland and wayfire.
+* custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
 
 ### Yatbfw
 
@@ -154,7 +159,7 @@ For `keyboard-state` working make sure your user is member of the "input" group.
 
 Some icons need "font-icon" and "font-awesome" to be displayed.
 
-#### Accessories
+## Accessories
 
 * `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
 * `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
@@ -164,11 +169,12 @@ Some icons need "font-icon" and "font-awesome" to be displayed.
 * `wf-dock` dock/taskbar
 * `wev` : xev for wayland
 * wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
+* `gammastep` replacment for redshift
 
 
 ## Main overall issues in compositors:
 
-* Window activation on clicks from other windows or notifications.
+* Window activation on clicks from other windows or notifications
 Fixed for browser in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
 
 ## Tipps & Tricks
