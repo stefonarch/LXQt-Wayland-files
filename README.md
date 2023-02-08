@@ -34,14 +34,38 @@ From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" folder for a selective autostart of applications depending on session type.
 * Lock settings are not applied in wayland.
 
+## Kwin_wayland (stacking)
+
+![Screenshot kwin_wayland](kwin_wayland.png)
+
+The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (see `kwin_wayland.rule`). Needs more testing.
+
+#### Highlights
+
+* Working desktop on all outputs, always at bottom (this needs `pcmanfm-qt` compiled with title for it's desktop window. Note: a better method needed as the rule will apply to all window with that title)
+* Lock screen
+* Multiple sessions/switch user (to test)
+* Spectacle screenshots working
+* klipper for clipboard
+* `lxqt-config-monitor`  working (to test multihead)
+
+#### Issues
+
+* Taskbar only provided by swaybar, yatbfw segfaults
+* Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
+* QTerminal crashes when try to split (only on kwin_wayland)
+* More easier to experience full session crash
+* fullscreen window titlebar goes under the panel
+* Element (xwayland) segfaults
+
 
 ## Wayfire (stacking)
 
-![Screenshot](lxqt-wayfire.png)
+![Screenshot LXQt wayfire](lxqt-wayfire.png)
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-The most usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
+Usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
 multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations.
 
 #### Issues

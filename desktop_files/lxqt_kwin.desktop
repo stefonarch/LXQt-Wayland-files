@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=LXQt Kwin
+Comment=Wayland compositor for LXQT
+Exec=startlxqtkwin
+Type=Application
