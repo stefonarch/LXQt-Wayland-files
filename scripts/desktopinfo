@@ -1,0 +1,9 @@
+#!/bin/bash
+# shows current desktop in custom command plugin
+if [ "$wayland_compositor" = "sway" ];
+  then swaymsg -t get_outputs |grep -i work|awk '{print $2 $3}'|tr -d '",'
+else
+  if [ "$wayland_compositor" = "Hyprland" ];
+  then hyprctl monitors|grep active|awk '{print "Workspace " $3}'
+  fi
+fi

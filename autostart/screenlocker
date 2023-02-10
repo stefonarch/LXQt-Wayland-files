@@ -1,8 +1,0 @@
-#!/bin/sh
-# check session and select apps in autostart
-if [ "$XDG_SESSION_TYPE" = "wayland" ];
-   then
-       swayidle before-sleep swaylock
-   else
-       xautolock -time 20 -locker i3lock-fancy
-fi

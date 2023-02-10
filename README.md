@@ -1,6 +1,6 @@
 # Wayland Implementations for the LXQt Desktop
 
-> Files and dotfiles for a LXQt Wayland session
+> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland without using xwayland.
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>-lxqt.desktop` : Entry in SDDM
@@ -11,15 +11,16 @@
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
 * `wmctrl` : for some keybindings
 * `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
+* `scripts` and `autostart`: some tools  for autostart and else
 
 
 ## Starting LXQt Session
 
-Copy the `lxqt-wayland` folder to `~/.config/`. The `startlxqt*` scripts will use the configuration in this location; copy the desired file(s) from `desktop_files` to `/usr/share/wayland-sessions/` if using a display manager like SDDM to choose session type. Copy the desired scripts from `startup_scripts` to `/usr/bin/` and make them executable.
+Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings for the compositors and an extra part for LXQt. The `startlxqt*` scripts will use the configuration in this location; copy the desired file(s) from `wayland-sessions` to `/usr/share/wayland-sessions/` if using a display manager like SDDM to choose session type. Copy the desired scripts from `startup_scripts` to `/usr/bin/` and make them executable.
 
 `startlxqt<compositor>` scripts can be executed also directly in tty; environment variables are set here before starting the compositor.
 
-Please note that this here is experimental work in progress.
+Make sure "Lock screen on resume" is not selected, otherwise the process will crash on resume (but not the session); logout and modules management will not work anymore.
 
 ### Working LXQt components:
 
@@ -27,18 +28,18 @@ Please note that this here is experimental work in progress.
 
 ### Using lxqt-session
 
-From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file.
+From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file. For `kwin_wayland` the `startlxqtkwin` script will start the session.
 
 * Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in git)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" folder for a selective autostart of applications depending on session type.
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type.
 * Lock settings are not applied in wayland.
 
 ## Kwin_wayland (stacking)
 
 ![Screenshot kwin_wayland](kwin_wayland.png)
 
-The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (see `kwin_wayland.rule`). Needs more testing.
+The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (import `kwin_wayland.rule` in KDE settings → Windowmanagement → Window rules).
 
 #### Highlights
 
@@ -53,10 +54,12 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 
 * Taskbar only provided by swaybar, yatbfw segfaults
 * Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
-* QTerminal crashes when try to split (only on kwin_wayland)
-* More easier to experience full session crash
+* QTerminal crashes when try to split (only on kwin_wayland)(fixed in git)
 * fullscreen window titlebar goes under the panel
-* Element (xwayland) segfaults
+* Element (xwayland) segfaults // xwayland not enabled?
+* wlsunset and gammastep not working, `kcmshell5 kcm_nightcolor&` works.
+* window rules for applications on workspaces doesn't work
+* keys for brightness and volume are not working (sliders from panel work)
 
 
 ## Wayfire (stacking)

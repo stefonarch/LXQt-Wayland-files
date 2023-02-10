@@ -1,5 +1,6 @@
 #!/bin/sh
 # check session and select apps in autostart
+# For permanent storing use a different location like "$HOME/.local/share/clipman.json" and update the shortcuts too
 if [ "$XDG_SESSION_TYPE" = "wayland" ];
    then
        wl-paste --watch clipman store -P --max-items=30 --histpath="/tmp/clipman.json"

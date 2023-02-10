@@ -256,31 +256,22 @@ bindsym Shift+Print exec grim -g "$(slurp)" - | tee "$(xdg-user-dir DOWNLOAD)/$(
 
 ## LXQt settings
 
-# start panel with status notifier first (this is fixed in git, can be started by lxqt-session)
-exec --no-startup-id lxqt-panel -c $XDG_CONFIG_HOME/lxqt-wayland/panel.conf
-no_focus [app_id="lxqt-panel"]
-for_window [app_id="lxqt-panel"] floating enable, sticky enable, border none,move position 0 -38
-# Preserve space
-gaps top 38
+# start panel with status notifier first (fixed in git, can be started by lxqt-session)
+#exec --no-startup-id lxqt-panel -c $XDG_CONFIG_HOME/lxqt-wayland/panel.conf
 
-exec --no-startup-id yatbfw --settings $XDG_CONFIG_HOME/lxqt/wayland/yatbfw.json
-#exec sleep 3 && lxqt-session
+# Preserve space for lxqt-panel at top (left possible)
+   gaps top 38
+   workspace_layout tabbed
 
-# If using lxqt-session: comment components here as they will be started by it
-exec --no-startup-id  lxqt-notificationd
-exec --no-startup-id sleep 3 && lxqt-powermanagement
-exec --no-startup-id lxqt-policykit-agent
+#exec --no-startup-id yatbfw --settings $XDG_CONFIG_HOME/lxqt/wayland/yatbfw.json
+exec lxqt-session
 
-# Window rules
-no_focus [app_id="lxqt-notificationd"]
-for_window [app_id="lxqt-notificationd"] floating enable, sticky enable, border none, move position 1200 40,
-exec --no-startup-id lxqt-runner
-for_window [app_id="lxqt-runner"] floating enable, sticky enable, border none,move position 800 280,
+# If not using lxqt-session: uncomment components here
+#exec --no-startup-id  lxqt-notificationd
+#exec --no-startup-id sleep 3 && lxqt-powermanagement
+#exec --no-startup-id lxqt-policykit-agent
+#exec --no-startup-id lxqt-runner
 
-# LXQT config Windows
-    for_window [title="LXQt|config|Modify|file"] floating enable
-    bindsym alt+space exec lxqt-runner
-    bindsym $mod+p exec pcmanfm-qt
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
@@ -292,9 +283,41 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans 11
+    font pango:DejaVu Sans 11
+    title_align center
+    smart_borders on
 
+
+    bindsym Ctrl+Alt+Right workspace next_on_output
+    bindsym Ctrl+Alt+Left workspace prev_on_output
+
+    bindsym $mod+Alt+Left move container to workspace next, workspace next
+    bindsym $mod+Alt+Right move container to workspace prev, workspace prev
+
+    bindsym Ctrl+Tab focus left
+
+# LXQt (config) windows
+    for_window [app_id="^lxqt-.*$"] floating enable
+    for_window [app_id="cmst"] floating enable
+    for_window [app_id="lxqt-panel"]  sticky enable, border none,move position 0 -38
+    for_window [app_id="qps"] floating enable,sticky enable,
+    for_window [app_id="lxqt-runner"] sticky enable,border none,move position 840 300
+    no_focus [app_id="lxqt-notificationd"]
+    # sadly no_focus affects also it's config window
+    for_window [app_id="lxqt-notificationd"] sticky enable, border none, move position 1420 30,
+
+    bindsym $mod+p exec pcmanfm-qt
+    bindsym alt+space exec lxqt-runner
+    bindsym F12 exec wlrctl toplevel focus qterminal
+
+# Clipboard manager (set in autostart)
+    bindsym Ctrl+Alt+v exec clipman pick --tool=wofi --histpath="$HOME/.local/share/clipman.json"
+    # Full Screenshot
+    bindsym  Shift+Print exec grim /tmp/screen_full_$(date +'%a_%T_.png') && notify-send -a grim -i image -t 2000 "Full screenshot saved"
+    # Select area:
+     bindsym Ctrl+Print exec grim -g "$(slurp)" /tmp/screen_area_$(date +'%a_%T_.png') &&  notify-send -a grim -i image -t 2000 "Selection screenshot saved"
+    # Window: (to fix for sway)
+    bindsym Alt+Print exec grim -g "$(wf-info |grep Geometry |cut -c 10-)" /tmp/screen_window_$(date +'%a_%T_.png') && notify-send -a grim -i image -t 2000 "Window screenshot saved"
 
 include ~/.config/lxqt/lxqt-sway/user/*
-
 

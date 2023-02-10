@@ -1,0 +1,8 @@
+[Desktop Entry]
+Comment=
+Exec=/PATH/TO/screenlocker
+Icon=application-x-desktop
+Name=Screenlocker
+Terminal=false
+Type=Application
+X-LXQt-Module=true
