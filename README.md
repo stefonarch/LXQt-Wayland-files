@@ -3,9 +3,9 @@
 > Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland without using xwayland.
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
-* `/usr/share/wayland-session/<compositor>-lxqt.desktop` : Entry in SDDM
+* `/usr/share/wayland-session/<compositor>_lxqt.desktop` : Entry in SDDM
 * `swaybg` : background image
-* `swayidle` : idle settings
+* `swayidlem swaylock` : idle settings, lock screen
 * `yatbfw` : taskbar, clock, quicklaunch
 * `waybar` : notification area, cpu/ram/temp monitor, keyboard layout display
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
@@ -94,7 +94,6 @@ See `autostart/sway_scripts.desktop`.
 
 #### Issues
 
-* Panel volume popup opens at 0,0 (fixed in git)
 
 ## Labwc (stacking)
 
@@ -103,7 +102,7 @@ See `autostart/sway_scripts.desktop`.
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
-Old openbox in wayland mode. Usable LXQt components are `lxqt-session`,`-powermanagement`,`-policykit`, `-runner`, `-config` and `pcmanfm-qt`.
+Old openbox in modern wayland clothing. Usable LXQt components are `lxqt-session`,`-powermanagement`,`-policykit`, `-runner`, `-config` and `pcmanfm-qt`.
 
 * openbox themes in `~/.local/share/themes`
 
@@ -113,7 +112,7 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 #### Issues
 
-* No window rules with version 0.6, lxqt-panel not usable (manual placement)
+* No window rules with version 0.6 for workarounds so `lxqt-panel` is not really usable (manual placement)
 * `lxqt-notificationd` window steals focus and has title bar
 * `lxqt-runner` and others have title bar
 
@@ -137,8 +136,10 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 
 * Window rule needed for position 0 0; only top and left panels are usable.
 * Smaller with than 100% can lead to issues
-* Usable in sway, hyrpland, kwin_wayland and wayfire.
+* Usable in sway, hyrpland, kwin_wayland and wayfire
 * custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
+* Panel volume popup opens at 0,0 (already fixed in git)
+
 
 ### Yatbfw
 
