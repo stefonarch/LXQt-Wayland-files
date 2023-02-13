@@ -49,6 +49,7 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 * Spectacle screenshots working
 * klipper for clipboard
 * `lxqt-config-monitor`  working (to test multihead)
+* no manual config files editing
 
 #### Issues
 
@@ -124,6 +125,12 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 Nice window effects like dim inactive, fading and other animations, opacity, desktop swipe gesture (3 finger swipe). Usable LXQt components are `lxqt-panel`,`-powermanagement`,`-policykit`, `-runner`, `-config`, `-notificationd` and with a workaround `lxqt-session` (see below).
 
+### Useful tools
+
+* [different keyboard layout per application ](https://github.com/MahouShoujoMivutilde/hyprland-per-window-layout)
+* `hyprshot` Screenshots
+* `hyprpicker` (colorpicker)
+*
 #### Issues
 
 * `lxqt-session` doesn't load session modules because Hyprland overwrites `XDG_CURRENT_DESKTOP=LXQt` with `XDG_CURRENT_DESKTOP=Hyprland`. Modules can be inserted manually with some delay in `hyprland.conf` or the `.desktop` files of the modules can be copied from `/etc/xdg/autostart/` to `~/.local/share/applications/` and then `OnlyShowIn=LXQt;` has to be removed.
@@ -132,13 +139,18 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 
 ### lxqt-panel
 
-`lxqt-panel` can be started if no "Desktop switcher" is present in its configuration file. Recommended is `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator see  `lxqt-wayland/panel.conf`.
+`lxqt-panel` starts if no "Desktop switcher" plugin is present in its configuration file. Recommended is using `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see  `lxqt-wayland/panel.conf`.
 
-* Window rule needed for position 0 0; only top and left panels are usable.
-* Smaller with than 100% can lead to issues
+* Window rules needed:
+  * position 0 0; # only top and left panels are usable.
+  * Sticky|pin (on all desktops)
+  * stay on top
+  * No border/title
+* Smaller width than 100% can lead to issues
 * Usable in sway, hyrpland, kwin_wayland and wayfire
 * custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
 * Panel volume popup opens at 0,0 (already fixed in git)
+* Space on screen can be reserved by `panelspace.py` on hyprland, sway and wayfire; a full version is `lxqt-panel-loader.py` which reads it's width from `panel.conf`, reserves the space needed on top and starts the panel.
 
 
 ### Yatbfw
@@ -157,7 +169,7 @@ See `lxqt-wayland/yatbfw.json`.
 
 ### Waybar
 
-See `waybar` folder; used here _only_ for systray/notification area, cpu/ram/temp/disk/keyboard-state - see screenshot hyprland.
+See `waybar` folder and config; used for systray/notification area, cpu/ram/temp/disk/keyboard-state.
 
 For `keyboard-state` working make sure your user is member of the "input" group.
 

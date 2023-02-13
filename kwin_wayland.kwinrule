@@ -11,6 +11,12 @@ Description=lxqt-panel
 placementrule=2
 position=0,0
 positionrule=3
+skippager=true
+skippagerrule=2
+skipswitcher=true
+skipswitcherrule=2
+skiptaskbar=true
+skiptaskbarrule=2
 types=4
 wmclass=lxqt-panel
 wmclassmatch=1
@@ -28,21 +34,14 @@ wmclassmatch=1
 
 [pcmanfm-qt desktop]
 Description=pcmanfm-qt desktop
+above=true
 below=true
 belowrule=2
 closeablerule=2
-desktops=\\0
+desktops=ab15c43b-92c5-4c1e-93bf-bbeabd4e6bd1,b319e271-1e81-46a1-aa59-4063c9e9da95
 desktopsrule=2
+fullscreenrule=2
 position=0,0
 positionrule=2
-title=Scrivania
+title=pcmanfm-desktop0
 titlematch=1
-wmclassmatch=2
-
-[qterminaldropdown]
-Description=qterminaldropdown
-skipswitcher=true
-skipswitcherrule=3
-skiptaskbar=true
-skiptaskbarrule=3
-wmclassmatch=1
