@@ -1,0 +1,4 @@
+#!/bin/bash
+# Open Application menu on the left from a top lxqt-panel
+# Bind a key to it
+wlrctl pointer move -2000 -1100 && wlrctl pointer click
