@@ -256,6 +256,9 @@ bindsym Shift+Print exec grim -g "$(slurp)" - | tee "$(xdg-user-dir DOWNLOAD)/$(
 
 ## LXQt settings
 
+# faster startup for GTK apps
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY
+
 # start panel with status notifier first (fixed in git, can be started by lxqt-session)
 #exec --no-startup-id lxqt-panel -c $XDG_CONFIG_HOME/lxqt-wayland/panel.conf
 

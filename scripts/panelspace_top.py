@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Add reserved space at top fo screen
 panel_size = 40
 
 import gi

@@ -2,6 +2,9 @@
 
 # Set background color or image:
 swaybg -i /usr/share/lxqt/wallpapers/origami-dark.png  >/dev/null 2>&1 &
+# Faster startup for GTK apps:
+dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY > /dev/null 2>&1 &
+lxqt-session >/dev/null 2>&1 &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names

@@ -70,8 +70,6 @@ export wayland_compositor=kwin_wayland
 #export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
 #export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
 
-# Faster startup for GTK applications
-#dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XAUTHORITY
 
 # Firefox
 export MOZ_ENABLE_WAYLAND=1

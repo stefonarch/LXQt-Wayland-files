@@ -1,9 +1,17 @@
 #!/bin/bash
-# shows current desktop in custom command plugin
-if [ "$wayland_compositor" = "sway" ];
-  then swaymsg -t get_outputs |grep -i work|awk '{print $2 $3}'|tr -d '",'
+# shows current desktop/window in custom command plugin or compositor version
+
+if [ "$wayland_compositor" = "sway" ]; then
+  swaymsg -t get_outputs | grep -i work | awk '{print $2 $3}' | tr -d '",'
+elif [ "$wayland_compositor" = "Hyprland" ]; then
+  WIN=$(hyprctl -j activewindow |jq '.title'| tr -d '"')
+  WSP=$(hyprctl monitors | grep active | awk '{print $3}')
+  echo $WSP: $WIN
+elif [ "$wayland_compositor" = "wayfire" ]; then
+  wayfire -v | awk '{print "Wayfire " $1}'
+elif [ "$wayland_compositor" = "labwc" ]; then
+  labwc -v
 else
-  if [ "$wayland_compositor" = "Hyprland" ];
-  then hyprctl monitors|grep active|awk '{print "Workspace " $3}'
-  fi
+   kwin -v
 fi
+
