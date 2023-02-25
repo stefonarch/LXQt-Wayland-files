@@ -313,7 +313,7 @@ client.background       #ffffff
     bindsym alt+space exec lxqt-runner
     bindsym F12 exec wlrctl toplevel focus qterminal
 # Open lxqt-panel's menu
-    bindsym alt+w wlrctl toplevel focus lxqt-panel && wtype -P space
+    bindsym alt+w exec wlrctl toplevel focus lxqt-panel && wtype -P space
 
 
 # Clipboard manager (activated also in autostart)
