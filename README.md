@@ -1,11 +1,11 @@
 # Wayland Implementations for the LXQt Desktop
 
-> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland without using xwayland.
+> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland natively.
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>_lxqt.desktop` : Entry in SDDM
 * `swaybg` : background image
-* `swayidlem swaylock` : idle settings, lock screen
+* `swayidle; swaylock` : idle settings, lock screen
 * `yatbfw` : taskbar, clock, quicklaunch
 * `waybar` : notification area, cpu/ram/temp monitor, keyboard layout display
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
@@ -16,7 +16,7 @@
 
 ## Starting LXQt Session
 
-Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings for the compositors and an extra part for LXQt. The `startlxqt*` scripts will use the configuration in this location; copy the desired file(s) from `wayland-sessions` to `/usr/share/wayland-sessions/` if using a display manager like SDDM to choose session type. Copy the desired scripts from `startup_scripts` to `/usr/bin/` and make them executable.
+Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings for the compositors and an extra part for LXQt. The `startlxqt*` scripts will use the configuration in this location; copy the desired file(s) from `wayland-sessions` to `/usr/share/wayland-sessions/` (if using a display manager like SDDM to choose sessions). Copy the desired scripts from `startup_scripts` to `/usr/bin/` or `/usr/local/bin` and make them executable.
 
 `startlxqt<compositor>` scripts can be executed also directly in tty; environment variables are set here before starting the compositor.
 
@@ -27,7 +27,7 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 ### Using lxqt-session in general
 
-From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file. For `kwin_wayland` the `startlxqtkwin` script will start the session.
+With LXQt 1.2.0  `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session.
 
 * Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in git)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
@@ -85,8 +85,9 @@ Its module in `lxqt-session` will not work and can be disabled.
 
 #### Issues
 
-* `lxqt-notificationd` steals focus (solved soon in `wayfire-extra-plugins-git/focus_steal_prevent`)
+* `lxqt-notificationd` steals focus (solved in `wayfire-extra-plugins-git/focus_steal_prevent`)
 * With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
+* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink atr every reload, therefor SSD is recommended
 
 ## Sway (tiling)
 
@@ -160,7 +161,7 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 * Usable in sway, hyrpland, kwin_wayland and wayfire
 * custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
 * Panel volume popup opens at 0,0 (already fixed in git)
-* Space on screen can be reserved by `panelspace.py` on hyprland, sway and wayfire; a full version is `lxqt-panel-loader.py` which reads it's width from `panel.conf`, reserves the space needed on top and starts the panel.
+* Space on screen can be reserved by `panelspace.py` on hyprland, sway and wayfire; a full version is `lxqt-panel-loader.py` which reads its width from `panel.conf`, reserves the space needed on top and starts the panel.
 
 
 ### Yatbfw
@@ -171,7 +172,7 @@ See `lxqt-wayland/yatbfw.json`.
 
 #### Features
 
-* taskbar/dock (close on middleclick, toggle maximize on click, minimize on right click)
+* taskbar/dock (close on middle click, toggle maximize on click, minimize on right click)
 * launchers
 * brightness and speakers
 * clock
@@ -195,13 +196,14 @@ Some icons need "font-icon" and "font-awesome" to be displayed.
 * `wf-dock` dock/taskbar
 * `wev` : xev for wayland
 * wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
-* `gammastep` replacment for redshift
+* `gammastep` replacement for redshift
 
 
 ## Main overall issues in compositors:
 
 * Window activation on clicks from other windows or notifications
 Fixed for browser in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
+* Applications activated by shortcuts are not handled by `lxqt-session --logout` and therefor not gracefully closed.
 
 ## Tipps & Tricks
 

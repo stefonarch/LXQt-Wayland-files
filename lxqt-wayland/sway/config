@@ -312,8 +312,11 @@ client.background       #ffffff
     bindsym $mod+p exec pcmanfm-qt
     bindsym alt+space exec lxqt-runner
     bindsym F12 exec wlrctl toplevel focus qterminal
+# Open lxqt-panel's menu
+    bindsym alt+w wlrctl toplevel focus lxqt-panel && wtype -P space
 
-# Clipboard manager (set in autostart)
+
+# Clipboard manager (activated also in autostart)
     bindsym Ctrl+Alt+v exec clipman pick --tool=wofi --histpath="$HOME/.local/share/clipman.json"
     # Full Screenshot
     bindsym  Shift+Print exec grim /tmp/screen_full_$(date +'%a_%T_.png') && notify-send -a grim -i image -t 2000 "Full screenshot saved"
