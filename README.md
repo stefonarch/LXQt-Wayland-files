@@ -20,20 +20,19 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 `startlxqt<compositor>` scripts can be executed also directly in tty; environment variables are set here before starting the compositor.
 
-Make sure "Lock screen on resume" is not selected, otherwise the process will crash on resume (but not the session); logout and modules management will not work anymore.
 
 ### Working LXQt components:
 
 `lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-policykit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
 
-### Using lxqt-session
+### Using lxqt-session in general
 
 From LXQt 1.2.0 on `lxqt-session` can be started in the autostart section of the compositors configuration file. For `kwin_wayland` the `startlxqtkwin` script will start the session.
 
 * Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in git)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type.
-* Lock settings are not applied in wayland.
+* Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore.
 
 ## Kwin_wayland (stacking)
 
@@ -69,13 +68,24 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-Usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
-multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations.
+Very usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
+multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations. Using git version `0.8.0-*` is recommended.
+
+#### PCmanFm-qt Desktop configuration
+
+ `pcmanfm-qt --desktop` works perfectly with `wayfire-extra-plugins-git/background_view` enabled and this setting:
+
+```
+[background-view]
+command = pcmanfm-qt --desktop
+app_id = pcmanfm-qt
+inhibit_input = false
+```
+Its module in `lxqt-session` will not work and can be disabled.
 
 #### Issues
 
-* `lxqt-notificationd` steals focus
-* `PCmanFm-qt --desktop` can be used, windows can go under it, sticky needs a window rule.
+* `lxqt-notificationd` steals focus (solved soon in `wayfire-extra-plugins-git/focus_steal_prevent`)
 * With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
 
 ## Sway (tiling)

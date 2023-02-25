@@ -64,7 +64,7 @@ export XDG_CURRENT_DESKTOP="LXQt"
 
 # Import compositor from  LXQt settings:
 #export $(cat $XDG_CONFIG_HOME/lxqt/session.conf |grep wayland_compositor)
-export wayland_compositor=sway
+export WAYLAND_COMPOSITOR=sway
 
 # Import and set locale and scale factor from lxqt (not needed if using lxqt-session)
 export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
