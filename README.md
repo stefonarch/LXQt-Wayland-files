@@ -35,6 +35,34 @@ With LXQt 1.2.0  `lxqt-session` can be started in the autostart section of any c
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type.
 * Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore.
 
+## Wayfire (stacking)
+
+![Screenshot LXQt wayfire](lxqt-wayfire.png)
+
+[Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
+
+Very usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
+multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations. Using git version `0.8.0-*` and `wayfire-plugins-extra` is recommended.
+
+#### PCmanFm-qt Desktop Configuration
+
+ `pcmanfm-qt --desktop` works perfectly with `wayfire-extra-plugins-git/background_view` enabled and this setting:
+
+```
+[background-view]
+command = pcmanfm-qt --desktop
+app_id = pcmanfm-qt
+inhibit_input = false
+```
+Its module in `lxqt-session` will not work and can be disabled.
+
+#### Issues
+
+* `lxqt-notificationd` steals focus (solved in `wayfire-extra-plugins-git/focus_steal_prevent`)
+* With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
+* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink atr every reload, therefor SSD is recommended
+* `pcmanfm-qt --desktop` is started outside of `lxqt-session`
+
 ## Kwin_wayland (stacking)
 
 ![Screenshot kwin_wayland](kwin_wayland.png)
@@ -62,33 +90,7 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 * keys for brightness and volume are not working (sliders from panel work), manually shortcut assigning should work
 
 
-## Wayfire (stacking)
 
-![Screenshot LXQt wayfire](lxqt-wayfire.png)
-
-[Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
-
-Very usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
-multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations. Using git version `0.8.0-*` is recommended.
-
-#### PCmanFm-qt Desktop Configuration
-
- `pcmanfm-qt --desktop` works perfectly with `wayfire-extra-plugins-git/background_view` enabled and this setting:
-
-```
-[background-view]
-command = pcmanfm-qt --desktop
-app_id = pcmanfm-qt
-inhibit_input = false
-```
-Its module in `lxqt-session` will not work and can be disabled.
-
-#### Issues
-
-* `lxqt-notificationd` steals focus (solved in `wayfire-extra-plugins-git/focus_steal_prevent`)
-* With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
-* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink atr every reload, therefor SSD is recommended
-* `pcmanfm-qt --desktop` is started outside of `lxqt-session`
 
 ## Labwc (stacking)
 
