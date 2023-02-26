@@ -111,12 +111,20 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 * snappy
 * root menu on desktop
 
-
 #### Issues
 
 * No window rules with version 0.6 for workarounds and placing applications on different workspaces (work in progress)
 * `lxqt-notificationd` window steals focus and has title bar
 * `lxqt-runner` have title bar
+
+#### Useful tools
+
+* swipe to change workspace `~/.config/libinput-gestures.conf`:
+```
+gesture: swipe left 3	wtype  -M ctrl -M alt -P left
+gesture: swipe right 3 wtype  -M ctrl -M alt -P right
+```
+Add `libinput-gestures-setup restart ` in autostart.
 
 ## Sway (tiling)
 
@@ -125,15 +133,17 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 Configured with panels and lxqt-runner (alt+space),2 keyboard layouts (toggle: alt+shift) and some window rules.
 Quite usable. See also [LXQt Sway](https://github.com/selairi/lxqt-sway).
 
+
+#### Useful tools
+
 * Mouse gestures (swipe to switch desktop): `~/.config//libinput-gestures.conf`
 ```
 gesture: swipe left 3   swaymsg -t command workspace next_on_output
 gesture: swipe right 3  swaymsg -t command workspace prev_on_output
 ```
-See `autostart/sway_scripts.desktop`.
 
+* Dim inactive windows: see `autostart/sway_scripts.desktop` and `scripts`
 
-#### Issues
 
 
 ### Hyprland (tiling)
@@ -144,7 +154,7 @@ See `autostart/sway_scripts.desktop`.
 
 Nice window effects like dim inactive, fading and other animations, opacity, desktop swipe gesture (3 finger swipe). Usable LXQt components are `lxqt-panel`,`-powermanagement`,`-policykit`, `-runner`, `-config`, `-notificationd` and with a workaround `lxqt-session` (see below).
 
-### Useful tools
+#### Useful tools
 
 * [different keyboard layout per application ](https://github.com/MahouShoujoMivutilde/hyprland-per-window-layout)
 * `hyprshot` Screenshots
