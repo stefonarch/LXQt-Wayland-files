@@ -80,6 +80,6 @@ export GRIM_DEFAULT_DIR=/tmp
 # Create wayland settings dir if not existing
 mkdir -p -- "$XDG_CONFIG_HOME/lxqt-wayland"
 
-# Start the LXQt kwin session
-exec kwin_wayland --no-kactivities applications lxqt-session
+# Start the LXQt kwin session, enable xwayland and logout from LXQt
+exec kwin_wayland --no-kactivities --exit-with-session /usr/bin/lxqt-session --xwayland
 

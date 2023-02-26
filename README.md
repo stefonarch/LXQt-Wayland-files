@@ -1,6 +1,6 @@
 # Wayland Implementations for the LXQt Desktop
 
-> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland natively.
+> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland natively. Work in progress.
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>_lxqt.desktop` : Entry in SDDM
@@ -9,9 +9,10 @@
 * `yatbfw` : taskbar, clock, quicklaunch
 * `waybar` : notification area, cpu/ram/temp monitor, keyboard layout display
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
-* `wmctrl` : for some keybindings
+* `wmctrl` and `wtype` : for some keybindings -especially open applications menu in `lxqt-panel`
 * `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 * `scripts` and `autostart`: some tools  for autostart and else
+* `lxqt-wayland`: settings for compositors
 
 
 ## Starting LXQt Session
@@ -40,26 +41,25 @@ With LXQt 1.2.0  `lxqt-session` can be started in the autostart section of any c
 
 The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (import `kwin_wayland.rule` in KDE settings → Windowmanagement → Window rules).
 
-#### Highlights
+#### Pros
 
-* Working desktop on all outputs, always at bottom (this needs `pcmanfm-qt` compiled with title for it's desktop window. Note: a better method needed as the rule will apply to all window with that title)
+* Working desktop on all outputs, always at bottom (needs `pcmanfm-qt` git version with title for it's desktop window.
 * Lock screen
 * Multiple sessions/switch user (to test)
-* Spectacle screenshots working
+* Spectacle QUI screenshots
 * klipper for clipboard
 * `lxqt-config-monitor`  working (to test multihead)
 * no manual config files editing
 
 #### Issues
 
-* Taskbar only provided by swaybar, yatbfw segfaults
+* Big issue: No taskbar, yatbfw segfaults
 * Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
 * QTerminal crashes when try to split (only on kwin_wayland)(fixed in git)
 * fullscreen window titlebar goes under the panel
-* Element (xwayland) segfaults // xwayland not enabled?
 * wlsunset and gammastep not working, `kcmshell5 kcm_nightcolor&` works.
-* window rules for applications on workspaces doesn't work
-* keys for brightness and volume are not working (sliders from panel work)
+* window rules for applications on workspaces doesn't work (maybe an issue of mine)
+* keys for brightness and volume are not working (sliders from panel work), manually shortcut assigning should work
 
 
 ## Wayfire (stacking)
@@ -71,7 +71,7 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 Very usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
 multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations. Using git version `0.8.0-*` is recommended.
 
-#### PCmanFm-qt Desktop configuration
+#### PCmanFm-qt Desktop Configuration
 
  `pcmanfm-qt --desktop` works perfectly with `wayfire-extra-plugins-git/background_view` enabled and this setting:
 
@@ -88,6 +88,35 @@ Its module in `lxqt-session` will not work and can be disabled.
 * `lxqt-notificationd` steals focus (solved in `wayfire-extra-plugins-git/focus_steal_prevent`)
 * With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
 * Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink atr every reload, therefor SSD is recommended
+* `pcmanfm-qt --desktop` is started outside of `lxqt-session`
+
+## Labwc (stacking)
+
+![Screenshot labwc](labwc.png)
+
+
+[Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
+
+Old friend openbox in modern wayland clothes. Work in progress, the [xdg-unmanaged branch](https://github.com/labwc/labwc/tree/xdg-unmanaged) provides a working `lxqt-panel`.
+
+* openbox themes in `~/.local/share/themes`
+
+A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
+
+![labwc-tweaks](tweaks.png).
+
+
+#### Pros
+
+* snappy
+* root menu on desktop
+
+
+#### Issues
+
+* No window rules with version 0.6 for workarounds and placing applications on different workspaces (work in progress)
+* `lxqt-notificationd` window steals focus and has title bar
+* `lxqt-runner` have title bar
 
 ## Sway (tiling)
 
@@ -106,27 +135,6 @@ See `autostart/sway_scripts.desktop`.
 
 #### Issues
 
-
-## Labwc (stacking)
-
-![Screenshot labwc](labwc.png)
-
-
-[Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
-
-Old openbox in modern wayland clothing. Usable LXQt components are `lxqt-session`,`-powermanagement`,`-policykit`, `-runner`, `-config` and `pcmanfm-qt`.
-
-* openbox themes in `~/.local/share/themes`
-
-A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
-
-![labwc-tweaks](tweaks.png).
-
-#### Issues
-
-* No window rules with version 0.6 for workarounds so `lxqt-panel` is not really usable (manual placement)
-* `lxqt-notificationd` window steals focus and has title bar
-* `lxqt-runner` and others have title bar
 
 ### Hyprland (tiling)
 
