@@ -41,27 +41,13 @@ With LXQt 1.2.0  `lxqt-session` can be started in the autostart section of any c
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-Very usable stacking compositor for a traditional LXQt experience: notifications, lxqt-runner, pcmanfm-qt,
-multiple desktops and lxqt-panel with some limits and quirks do work. In addition many resource-friendly desktop effects and animations. Using git version `0.8.0-*` and `wayfire-plugins-extra` is recommended.
+At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, with some plugins missing) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*` and `wayfire-plugins-extra`is recommended.
 
-#### PCmanFm-qt Desktop Configuration
-
- `pcmanfm-qt --desktop` works perfectly with `wayfire-extra-plugins-git/background_view` enabled and this setting:
-
-```
-[background-view]
-command = pcmanfm-qt --desktop
-app_id = pcmanfm-qt
-inhibit_input = false
-```
-Its module in `lxqt-session` will not work and can be disabled.
 
 #### Issues
+* No native taskbar; replacements: `waybar/bottombar.config` or `yatbfw`.
+* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink at every reload, therefor using SSD is recommended.
 
-* `lxqt-notificationd` steals focus (solved in `wayfire-extra-plugins-git/focus_steal_prevent`)
-* With yatbfw and lxqt-panel in fullscreen both are visible (middle click on the icon to close lxqt-panel)
-* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink atr every reload, therefor SSD is recommended
-* `pcmanfm-qt --desktop` is started outside of `lxqt-session`
 
 ## Kwin_wayland (stacking)
 
