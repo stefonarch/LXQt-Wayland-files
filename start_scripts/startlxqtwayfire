@@ -86,5 +86,6 @@ export MOZ_ENABLE_WAYLAND=1
 mkdir -p -- "$XDG_CONFIG_HOME/lxqt-wayland"
 
 # Start the compositor
-exec wayfire
+exec wayfire -c $XDG_CONFIG_HOME/lxqt-wayland/wayfire.ini
+
 

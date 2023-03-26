@@ -41,7 +41,7 @@ With LXQt 1.2.0  `lxqt-session` can be started in the autostart section of any c
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, with some plugins missing) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*` and `wayfire-plugins-extra`is recommended.
+At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*` and `wayfire-plugins-extra`is recommended.
 
 
 #### Issues
