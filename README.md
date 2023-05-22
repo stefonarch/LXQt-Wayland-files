@@ -28,12 +28,12 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 ### Using lxqt-session in general
 
-With LXQt 1.2.0  `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session.
+Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session.
 
 * Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in git)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type.
-* Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore.
+* Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore (fixed in LXQt 1.3).
 
 ## Wayfire (stacking)
 
@@ -47,6 +47,44 @@ At the moment the best stacking compositor for a traditional LXQt experience: No
 #### Issues
 * No native taskbar; replacements: `waybar/bottombar.config` or `yatbfw`.
 * Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink at every reload, therefor using SSD is recommended.
+
+
+## Labwc (stacking)
+
+![Screenshot labwc](labwc.png)
+
+
+[Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
+
+Old friend openbox in modern wayland clothes. With the latest git a most usable LXQt Session is now possible as there
+are implemented some window rules. Desktop works perfectly. See `lxqt-wayland/labwc/rc.xml` for details.
+
+* openbox themes in `~/.local/share/themes`
+
+A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
+
+![labwc-tweaks](tweaks.png).
+
+
+#### Pros
+
+* real snappy
+* config files and syntax similar to openbox
+
+#### Issues
+
+* Panel not hiding with F11/fullscreen
+* Notification window steals focus
+
+
+#### Useful tools
+
+* swipe to change workspace `~/.config/libinput-gestures.conf`:
+```
+gesture: swipe left 3	wtype  -M ctrl -M alt -P left
+gesture: swipe right 3 wtype  -M ctrl -M alt -P right
+```
+Add `libinput-gestures-setup restart ` in autostart.
 
 
 ## Kwin_wayland (stacking)
@@ -78,41 +116,6 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 
 
 
-## Labwc (stacking)
-
-![Screenshot labwc](labwc.png)
-
-
-[Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
-
-Old friend openbox in modern wayland clothes. Work in progress, the [xdg-unmanaged branch](https://github.com/labwc/labwc/tree/xdg-unmanaged) provides a working `lxqt-panel`.
-
-* openbox themes in `~/.local/share/themes`
-
-A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
-
-![labwc-tweaks](tweaks.png).
-
-
-#### Pros
-
-* snappy
-* root menu on desktop
-
-#### Issues
-
-* No window rules with version 0.6 for workarounds and placing applications on different workspaces (work in progress)
-* `lxqt-notificationd` window steals focus and has title bar
-* `lxqt-runner` have title bar
-
-#### Useful tools
-
-* swipe to change workspace `~/.config/libinput-gestures.conf`:
-```
-gesture: swipe left 3	wtype  -M ctrl -M alt -P left
-gesture: swipe right 3 wtype  -M ctrl -M alt -P right
-```
-Add `libinput-gestures-setup restart ` in autostart.
 
 ## Sway (tiling)
 

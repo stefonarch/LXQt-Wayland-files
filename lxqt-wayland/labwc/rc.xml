@@ -56,4 +56,36 @@
     </context>
   </mouse>
 
+  <!-- LXQt settings -->
+    <regions>
+      <region name="notifications" x="70%" y="0%"  height="50%"  width="50%"  />
+      <region name="runner"    x="40%" y="20%"  height="1%"  width="20%"  />
+    </regions>
+
+  <windowRules>
+      <windowRule identifier="lxqt-panel" skipTaskbar="yes" skipWindowSwitcher="yes">
+        <action name="MoveToEdge" direction="up" />
+        <action name="ToggleAlwaysOnTop"/>
+      </windowRule>
+
+      <windowRule identifier="lxqt-runner" skipTaskbar="yes" skipWindowSwitcher="yes">
+        <action name="SnapToRegion" region="runner" />
+        <action name="ToggleAlwaysOnTop"/>
+      </windowRule>
+
+    <windowRule title="pcmanfm-desktop*" skipTaskbar="yes" skipWindowSwitcher="yes">
+      <action name="ToggleAlwaysOnBottom"/>
+      <action name="Maximize"/>
+    </windowRule>
+
+    <windowRule identifier="lxqt-notificationd" skipTaskbar="yes" skipWindowSwitcher="yes">
+      <action name="SnapToRegion" region="notifications" />
+    </windowRule>
+
+    <windowRule identifier="qterminal">
+      <action name="SendToDesktop" to="right" />
+    </windowRule>
+  </windowRules>
+
+
 </labwc_config>
