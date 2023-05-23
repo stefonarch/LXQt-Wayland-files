@@ -15,9 +15,10 @@ lxqt-session >/dev/null 2>&1 &
 #   }
 # kanshi >/dev/null 2>&1 &
 
-# Launch a panel containing a systray - waybar is recommended
+# Launch a panel containing a systray - waybar is recommended, lxqt-panel lacks taskbar atm
 tray = waybar >/dev/null 2>&1 &
-#lxqt-panel -c  $XDG_CONFIG_HOME/lxqt/wayland/panel.conf >/dev/null 2>&1 &
+
+#lxqt-panel -c  $XDG_CONFIG_HOME/lxqt-wayland/panel.conf >/dev/null 2>&1 &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such

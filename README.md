@@ -41,11 +41,12 @@ Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart secti
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*` and `wayfire-plugins-extra`is recommended.
+At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*` is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
 
 
 #### Issues
-* No native taskbar; replacements: `waybar/bottombar.config` or `yatbfw`.
+* Panel does not release focus (wayfire issue)
+* Some window rules for app placing do not work (wayfire issue)
 * Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink at every reload, therefor using SSD is recommended.
 
 
@@ -57,7 +58,7 @@ At the moment the best stacking compositor for a traditional LXQt experience: No
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
 Old friend openbox in modern wayland clothes. With the latest git a most usable LXQt Session is now possible as there
-are implemented some window rules. Desktop works perfectly. See `lxqt-wayland/labwc/rc.xml` for details.
+are implemented some window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
 
 * openbox themes in `~/.local/share/themes`
 
@@ -68,8 +69,9 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 #### Pros
 
-* real snappy
-* config files and syntax similar to openbox
+* Really lightweight and snappy (no animations)
+* Config files and syntax similar to openbox
+* Few bugs in git
 
 #### Issues
 
@@ -79,12 +81,12 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 #### Useful tools
 
-* swipe to change workspace `~/.config/libinput-gestures.conf`:
+* Swipe to change workspace `~/.config/libinput-gestures.conf` (for shortcuts "C-A-left|right")
 ```
-gesture: swipe left 3	wtype  -M ctrl -M alt -P left
-gesture: swipe right 3 wtype  -M ctrl -M alt -P right
+gesture: swipe left 3	wtype  -M ctrl -M alt -P right
+gesture: swipe right 3 wtype  -M ctrl -M alt -P left
 ```
-Add `libinput-gestures-setup restart ` in autostart.
+Add `libinput-gestures-setup start ` in autostart.
 
 
 ## Kwin_wayland (stacking)

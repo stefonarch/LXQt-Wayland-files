@@ -12,8 +12,6 @@
     <gap>0</gap>
     <adaptiveSync>no</adaptiveSync>
     <reuseOutputMode>no</reuseOutputMode>
-    <cycleViewPreview>no</cycleViewPreview>
-    <cycleViewOutlines>yes</cycleViewOutlines>
   </core>
 
   <!-- <font><theme> can be defined without an attribute to set all places -->
@@ -40,6 +38,14 @@
     </font>
   </theme>
 
+  <windowSwitcher show="yes" preview="yes" outlines="yes">
+    <fields>
+      <field content="type" width="25%" />
+      <field content="app_id" width="25%" />
+      <field content="title" width="50%" />
+    </fields>
+  </windowSwitcher>
+
   <!-- edge strength is in pixels -->
   <resistance>
     <screenEdgeStrength>20</screenEdgeStrength>
@@ -47,6 +53,7 @@
 
   <focus>
     <followMouse>no</followMouse>
+    <followMouseRequiresMovement>yes</followMouseRequiresMovement>
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
 
@@ -200,6 +207,7 @@
 
     <!-- time is in ms -->
     <doubleClickTime>500</doubleClickTime>
+    <scrollFactor>1.0</scrollFactor>
 
     <context name="Frame">
       <mousebind button="A-Left" action="Press">
@@ -231,7 +239,7 @@
     <context name="Right">
       <mousebind button="Left" action="Drag">
         <action name="Resize" />
-      </mousebind>simple
+      </mousebind>
     </context>
     <context name="Bottom">
       <mousebind button="Left" action="Drag">
@@ -355,16 +363,33 @@
       - tapButtonMap [lrm|lmr]
   -->
   <libinput>
-    <device category="*">
+    <device category="">
       <naturalScroll></naturalScroll>
       <leftHanded></leftHanded>
-      <pointerSpeed>0.9</pointerSpeed>
-      <accelProfile>adaptive</accelProfile>
+      <pointerSpeed></pointerSpeed>
+      <accelProfile></accelProfile>
       <tap>yes</tap>
       <tapButtonMap></tapButtonMap>
       <middleEmulation></middleEmulation>
       <disableWhileTyping></disableWhileTyping>
     </device>
   </libinput>
+
+  <!--
+    Window Rules
+      - Criteria can consist of 'identifier' or 'title' or both (in which case
+        AND logic is used).
+      - 'identifier' relates to app_id for native Wayland windows and WM_CLASS
+        for XWayland clients.
+      - Matching against patterns with '*' (wildcard) and '?' (joker) is
+        supported. Pattern matching is case-insensitive.
+
+  <windowRules>
+    <windowRule identifier="*"><action name="Maximize"/></windowRule>
+    <windowRule identifier="foo" serverDecoration="yes"/>
+    <windowRule title="bar" serverDecoration="yes"/>
+    <windowRule identifier="baz" title="quax" serverDecoration="yes"/>
+  </windowRules>
+  -->
 
 </labwc_config>

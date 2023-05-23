@@ -41,8 +41,17 @@
     <keybind key="W-Return">
       <action name="Execute" command="qterminal" />
     </keybind>
+    <keybind key="W-p">
+      <action name="Execute" command="pcmanfm-qt" />
+    </keybind>
+    <keybind key="W-f">
+      <action name="Execute" command="fpad" />
+    </keybind>
     <keybind key="A-Space">
       <action name="Execute" command="lxqt-runner" />
+    </keybind>
+    <keybind key="F12">
+      <action name="Execute" command="wlrctl toplevel focus qterminal" />
     </keybind>
   </keyboard>
 
