@@ -15,7 +15,7 @@ lxqt-session >/dev/null 2>&1 &
 #   }
 # kanshi >/dev/null 2>&1 &
 
-# Launch a panel containing a systray - waybar is recommended, lxqt-panel lacks taskbar atm
+# Launch a panel containing a systray - waybar is recommended, lxqt-panel lacks taskbar which can be provided by waybar or yatbfw
 tray = waybar >/dev/null 2>&1 &
 
 #lxqt-panel -c  $XDG_CONFIG_HOME/lxqt-wayland/panel.conf >/dev/null 2>&1 &

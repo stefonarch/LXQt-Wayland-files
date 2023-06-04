@@ -6,8 +6,8 @@ window.client.padding.height: 0
 window.handle.width: 4
 padding.width: 4
 padding.height: 4
-window.active.border.color: #6f716f
-window.inactive.border.color: #6f716f
+window.active.border.color: #1ee7ea
+window.inactive.border.color: #d0d0d0
 window.active.title.separator.color: #6f716f
 window.inactive.title.separator.color: #6f716f
 window.active.client.color: #ffffff
@@ -15,7 +15,7 @@ window.inactive.client.color: #ffffff
 window.active.label.text.color: #f0f0f0
 window.inactive.label.text.color: #f0f0f0
 window.active.title.bg: flat solid
-window.active.title.bg.color: #404140
+window.active.title.bg.color: #525352
 window.active.label.bg: flat solid
 window.active.label.bg.color: #404140
 window.inactive.title.bg: flat solid
@@ -107,3 +107,26 @@ window.inactive.button.max.pressed.image.color: #99cd61
 window.inactive.button.close.pressed.image.color: #e76373
 window.inactive.button.shade.pressed.image.color: #46bae0
 window.inactive.button.desk.pressed.image.color: #f6bfc5
+
+# menu
+menu.overlap.x: 0
+menu.overlap.y: 0
+menu.width.min: 20
+menu.width.max: 200
+menu.items.bg.color: #45474c
+menu.items.text.color: #e2e2e2
+menu.items.active.bg.color: #dddad6
+menu.items.active.text.color:#14292f
+menu.items.padding.x: 7
+menu.items.padding.y: 4
+menu.separator.width: 1
+menu.separator.padding.width: 6
+menu.separator.padding.height: 3
+menu.separator.color: #dcebec
+
+# on screen display (window-cycle dialog)
+osd.bg.color: #45474c
+osd.border.color:  #3294a8
+osd.border.width: 1
+osd.label.text.color:  #e2e2e2
+

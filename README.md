@@ -1,16 +1,11 @@
 # Wayland Implementations for the LXQt Desktop
 
-> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols but many components are full or partially working on wayland natively. Work in progress.
+> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols (waiting `layer-shell-qt` to improve) but many components are full or partially working on wayland natively. Work in progress.
+
+### Content
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>_lxqt.desktop` : Entry in SDDM
-* `swaybg` : background image
-* `swayidle; swaylock` : idle settings, lock screen
-* `yatbfw` : taskbar, clock, quicklaunch
-* `waybar` : notification area, cpu/ram/temp monitor, keyboard layout display
-* `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
-* `wmctrl` and `wtype` : for some keybindings -especially open applications menu in `lxqt-panel`
-* `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 * `scripts` and `autostart`: some tools  for autostart and else
 * `lxqt-wayland`: settings for compositors
 
@@ -30,10 +25,20 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session.
 
-* Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in git)
+* Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in LXQT 1.3)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type.
 * Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore (fixed in LXQt 1.3).
+
+####  3rd party tools
+
+* `swaybg` : background image (below desktop)
+* `swayidle; swaylock` :  lock screen
+* `yatbfw` : taskbar, clock, quicklaunch
+* `waybar` : taskbar, notification area, cpu/ram/temp monitor, keyboard layout display
+* `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
+* `wmctrl` and `wtype` : for some keybindings  - especially open applications menu in `lxqt-panel`
+* `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 
 ## Wayfire (stacking)
 
@@ -41,7 +46,9 @@ Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart secti
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
 
-At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*` is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
+At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*`  is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
+
+**Note** : because of API changes the plugin is broken actually on master, `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed.
 
 
 #### Issues
@@ -57,20 +64,20 @@ At the moment the best stacking compositor for a traditional LXQt experience: No
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
-Old friend openbox in modern wayland clothes. With the latest git a most usable LXQt Session is now possible as there
-are implemented some window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
+Old friend openbox in modern wayland clothes. Latest git offers a quite usable LXQt Session as there
+are implemented window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
 
 * openbox themes in `~/.local/share/themes`
 
 A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-tweaks).
 
-![labwc-tweaks](tweaks.png).
+![labwc-tweaks](tweaks.png) .
 
 
 #### Pros
 
-* Really lightweight and snappy (no animations)
-* Config files and syntax similar to openbox
+* Super lightweight and snappy (no animations)
+* Config files and syntax  follow openbox standard
 * Few bugs in git
 
 #### Issues
@@ -88,34 +95,11 @@ gesture: swipe right 3 wtype  -M ctrl -M alt -P left
 ```
 Add `libinput-gestures-setup start ` in autostart.
 
+* Screensaver:
 
-## Kwin_wayland (stacking)
+In `autostart`:
 
-![Screenshot kwin_wayland](kwin_wayland.png)
-
-The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (import `kwin_wayland.rule` in KDE settings → Windowmanagement → Window rules).
-
-#### Pros
-
-* Working desktop on all outputs, always at bottom (needs `pcmanfm-qt` git version with title for it's desktop window.
-* Lock screen
-* Multiple sessions/switch user (to test)
-* Spectacle QUI screenshots
-* klipper for clipboard
-* `lxqt-config-monitor`  working (to test multihead)
-* no manual config files editing
-
-#### Issues
-
-* Big issue: No taskbar, yatbfw segfaults
-* Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
-* QTerminal crashes when try to split (only on kwin_wayland)(fixed in git)
-* fullscreen window titlebar goes under the panel
-* wlsunset and gammastep not working, `kcmshell5 kcm_nightcolor&` works.
-* window rules for applications on workspaces doesn't work (maybe an issue of mine)
-* keys for brightness and volume are not working (sliders from panel work), manually shortcut assigning should work
-
-
+`swayidle before-sleep swaylock timeout 300 'feh -rzsZFD 8  --draw-exif --draw-tinted ~/path/to/folder' resume 'killall feh'`
 
 
 
@@ -156,6 +140,32 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 #### Issues
 
 * `lxqt-session` doesn't load session modules because Hyprland overwrites `XDG_CURRENT_DESKTOP=LXQt` with `XDG_CURRENT_DESKTOP=Hyprland`. Modules can be inserted manually with some delay in `hyprland.conf` or the `.desktop` files of the modules can be copied from `/etc/xdg/autostart/` to `~/.local/share/applications/` and then `OnlyShowIn=LXQt;` has to be removed.
+
+## Kwin_wayland (stacking)
+
+![Screenshot kwin_wayland](kwin_wayland.png)
+
+The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (import `kwin_wayland.rule` in KDE settings → Windowmanagement → Window rules). Not really usable until `lxqt-panel` implements  a wayland taskmanager.
+
+#### Pros
+
+* Working desktop on all outputs, always at bottom (needs `pcmanfm-qt` git version with title for it's desktop window.
+* Lock screen
+* Multiple sessions/switch user (to test)
+* Spectacle QUI screenshots
+* klipper for clipboard
+* `lxqt-config-monitor`  working (to test multihead)
+* no manual config files editing
+
+#### Issues
+
+* Big issue: No taskbar, yatbfw segfaults, waybar not supported
+* Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
+* fullscreen window titlebar goes under the panel
+* wlsunset and gammastep not working, `kcmshell5 kcm_nightcolor&` works.
+* window rules for applications on workspaces doesn't work (maybe an issue of mine)
+* keys for brightness and volume are not working (sliders from panel work), manually shortcut assigning should work
+
 
 ## Panels
 
@@ -213,28 +223,24 @@ Some icons need "font-icon" and "font-awesome" to be displayed.
 ## Main overall issues in compositors:
 
 * Window activation on clicks from other windows or notifications
-Fixed for browser in [Tipps & Tricks](https://github.com/stefonarch/LXQt-Wayland-files#tipps--tricks).
-* Applications activated by shortcuts are not handled by `lxqt-session --logout` and therefor not gracefully closed.
+* Applications activated by shortcuts are not handled by `lxqt-session --logout` and therefor not gracefully closed. Workaround: using `*.desktop` files.
+
+Example for labwc:
+
+```  
+    <keybind key="W-k">
+      <action name="Execute" command="pcmanfm-qt '/usr/share/applications/org.keepassxc.KeePassXC.desktop'" />
+    </keybind>
+```
+
 
 ## Tipps & Tricks
 
-### Activate browser window on links clicked
+### Screensaver with slideshow
 
-Example for Firefox, similar approach should work for all browser:
+Using `feh`, a window rule for "always_on_top" and under "autostart" settings:
 
-Executable `/usr/bin/firefox_wayland`:
- ```
-#!/bin/sh
-wlrctl toplevel focus firefox
-exec /usr/lib/firefox/firefox "$@"
-```
-
-Copy  `firefox.desktop` file from  `/usr/share/applications/` to  `~/.local/share/applications/` :
-
-```
-#Exec=/usr/lib/firefox/firefox %u
-Exec=/usr/bin/firefox_wayland %u
-```
+`swayidle before-sleep swaylock timeout 300 'feh -rzsZFD 8  --draw-exif --draw-tinted ~/path/to/folder' resume 'killall feh'`
 
 ### Autostart scripts and .desktop files
 
