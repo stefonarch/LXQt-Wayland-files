@@ -19,7 +19,7 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 ### Working LXQt components:
 
-`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-policykit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel).
+`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-policykit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel), see also [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) for `lxqt-notificationd`.
 
 ### Using lxqt-session in general
 
@@ -48,7 +48,7 @@ Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart secti
 
 At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*`  is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
 
-**Note** : because of API changes the plugin is broken actually on master, `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed.
+**Note** : because of API changes the plugin is broken actually on master, so compiling `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed.
 
 
 #### Issues
@@ -77,13 +77,13 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 #### Pros
 
 * Super lightweight and snappy (no animations)
-* Config files and syntax  follow openbox standard
+* Config files and syntax following openbox standard
 * Few bugs in git
 
 #### Issues
 
 * Panel not hiding with F11/fullscreen
-* Notification window steals focus
+* Notification window steals focus, settings not working (fixed in the [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) of `lxqt-notificationd`)
 
 
 #### Useful tools
@@ -213,11 +213,12 @@ Some icons need "font-icon" and "font-awesome" to be displayed.
 * `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
 * `wf-info` : get window information for creating window rules (wayfire only)
 * `wofi` alternative launcher
-* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini`.
+* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini` (removes comments).
 * `wf-dock` dock/taskbar
 * `wev` : xev for wayland
 * wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
 * `gammastep` replacement for redshift
+* `wvkbd` virtual keyboard
 
 
 ## Main overall issues in compositors:
@@ -238,13 +239,13 @@ Example for labwc:
 
 ### Screensaver with slideshow
 
-Using `feh`, a window rule for "always_on_top" and under "autostart" settings:
+Using `feh`, a window rule for "always-on-top" and under "autostart" settings:
 
 `swayidle before-sleep swaylock timeout 300 'feh -rzsZFD 8  --draw-exif --draw-tinted ~/path/to/folder' resume 'killall feh'`
 
 ### Autostart scripts and .desktop files
 
-If `lxqt-session` is used scripts that select the application to launch depending of `XDG_SESSION_TYPE` or `$wayland_compositor` can be useful. Examples in `autostart` folder.
+If `lxqt-session` is used also with x11 session some scripts that will select the application to launch depending of `XDG_SESSION_TYPE` or `$wayland_compositor` can be useful. Examples in `autostart` folder.
 
 ### Telegram does not open multimedia files
 
