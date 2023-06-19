@@ -19,26 +19,50 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 ### Working LXQt components:
 
-`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-policykit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. For `lxqt-panel` see [#lxqt-panel](https://github.com/stefonarch/LXQt-Wayland-files#lxqt-panel), see also [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) for `lxqt-notificationd`.
+`lxqt-config`, `lxqt-notificationd`, `lxqt-runner`, `lxqt-config`, `lxqt-policykit-agent`, `lxqt-powermanagement`, `PCmanFm-qt`,`LXimage-qt`, `lxqt-archiver`, `QTerminal`,`Qps` `lxqt-about` - all running natively. Using the [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) for `lxqt-notificationd` is recommended for full working.
 
 ### Using lxqt-session in general
 
 Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session.
 
+#### Notes
+
 * Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in LXQT 1.3)
 * Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type.
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type x11/wayland.
 * Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore (fixed in LXQt 1.3).
+
+### lxqt-panel
+
+`lxqt-panel` starts if no "Desktop switcher" plugin is present in its configuration file. Recommended is using an alternative config file with `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning settings, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see  `lxqt-wayland/panel.conf`.
+
+* Window rules are needed until qt6.5 is fully implemented.
+* Smaller width than 100% can lead to issues
+* Usable in sway, hyrpland, kwin_wayland and wayfire
+* custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
+* Panel volume popup opens at 0,0 (fixed in git)
+
+For more details see [lxqt-panel](lxqt-panel.md) page.
 
 ####  3rd party tools
 
 * `swaybg` : background image (below desktop)
 * `swayidle; swaylock` :  lock screen
-* `yatbfw` : taskbar, clock, quicklaunch
-* `waybar` : taskbar, notification area, cpu/ram/temp monitor, keyboard layout display
+* Panels/bars:
+  * `yatbfw` [Source](https://github.com/selairi/yatbfw): taskbar, clock, quicklaunch
+  * `waybar` : taskbar, notification area, cpu/ram/temp monitor, keyboard layout display
+  * `wf-dock` dock/taskbar
+For `keyboard-state` working make sure your user is member of the "input" group. Some icons need "font-icon" and "font-awesome" to be displayed.
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
 * `wmctrl` and `wtype` : for some keybindings  - especially open applications menu in `lxqt-panel`
 * `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
+* `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
+* `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
+* `wofi` alternative launcher
+* `wev` : xev for wayland
+* wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
+* `gammastep` replacement for redshift
+* `wvkbd` virtual keyboard
 
 ## Wayfire (stacking)
 
@@ -56,6 +80,12 @@ At the moment the best stacking compositor for a traditional LXQt experience: No
 * Some window rules for app placing do not work (wayfire issue)
 * Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink at every reload, therefor using SSD is recommended.
 
+
+#### Useful tools
+
+* `wf-info` : get window information for creating window rules (wayfire only)
+* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini` (removes comments).
+* `wf-kill` : kill windows
 
 ## Labwc (stacking)
 
@@ -159,7 +189,7 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 
 #### Issues
 
-* Big issue: No taskbar, yatbfw segfaults, waybar not supported
+* Big issue: No taskbar (waybar; yatbfw) possible do to lack of foreing-toplevel-protocol not supported.
 * Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
 * fullscreen window titlebar goes under the panel
 * wlsunset and gammastep not working, `kcmshell5 kcm_nightcolor&` works.
@@ -167,27 +197,9 @@ The most similar to a LXQt x11 session, specially if already used with kwin. Nee
 * keys for brightness and volume are not working (sliders from panel work), manually shortcut assigning should work
 
 
-## Panels
-
-### lxqt-panel
-
-`lxqt-panel` starts if no "Desktop switcher" plugin is present in its configuration file. Recommended is using `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see  `lxqt-wayland/panel.conf`.
-
-* Window rules needed:
-  * position 0 0; # only top and left panels are usable.
-  * Sticky|pin (on all desktops)
-  * stay on top
-  * No border/title
-* Smaller width than 100% can lead to issues
-* Usable in sway, hyrpland, kwin_wayland and wayfire
-* custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
-* Panel volume popup opens at 0,0 (already fixed in git)
-* Space on screen can be reserved by `panelspace.py` on hyprland, sway and wayfire; a full version is `lxqt-panel-loader.py` which reads its width from `panel.conf`, reserves the space needed on top and starts the panel.
-
 
 ### Yatbfw
 
-[Source](https://github.com/selairi/yatbfw)
 
 See `lxqt-wayland/yatbfw.json`.
 
@@ -207,18 +219,6 @@ For `keyboard-state` working make sure your user is member of the "input" group.
 
 Some icons need "font-icon" and "font-awesome" to be displayed.
 
-## Accessories
-
-* `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
-* `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
-* `wf-info` : get window information for creating window rules (wayfire only)
-* `wofi` alternative launcher
-* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini` (removes comments).
-* `wf-dock` dock/taskbar
-* `wev` : xev for wayland
-* wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
-* `gammastep` replacement for redshift
-* `wvkbd` virtual keyboard
 
 
 ## Main overall issues in compositors:
