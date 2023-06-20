@@ -11,12 +11,12 @@
 * Reserved space (exclusive zone) can be reserved by `panelspace.py` if necessary (hyprland); a full version is `lxqt-panel-loader.py` which reads its width from `panel.conf`, reserves the space needed on top and starts the panel.
 
 
-### Replacements for widgets
+## Replacements for widgets
 
-#### Taskbar
+### Taskbar
 waybar (wlr/waybar),yatbfw (icons only), wf-dock
 
-#### Desktop cycler/switcher
+### Desktop cycler/switcher
  Configure shortcuts for `go to left|right` and/or `go to <number>`, examples `C-A-left|right`;`C-A-1|2|3`
   and make sure to have `wtype` installed.
   
@@ -24,9 +24,10 @@ waybar (wlr/waybar),yatbfw (icons only), wf-dock
   
 
  * First method, cycling:
-      * Create `desktop_left.desktop`  in `~/.local/share/applications`
+    * Create `desktop_left.desktop`  in `~/.local/share/applications/`
+    * Add a "quicklauch" widget to the panel and drag this file into it, and again the same for  "right" values.
 ```
-  [Desktop Entry]
+[Desktop Entry]
 Name=Desktop left
 GenericName=Switch to left workspace
 Comment=
@@ -35,7 +36,7 @@ Type=Application
 Icon=/usr/share/lxqt/themes/Arch-Colors/arrow-left.svg
 Terminal=false
 ```
-      * Add a "quicklauch" widget to the panel and drag this file into it, and again the same with "right".
+  
   
  * Second method, workspace cycling:
       * Add 2 or more "custom command" widgets to the panel and configure them like that:
@@ -49,16 +50,19 @@ Terminal=false
   
 
 
-#### Keyboard state/layout indicator
+### Keyboard state/layout indicator
 
-For numlock the state in `cat /sys/class/leds/input3/numlock` can be used in a customcommand plugin,similar for capslock. The number 3 can be different on your system.
+For numlock the value in `/sys/class/leds/input3::numlock/brightness` can be used in a customcommand plugin, similar for capslock. **Note**: The number (3) can be a different one on your system.
 
 ```
 if [ "$(cat /sys/class/leds/input3\:\:numlock/brightness)" == "1" ]; then echo 'N';else echo ' ';fi
 ```
+If you are using only 2 keyboard layouts and don't need a scrollock indicator a layout indicator can be added in the same way to the panel. in compositor configuration set the xkb_options :to `grp:alt_shift_toggle,grp_led:scroll` and in the custom command plugin:
+```
+if [ "$(cat /sys/class/leds/input3\:\:scrolllock/brightness)" == "1" ]; then echo ' DE';else echo ' US'; fi
+```
 
-
-####  Colorpicker
+###  Colorpicker
 
 Install [hyprpicker](https://github.com/hyprwm/hyprpicker) and create a `colorpicker.desktop` file in  `~/.local/share/applications:
 
@@ -76,7 +80,7 @@ Terminal=false
 
 Call it from runner/mainmenu or add it to a "quicklaunch" widget on the panel.
 
-#### Show Desktop
+### Show Desktop
 
 On wayfire in `wayfire.ini`  configure a shortcut, add it as `wtype -M alt -P d` in a "custom command" widget, icon=desktop.
 ```
