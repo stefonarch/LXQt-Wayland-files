@@ -65,36 +65,44 @@
     </context>
   </mouse>
 
-  <!-- LXQt settings -->
-    <regions>
-      <region name="notifications" x="70%" y="0%"  height="50%"  width="50%"  />
-      <region name="runner"    x="40%" y="20%"  height="1%"  width="20%"  />
-    </regions>
-
+  <!-- positions for lxqt-runner and notifications-->
+  <regions>
+    <region name="notifications" x="70%" y="0%" height="50%" width="50%"/>
+    <region name="runner" x="40%" y="20%" height="1%" width="20%"/>
+  </regions>
+  <!-- LXQt rules -->
   <windowRules>
-      <windowRule identifier="lxqt-panel" skipTaskbar="yes" skipWindowSwitcher="yes">
-        <action name="MoveToEdge" direction="up" />
-        <action name="ToggleAlwaysOnTop"/>
-      </windowRule>
-
-      <windowRule identifier="lxqt-runner" skipTaskbar="yes" skipWindowSwitcher="yes">
-        <action name="SnapToRegion" region="runner" />
-        <action name="ToggleAlwaysOnTop"/>
-      </windowRule>
-
+    <!-- For both a top and a left panel, if desired, remove MatchOnce="true".
+    Panel configuration windows will open at top left corner using this setting.
+    Other positions are not recommended -->
+    <windowRule identifier="lxqt-panel" skipTaskbar="yes" skipWindowSwitcher="yes" MatchOnce="true">
+      <action name="ToggleAlwaysOnTop"/>
+      <action name="MoveTo" x="0" y="0"/>
+    </windowRule>
+    <windowRule identifier="lxqt-runner" skipTaskbar="yes" skipWindowSwitcher="yes">
+      <action name="ToggleAlwaysOnTop"/>
+      <action name="SnapToRegion" region="runner"/>
+    </windowRule>
     <windowRule title="pcmanfm-desktop*" skipTaskbar="yes" skipWindowSwitcher="yes">
       <action name="ToggleAlwaysOnBottom"/>
       <action name="Maximize"/>
     </windowRule>
-
     <windowRule identifier="lxqt-notificationd" skipTaskbar="yes" skipWindowSwitcher="yes">
-      <action name="SnapToRegion" region="notifications" />
-    </windowRule>
-
-    <windowRule identifier="qterminal">
-      <action name="SendToDesktop" to="right" />
+      <action name="SnapToRegion" region="notifications"/>
     </windowRule>
   </windowRules>
+  <libinput>
+    <device category="default">
+      <naturalScroll>no</naturalScroll>
+      <leftHanded/>
+      <pointerSpeed>0,6</pointerSpeed>
+      <accelProfile>adaptive</accelProfile>
+      <tap>yes</tap>
+      <tapButtonMap/>
+      <middleEmulation/>
+      <disableWhileTyping>yes</disableWhileTyping>
+    </device>
+  </libinput>
 
 
 </labwc_config>
