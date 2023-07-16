@@ -36,7 +36,7 @@ Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart secti
 
 `lxqt-panel` starts if no "Desktop switcher" plugin is present in its configuration file. Recommended is using an alternative config file with `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning settings, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see  `lxqt-wayland/panel.conf`.
 
-* Window rules are needed until qt6.5 is fully implemented.
+* Window rules are needed until Qt 6.5 is fully implemented.
 * Smaller width than 100% can lead to issues
 * Usable in sway, hyrpland, kwin_wayland and wayfire
 * custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
@@ -94,7 +94,7 @@ At the moment the best stacking compositor for a traditional LXQt experience: No
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
-Old friend openbox in modern wayland clothes. Latest git offers a quite usable LXQt Session as there
+Old friend openbox in modern wayland clothes. Version 0.6.4 and latest git offer a usable LXQt Session as there
 are implemented window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
 
 * openbox themes in `~/.local/share/themes`

@@ -3,7 +3,7 @@
 # This allows xdg-desktop-portal-wlr to function (e.g. for screen-recording)
 XDG_CURRENT_DESKTOP=wlroots
 
-# Set keyboard layout to Swedish
+# Set keyboard layout to German
 # XKB_DEFAULT_LAYOUT=de
 
 # Set two keyboard layouts and toggle between them using alt+shift
