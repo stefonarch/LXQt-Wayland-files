@@ -1,6 +1,6 @@
 # Wayland Implementations for the LXQt Desktop
 
-> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols (waiting `layer-shell-qt` to improve) but many components are full or partially working on wayland natively. Work in progress.
+> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols (waiting  for `layer-shell-qt` to improve) but many components are full or partially working on wayland natively. Work in progress.
 
 ### Content
 
@@ -94,6 +94,8 @@ At the moment the best stacking compositor for a traditional LXQt experience: No
 
 [Source](https://github.com/labwc/labwc#readme), [Docs](https://labwc.github.io/index.html)
 
+[LXQt-labwc-session](https://github.com/stefonarch/lxqt-labwc-session)
+
 Old friend openbox in modern wayland clothes. Version 0.6.4 and latest git offer a usable LXQt Session as there
 are implemented window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
 
@@ -106,9 +108,13 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 #### Pros
 
-* Super lightweight and snappy (no animations)
+* Lightweight and snappy (no animations)
+* xdg-activation protocol support (allow applications to activate
+  themselves (e.g. raise to the top and get keyboard focus) if they
+  provide a valid `xdg_activation token`.)
+* Snapping, (custom) regions and tiling by shortcuts
 * Config files and syntax following openbox standard
-* Few bugs in git
+* Stable git master
 
 #### Issues
 
