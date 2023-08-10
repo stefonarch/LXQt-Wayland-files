@@ -25,7 +25,7 @@ waybar (wlr/waybar),yatbfw (icons only), wf-dock
 
  * First method, cycling:
     * Create `desktop_left.desktop`  in `~/.local/share/applications/`
-    * Add a "quicklauch" widget to the panel and drag this file into it, and again the same for  "right" values.
+    * Add a "quicklaunch" widget to the panel and drag this file into it, and again the same for  "right" values.
 ```
 [Desktop Entry]
 Name=Desktop left
