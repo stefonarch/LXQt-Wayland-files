@@ -54,11 +54,12 @@ For more details see [lxqt-panel](lxqt-panel.md) page.
   * `wf-dock` dock/taskbar
 For `keyboard-state` working make sure your user is member of the "input" group. Some icons need "font-icon" and "font-awesome" to be displayed.
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
-* `wmctrl` and `wtype` : for some keybindings  - especially open applications menu in `lxqt-panel`
+* `wlrctr` and `wtype` : for some keybindings  - especially open applications menu in `lxqt-panel`
 * `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 * `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
 * `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
 * `wofi` alternative launcher
+* `wshot` Qt GUI for screenshots, see [wshot](https://github.com/stefonarch/wshot)
 * `wev` : xev for wayland
 * wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
 * `gammastep` replacement for redshift
