@@ -65,29 +65,6 @@ For `keyboard-state` working make sure your user is member of the "input" group.
 * `gammastep` replacement for redshift
 * `wvkbd` virtual keyboard
 
-## Wayfire (stacking)
-
-![Screenshot LXQt wayfire](lxqt-wayfire.png)
-
-[Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
-
-At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*`  is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
-
-**Note** : because of API changes the plugin is broken actually on master, so compiling `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed.
-
-
-#### Issues
-* Panel does not release focus (wayfire issue)
-* Some window rules for app placing do not work (wayfire issue)
-* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink at every reload, therefor using SSD is recommended.
-
-
-#### Useful tools
-
-* `wf-info` : get window information for creating window rules (wayfire only)
-* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini` (removes comments).
-* `wf-kill` : kill windows
-
 ## Labwc (stacking)
 
 ![Screenshot labwc](labwc.png)
@@ -119,7 +96,6 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 
 #### Issues
 
-* Panel not hiding with F11/fullscreen
 * Notification window steals focus, settings not working (fixed in the [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) of `lxqt-notificationd`)
 
 
@@ -139,6 +115,28 @@ In `autostart`:
 `swayidle before-sleep swaylock timeout 300 'feh -rzsZFD 8  --draw-exif --draw-tinted ~/path/to/folder' resume 'killall feh'`
 
 
+## Wayfire (stacking)
+
+![Screenshot LXQt wayfire](lxqt-wayfire.png)
+
+[Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
+
+At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*`  is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
+
+**Note** : because of API changes the plugin is broken actually on master, so compiling `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed.
+
+
+#### Issues
+* Panel does not release focus (wayfire issue)
+* Some window rules for app placing do not work (wayfire issue)
+* Using CDS (client side decoration) Qt windows with the default Qt decoration will shrink at every reload, therefor using SSD is recommended.
+
+
+#### Useful tools
+
+* `wf-info` : get window information for creating window rules (wayfire only)
+* `wcm` Wayfire configuration editor GUI (GTK). **Not** recommended if you also edit manually `wayfire.ini` (removes comments).
+* `wf-kill` : kill windows
 
 ## Sway (tiling)
 

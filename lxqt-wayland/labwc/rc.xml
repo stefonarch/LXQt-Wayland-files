@@ -76,7 +76,7 @@
     Panel configuration windows will open at top left corner using this setting.
     Other positions are not recommended -->
     <windowRule identifier="lxqt-panel" skipTaskbar="yes" skipWindowSwitcher="yes" MatchOnce="true">
-      <action name="ToggleAlwaysOnTop"/>
+      <action name="ToggleAlwaysOnBottom"/>
       <action name="MoveTo" x="0" y="0"/>
       <action name="ToggleKeybinds"/>
     </windowRule>
