@@ -52,7 +52,13 @@ Terminal=false
 
 ### Keyboard state/layout indicator
 
-For numlock the value in `/sys/class/leds/input3::numlock/brightness` can be used in a customcommand plugin, similar for capslock. **Note**: The number (3) can be a different one on your system.
+For numlock the value in `/sys/class/leds/input3::numlock/brightness` can be used in a customcommand plugin, similar for capslock. **Note**: The number (3) can be a different one on your system. This needs
+
+```
+XKB_DEFAULT_LAYOUT=us,de
+XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle,grp_led:scroll
+```
+in `labwc/environment` or other compositors config files.
 
 ```
 if [ "$(cat /sys/class/leds/input3\:\:numlock/brightness)" == "1" ]; then echo 'N';else echo ' ';fi
