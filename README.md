@@ -27,8 +27,7 @@ Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart secti
 
 #### Notes
 
-* Systray/Notification area (using waybar or lxqt-panel) should start first (= `sleep 2 && lxqt-session`) (fixed in LXQT 1.3)
-* Module`lxqt-globalshortcuts`  loads but  fails to register shortcuts
+* Module`lxqt-globalshortcuts`  loads but fails to register shortcuts
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type x11/wayland.
 * Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore (fixed in LXQt 1.3).
 
@@ -49,9 +48,10 @@ For more details see [lxqt-panel](lxqt-panel.md) page.
 * `swaybg` : background image (below desktop)
 * `swayidle; swaylock` :  lock screen
 * Panels/bars:
-  * `yatbfw` [Source](https://github.com/selairi/yatbfw): taskbar, clock, quicklaunch
-  * `waybar` : taskbar, notification area, cpu/ram/temp monitor, keyboard layout display
-  * `wf-dock` dock/taskbar
+* `sfwbar` : [Source](https://github.com/LBCrion/sfwbar) taskbar and much more
+* `yatbfw` [Source](https://github.com/selairi/yatbfw): taskbar, clock, quicklaunch
+* `waybar` : taskbar, notification area, cpu/ram/temp monitor, keyboard layout display
+* `wf-dock` (wayfire) dock/taskbar
 For `keyboard-state` working make sure your user is member of the "input" group. Some icons need "font-icon" and "font-awesome" to be displayed.
 * `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
 * `wlrctr` and `wtype` : for some keybindings  - especially open applications menu in `lxqt-panel`
@@ -97,6 +97,7 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 #### Issues
 
 * Notification window steals focus, settings not working (fixed in the [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) of `lxqt-notificationd`)
+* `lxqt-runner` does not close on loosing focus
 
 
 #### Useful tools

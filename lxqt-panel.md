@@ -86,7 +86,7 @@ Terminal=false
 
 Call it from runner/mainmenu or add it to a "quicklaunch" widget on the panel.
 
-### Show Desktop
+### Show Desktop Button
 
 On wayfire in `wayfire.ini`  configure a shortcut, add it as `wtype -M alt -P d` in a "custom command" widget, icon=desktop.
 ```
@@ -96,4 +96,4 @@ toggle_showdesktop = <alt> KEY_D
 ...
 ```
 
-On labwc you can use `wlrctl toplevel minimize state:inactive` but it will minimize all applications and stop.
+On labwc you can use `wlrctl toplevel minimize state:inactive && wlrctl toplevel minimize state:active` as command in the custom command widget but this will just minimize all applications but not toggle it.
