@@ -1,6 +1,6 @@
 # Wayland Implementations for the LXQt Desktop
 
-> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols (waiting  for `layer-shell-qt` to improve) but many components are full or partially working on wayland natively. Work in progress.
+> Files and dotfiles for a LXQt Wayland session. LXQt hasn't implemented yet wayland protocols (waiting for the release of `layer-shell-qt6`) but many components are full or partially working on wayland natively. Work in progress.
 
 ### Content
 
@@ -23,23 +23,22 @@ Copy the `lxqt-wayland` folder to `~/.config/`. It contains the default settings
 
 ### Using lxqt-session in general
 
-Using LXQt 1.2.0  and later `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session.
+With LXQt 1.2.0  and later `lxqt-session` can be started in the autostart section of any compositors configuration files. For `kwin_wayland` the `startlxqtkwin` script will start the session. Recommended is the **latest LXQt version** or git checkout.
 
 #### Notes
 
 * Module`lxqt-globalshortcuts`  loads but fails to register shortcuts
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "autostart" and "scripts" folder for a selective autostart of applications depending on session type x11/wayland.
-* Lock settings are not applied in wayland. Uncheck "Lock screen on resume" - otherwise the process will crash on resume (but not the session) and logout and module management will not work anymore (fixed in LXQt 1.3).
+* Lock settings are not applied in wayland.
 
 ### lxqt-panel
 
-`lxqt-panel` starts if no "Desktop switcher" plugin is present in its configuration file. Recommended is using an alternative config file with `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning settings, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see  `lxqt-wayland/panel.conf`.
+Recommended is using an alternative config file with `lxqt-panel -c /path/to/alternative/panel.conf`. Positioning settings, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see  `lxqt-wayland/panel.conf`.
 
-* Window rules are needed until Qt 6.5 is fully implemented.
+* Window rules are needed until both Qt 6.6 and layershell-qt are implemented.
 * Smaller width than 100% can lead to issues
 * Usable in sway, hyrpland, kwin_wayland and wayfire
 * custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
-* Panel volume popup opens at 0,0 (fixed in git)
 
 For more details see [lxqt-panel](lxqt-panel.md) page.
 
@@ -74,8 +73,7 @@ For `keyboard-state` working make sure your user is member of the "input" group.
 
 [LXQt-labwc-session](https://github.com/stefonarch/lxqt-labwc-session)
 
-Old friend openbox in modern wayland clothes. Version 0.6.4 and latest git offer a usable LXQt Session as there
-are implemented window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
+Old friend openbox in modern wayland clothes. Version 0.6.4 and later and latest LXQt offer a usable LXQt Session as there are implemented window rules. Desktop works perfectly. See [lxqt-wayland/labwc/rc.xml](https://github.com/stefonarch/LXQt-Wayland-files/blob/0ddf63261f4946ccf7b15837341fe611b7b357d7/lxqt-wayland/labwc/rc.xml#L59) for details.
 
 * openbox themes in `~/.local/share/themes`
 
@@ -97,7 +95,7 @@ A minimal editor for rc.xml is [labwc-tweaks](https://github.com/labwc/labwc-twe
 #### Issues
 
 * Notification window steals focus, settings not working (fixed in the [wip branch](https://github.com/stefonarch/lxqt-notificationd/tree/wip_layer_shell_qt) of `lxqt-notificationd`)
-* `lxqt-runner` does not close on loosing focus
+* `lxqt-runner` does not close on loosing focus (fixed in Git)
 
 
 #### Useful tools
@@ -121,10 +119,9 @@ In `autostart`:
 ![Screenshot LXQt wayfire](lxqt-wayfire.png)
 
 [Source](https://github.com/WayfireWM/wayfire/wiki/Configuration), [docs](https://github.com/WayfireWM/)
+Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) did work perfectly with a previous version of [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*`  is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
 
-At the moment the best stacking compositor for a traditional LXQt experience: Notifications, lxqt-runner, pcmanfm-qt (Desktop) and lxqt-panel (top or left, some plugins not working) do work perfectly with the [lxqt-desktop-shell](https://gitlab.com/wayfireplugins/lxqt-desktop-shell.git) plugin, changed settings are read and applied. In addition many resource-friendly desktop effects and animations. Using git version `0.8.*`  is mandatory for the plugin and `wayfire-plugins-extra` is recommended.
-
-**Note** : because of API changes the plugin is broken actually on master, so compiling `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed.
+**Note** : because of API changes the plugin is broken actually on master, so compiling `git checkout 4faddbdb4d971a43546e1a9f2350d4fc51882850` is needed. **No other version is running** due to the plugin broken.
 
 
 #### Issues
@@ -181,25 +178,25 @@ Nice window effects like dim inactive, fading and other animations, opacity, des
 
 ![Screenshot kwin_wayland](kwin_wayland.png)
 
-The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (import `kwin_wayland.rule` in KDE settings → Windowmanagement → Window rules). Not really usable until `lxqt-panel` implements  a wayland taskmanager.
+The most similar to a LXQt x11 session, specially if already used with kwin. Needs some window rules for top/left panel, runner, notifications (import `kwin_wayland.rule` in KDE settings → Windowmanagement → Window rules). Not really usable until `lxqt-panel` implements  a wayland taskmanager, `cairo-wayland-dock-git` and `latte-dock-git` can be used instead.
 
 #### Pros
 
 * Working desktop on all outputs, always at bottom (needs `pcmanfm-qt` git version with title for it's desktop window.
 * Lock screen
 * Multiple sessions/switch user (to test)
-* Spectacle QUI screenshots
+* Spectacle screenshots (GUI)
 * klipper for clipboard
 * `lxqt-config-monitor`  working (to test multihead)
 * no manual config files editing
 
 #### Issues
 
-* Big issue: No taskbar (waybar; yatbfw) possible do to lack of foreing-toplevel-protocol not supported.
+* Big issue: No taskbar (waybar; yatbfw; swfbar) possible due to lack of support for foreign-toplevel-protocol.
+Docks mentioned above can work.
 * Same [issues to configure](https://github.com/lxqt/lxqt/wiki/ConfigWindowManagers#kwin) shortcuts when no full plasma-desktop is installed
 * fullscreen window titlebar goes under the panel
 * wlsunset and gammastep not working, `kcmshell5 kcm_nightcolor&` works.
-* window rules for applications on workspaces doesn't work (maybe an issue of mine)
 * keys for brightness and volume are not working (sliders from panel work), manually shortcut assigning should work
 
 
