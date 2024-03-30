@@ -16,7 +16,7 @@ if [ -z "$XDG_CONFIG_HOME" ]; then
 fi
 
 if [ -z "$XDG_DATA_DIRS" ]; then
-    XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
+   XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
 else
     if ! contains "$XDG_DATA_DIRS" "/usr/share"; then
         XDG_DATA_DIRS="$XDG_DATA_DIRS:/usr/share"
@@ -51,34 +51,22 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     fi
 fi
 
-# Qt4 platform plugin
-export QT_PLATFORM_PLUGIN="lxqt"
+# Note: those env vars have to be set in hyprland.conf:
 
-# Qt5 platform plugin
-export QT_QPA_PLATFORMTHEME="lxqt"
-
-# use lxqt-applications.menu for main app menu
-export XDG_MENU_PREFIX="lxqt-"
-
-export XDG_CURRENT_DESKTOP="LXQt"
-
-# Import compositor from  LXQt settings:
-#export $(cat $XDG_CONFIG_HOME/lxqt/session.conf |grep wayland_compositor)
-export WAYLAND_COMPOSITOR=Hyprland
+#env = QT_QPA_PLATFORMTHEME,lxqt
+#env = QT_PLATFORM_PLUGIN,lxqt
+#env = XDG_MENU_PREFIX,lxqt-
+#env = XDG_CURRENT_DESKTOP,LXQt:Hyprland
 
 # Import and set locale and scale factor from lxqt (not needed if using lxqt-session)
-export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
-export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
+#export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
+#export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
 
-# Firefox
+## End LXQt common settings
+
+# Firefox & Thunderbird
 export MOZ_ENABLE_WAYLAND=1
 
-# Grim (screenshots)
-#export GRIM_DEFAULT_DIR=/tmp
+exec Hyprland
 
-# Create wayland settings dir if not existing
-mkdir -p -- "$XDG_CONFIG_HOME/lxqt-wayland"
-
-# Start the compositor
-exec Hyprland -c $XDG_CONFIG_HOME/lxqt-wayland/hypr/hyprland.conf
 

@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=LXQt Hyprland
-Comment=Wayland compositor for LXQT
+Name=LXQt Hyprland (Wayland)
+Comment=LXQt Wayland session using Hyprland
 Exec=startlxqthyprland
 Type=Application

@@ -1,7 +1,6 @@
 [Desktop Entry]
-Name=LXQt Wayfire
+Name=LXQt Wayfire (Wayland)
 Exec=startlxqtwayfire
 TryExec=wayfire
-Icon=
 Type=Application
 DesktopNames=Wayfire

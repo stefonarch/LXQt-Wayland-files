@@ -57,28 +57,58 @@ export QT_PLATFORM_PLUGIN="lxqt"
 # Qt5 platform plugin
 export QT_QPA_PLATFORMTHEME="lxqt"
 
+# Qt5
+export QT_QPA_PLATFORMTHEME="lxqt"
+export QT_EXCLUDE_GENERIC_BEARER=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+# Qt6
+export QT_ACCESSIBILITY=1
+
+# Prevent illegibile text in some KDE apps
+
+export QT_QUICK_CONTROLS_STYLE=org.kde.desktop
+
 # use lxqt-applications.menu for main app menu
 export XDG_MENU_PREFIX="lxqt-"
 
-export XDG_CURRENT_DESKTOP="LXQt"
+export XDG_CURRENT_DESKTOP="LXQt:labwc:wlroots"
 
-# Import compositor from  LXQt settings:
-#export $(cat $XDG_CONFIG_HOME/lxqt/session.conf |grep wayland_compositor)
-export WAYLAND_COMPOSITOR=labwc
+# Copy default labwc configuration if not existing
+if [[ ! -d "$XDG_CONFIG_HOME/labwc" ]]
+   then
+   cp -av /usr/share/lxqt/wayland/labwc "$XDG_CONFIG_HOME"/ ## if it is in /usr/local/ ?
+fi
 
-# Import and set locale and scale factor from lxqt (not needed if using lxqt-session)
-export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
-export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
+# Import keyboard layout
+lxqt-settingsexporter
+## End LXQt common settings
 
-# Firefox
-export MOZ_ENABLE_WAYLAND=1
+# enable cursor on VM
+VIRT=$(systemd-detect-virt)
+if [ ! "$VIRT" = none ]; then
+export WLR_NO_HARDWARE_CURSORS=1
+echo "Running on virtualized hardware"
+fi
 
-# Grim (screenshots)
-#export GRIM_DEFAULT_DIR=/tmp
+# Find labwc executable
+LABWC_EXECUTABLE=$(which labwc)
 
-# Create wayland settings dir if not existing
-mkdir -p -- "$XDG_CONFIG_HOME/lxqt-wayland"
+if [ -x "$LABWC_EXECUTABLE" ]; then
+    LABWC_VERSION=$("$LABWC_EXECUTABLE" --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+# Version check for logout
+    if [ "$(printf '%s\n' "$LABWC_VERSION")" != "0.7.2" ]; then
+        exec labwc -C $XDG_CONFIG_HOME/labwc -s lxqt-session
+        echo "Labwc version is <= 0.7.2."
+    else
+        # version is greater than 0.7.2 -> use -S option for complete logout support
+        echo "Labwc version is > 0.7.2"
+        exec labwc -C $XDG_CONFIG_HOME/labwc -S lxqt-session
+        # with debug:
+        #exec systemd-cat --identifier=labwc labwc -d -C $XDG_CONFIG_HOME/lxqt-wayland/labwc  -S lxqt-session
+    fi
+else
+    echo "labwc not found. Please install labwc. Exiting."
+fi
 
-# Start the compositor
-exec labwc -C $XDG_CONFIG_HOME/lxqt-wayland/labwc
 
