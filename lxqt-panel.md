@@ -1,11 +1,12 @@
 # LXQt Panel on Wayland Compositors
 
-> Configuring tips and hacks for using `lxqt-panel` on wayland.
+>Hacks and workarounds for `lxqt-panel` on wayland.
 
 ## Replacements for widgets
 
 ### Desktop cycler/switcher
- Full working with kwin_wayland.
+Completely working with kwin_wayland.
+Under sway or Hyprland 'swaymsg` or `hyprctl dispatch` commands can be used.
 
  Workaround: Configure shortcuts for `go to left|right` and/or `go to <number>`, examples `C-A-left|right`;`C-A-1|2|3`
   and make sure to have `wtype` installed.

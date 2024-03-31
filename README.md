@@ -13,7 +13,7 @@ in all its elements now, but some features are not ready yet.
 ### lxqt-panel
 
 * Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositor.
-At the moment compiling is needed using git checkouts: [Wlroots-based compositors](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar) ; [kwin_wayland](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar)
+Until LXQt v2.1 compiling is needed using git checkouts: [Wlroots-based compositors](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar) ; [kwin_wayland](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar).
 
 For more details see [lxqt-panel](lxqt-panel.md) page.
 
@@ -44,7 +44,7 @@ setups are available, see "Screenshots" below.
 
 See: [lxqt-labwc-session](https://github.com/stefonarch/lxqt-labwc-session).
 
-## Kwin_wayland (stacking)
+### Kwin_wayland (stacking)
 
 ![Screenshot kwin_wayland](Kwin_wayland.png)
 
@@ -65,7 +65,7 @@ command_launcher = lxqt-runner
 binding_launcher = <alt> KEY_SPACE
 ```
 
-## Sway (tiling)
+### Sway (tiling)
 
 Basic Settings:
 
@@ -95,7 +95,7 @@ env = XDG_CURRENT_DESKTOP,LXQt:Hyprland:wlroots
 exec-once=lxqt-session
 ```
 
-##z#  3rd party tools
+###  3rd party tools
 
 * `swaybg` : background image (below desktop)
 * `swayidle; swaylock` :  lock screen
