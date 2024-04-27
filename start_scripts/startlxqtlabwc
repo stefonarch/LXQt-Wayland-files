@@ -80,10 +80,6 @@ if [[ ! -d "$XDG_CONFIG_HOME/labwc" ]]
    cp -av /usr/share/lxqt/wayland/labwc "$XDG_CONFIG_HOME"/ ## if it is in /usr/local/ ?
 fi
 
-# Import keyboard layout
-lxqt-settingsexporter
-## End LXQt common settings
-
 # enable cursor on VM
 VIRT=$(systemd-detect-virt)
 if [ ! "$VIRT" = none ]; then
@@ -93,22 +89,18 @@ fi
 
 # Find labwc executable
 LABWC_EXECUTABLE=$(which labwc)
-
 if [ -x "$LABWC_EXECUTABLE" ]; then
-    LABWC_VERSION=$("$LABWC_EXECUTABLE" --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-# Version check for logout
-    if [ "$(printf '%s\n' "$LABWC_VERSION")" != "0.7.2" ]; then
+LABWC_VERSION=$("$LABWC_EXECUTABLE" --version | cut -c 7-11 | tr -d '.')
+    echo "$LABWC_VERSION"
+    if [ "$LABWC_VERSION" -lt "072" ]; then
+        echo "Labwc version is minor than 0.7.2."
         exec labwc -C $XDG_CONFIG_HOME/labwc -s lxqt-session
-        echo "Labwc version is <= 0.7.2."
     else
-        # version is greater than 0.7.2 -> use -S option for complete logout support
-        echo "Labwc version is > 0.7.2"
+        echo "Labwc version is  0.7.2 or higher, using -S option for exit together with lxqt-session"
         exec labwc -C $XDG_CONFIG_HOME/labwc -S lxqt-session
         # with debug:
         #exec systemd-cat --identifier=labwc labwc -d -C $XDG_CONFIG_HOME/lxqt-wayland/labwc  -S lxqt-session
-    fi
+   fi
 else
     echo "labwc not found. Please install labwc. Exiting."
 fi
-
-

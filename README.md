@@ -1,39 +1,42 @@
 # LXQt Desktop under Wayland
 
 > General files and dotfiles for a LXQt Wayland session. LXQt 2.0 has native wayland support
-in all its elements now, but some features are not ready yet.
+in all its elements now but some features are not ready yet.
 
-### Content
+### Folder Content
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
 * `/usr/share/wayland-session/<compositor>_lxqt.desktop` : Entry in SDDM
 * `scripts`: some tools for autostart and else
 * `config` : configurations for LXQt > 2.0 and other components
+* `AUR` : PKGBUILD for lxqt-panel
 
 ### lxqt-panel
 
-* Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositor.
-Until LXQt v2.1 compiling is needed using git checkouts: [Wlroots-based compositors](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar) ; [kwin_wayland](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar).
+* Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositors.
+Until LXQt v2.1 comes out compiling is needed using git checkouts:
+[Wlroots-based compositors + kwin](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar)       [kwin_wayland only](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar). PKGBUILD  available in [AUR folder](./AUR).
 
-For more details see [lxqt-panel](lxqt-panel.md) page.
+For more details and workarounds see [lxqt-panel](lxqt-panel.md) page.
 
 ## Starting LXQt Session
 
 * Copy the desired file(s) from `wayland-sessions` to `/usr/share/wayland-sessions/` (if using a display manager like SDDM). Copy the desired scripts from `startup_scripts` to `/usr/bin/` or `/usr/local/bin` and make them executable.
 
 * Labwc and kwin_wayland start scripts will start `lxqt-session` automatically; in other compositors executing
-`lxqt-session` or some of its components has to configured in their settings file. For both complete installation
+`lxqt-session` or some of its components has to be configured in their settings file. For both complete installation
 setups are available, see "Screenshots" below.
 * `startlxqt<compositor>` scripts can be executed also directly in tty.
 
 * `$XDG_CURRENT_DESKTOP` is now set to `LXQt:<compositor` including also `:wlroots` if not kwin-wayland.
-
+* Basically similar script could work for any compositor, see their last line.
+* The provided startup scripts use the default configuration files for the compositors. All wlroots-based compositors have options to use different location if different settings are desired.
 
 #### Notes
 
-* Module`lxqt-globalshortcuts`  loads but fails to register shortcuts. Therefore globel shortcuts are handled by the compositor. only.
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications use the autostart settings from the compositor.
-* Lock settings are not applied in wayland. Using `kwin_wayland` screenlocking is provided by the compositor.
+* Module`lxqt-globalshortcuts`  loads but cannot register shortcuts on wayland. Global shortcuts are handled by the compositor only.
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useìing the autostart settings from the compositor is recommended.
+* LXQt screenlock settings are not applied in wayland. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock` can be used in wlroots-based compositors.
 
 
 ## Screenshots and Annotations
@@ -52,7 +55,7 @@ See [lxqt-kwin-session](https://github.com/stefonarch/lxqt-kwin-session).
 
 ### Wayfire (stacking)
 
-Basic setting in `wayfire.ini`:
+Basic settings in `wayfire.ini`:
 
 ```
 [autostart]
@@ -64,6 +67,8 @@ lxqt = lxqt-session
 command_launcher = lxqt-runner
 binding_launcher = <alt> KEY_SPACE
 ```
+Exists a configation GUI tool WCM (wayfire configuration manager).
+In wayfire 0.8.1 `lxqt-runner` doesn't get focus automatically.
 
 ### Sway (tiling)
 
@@ -153,7 +158,7 @@ In `autostart`:
 
 * Telegram does not open multimedia files
 
-If images and video do not open: unset "animation"" and eventually "opengl" in `Preferences > Advanced`.
+If images and video do not open: unset "animation" and eventually "opengl" in `Preferences > Advanced`.
 
 
 

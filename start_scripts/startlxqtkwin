@@ -75,9 +75,6 @@ export QT_QUICK_CONTROLS_STYLE=org.kde.desktop
 export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
 export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
 
-# Import keyboard layout and screen settings
-lxqt2kwinexporter
-
 # Firefox and Thunderbird
 export MOZ_ENABLE_WAYLAND=1
 
