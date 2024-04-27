@@ -1,23 +1,17 @@
 # LXQt Panel on Wayland Compositors
 
-> Configuring tips and hacks for using `lxqt-panel` on wayland.
+>Hacks and workarounds for `lxqt-panel` on wayland.
 
-`lxqt-panel` starts if no "Desktop switcher" plugin is present in its configuration file. Recommended is using an alternative config file with `lxqt-panel -c /path/to/alternative/panel.conf`. Only position usable is "top" and/or "left". Positioning settings, taskbar and a few other plugins do not work. For a working configuration with a replacement for kbindicator-plugin see [panel.conf](lxqt-wayland/panel.conf).
-
-* Window rules are needed until qt6.5 is fully implemented. See example config files in `lxqt-wayland` folder.
-* Smaller width than 100% can lead to issues
-* Usable in sway, hyrpland, kwin_wayland, wayfire and generally in all compositors with window rules
-* custom command plugin can show/use commands from `hyprctl` and `swaymsg`, like display workspace name/switch.
-* Reserved space (exclusive zone) can be reserved by `panelspace.py` if necessary (hyprland); a full version is `lxqt-panel-loader.py` which reads its width from `panel.conf`, reserves the space needed on top and starts the panel.
-
+The lxqt-panel v.2.0 doesn't include yet a taskbar plugin for wayland.
+It's recommended to compile the work-in progress [lxqt-panel-wlroots-taskbar](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar). For Arch the PKGBUILD in [AUR](../AUR)can be used.
 
 ## Replacements for widgets
 
-### Taskbar
-waybar (wlr/waybar),yatbfw (icons only), wf-dock
-
 ### Desktop cycler/switcher
- Configure shortcuts for `go to left|right` and/or `go to <number>`, examples `C-A-left|right`;`C-A-1|2|3`
+Completely working with kwin_wayland.
+Under sway or Hyprland 'swaymsg` or `hyprctl dispatch` commands can be used.
+
+ Workaround: Configure shortcuts for `go to left|right` and/or `go to <number>`, examples `C-A-left|right`;`C-A-1|2|3`
   and make sure to have `wtype` installed.
   
 ![screenshot desktop switcher](desktopcycler.png)
@@ -87,6 +81,8 @@ Terminal=false
 Call it from runner/mainmenu or add it to a "quicklaunch" widget on the panel.
 
 ### Show Desktop Button
+
+Full working with kwin_wayland
 
 On wayfire in `wayfire.ini`  configure a shortcut, add it as `wtype -M alt -P d` in a "custom command" widget, icon=desktop.
 ```

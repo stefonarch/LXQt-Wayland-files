@@ -57,28 +57,26 @@ export QT_PLATFORM_PLUGIN="lxqt"
 # Qt5 platform plugin
 export QT_QPA_PLATFORMTHEME="lxqt"
 
-# use lxqt-applications.menu for main app menu
-export XDG_MENU_PREFIX="lxqt-"
+# Qt5
+export QT_QPA_PLATFORMTHEME="lxqt"
+export QT_EXCLUDE_GENERIC_BEARER=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
-export XDG_CURRENT_DESKTOP="LXQt"
+# Qt6
+export QT_ACCESSIBILITY=1
 
-# Import compositor from  LXQt settings:
-#export $(cat $XDG_CONFIG_HOME/lxqt/session.conf |grep wayland_compositor)
-export WAYLAND_COMPOSITOR=sway
+export XDG_CURRENT_DESKTOP="LXQt:sway:wlroots"
+
+## End LXQt common settings
+export XDG_SESSION_TYPE="wayland"
 
 # Import and set locale and scale factor from lxqt (not needed if using lxqt-session)
-export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
-export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
+#export $(cat "$XDG_CONFIG_HOME"/lxqt/lxqt-config-locale.conf |grep LANG)
+#export $(cat "$XDG_CONFIG_HOME"/lxqt/session.conf |grep QT_SCALE_FACTOR)
 
-# Firefox
+# Firefox & Thunderbird
 export MOZ_ENABLE_WAYLAND=1
 
-# Grim (screenshots)
-#export GRIM_DEFAULT_DIR=/tmp
-
-# Create wayland settings dir if not existing
-mkdir -p -- "$XDG_CONFIG_HOME/lxqt-wayland"
-
 # Start the compositor
-exec sway -c $XDG_CONFIG_HOME/lxqt-wayland/sway/config
+exec sway
 

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Comment=
-Exec=bash -c "if [ $(env |grep TYPE|cut -c18-25) = "wayland" ];then yatbfw;fi"
-GenericName=Wayand Panel
-Icon=application-x-desktop
-Name=yatbfw
-Terminal=false
-Type=Application
-X-LXQt-Module=true

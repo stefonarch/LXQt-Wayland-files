@@ -1,6 +1,7 @@
 [Desktop Entry]
-Name=LXQt labwc
-Comment=A wayland stacking compositor
+Name=LXQt labwc (Wayland)
+Comment=LXQt Wayland session using labwc
 Exec=startlxqtlabwc
 Type=Application
+Icon=/usr/share/lxqt/graphics/lxqt-labwc.png
 
