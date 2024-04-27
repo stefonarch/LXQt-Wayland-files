@@ -37,6 +37,7 @@ setups are available, see "Screenshots" below.
 
 #### Notes
 
+* Multiple user session are possible alongside a normal session started by sddm by  simply login on tty and using one of the [start scripts](https://github.com/stefonarch/LXQt-Wayland-files/tree/main/start_scripts). Screenlocking is not handled though. Using `kwin_wayland` multiple user sessions are fully supported.
 * Module`lxqt-globalshortcuts`  loads but cannot register shortcuts on wayland. Global shortcuts are handled by the compositor only.
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useìing the autostart settings from the compositor is recommended.
 * LXQt screenlock settings are not applied in wayland. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock` can be used in wlroots-based compositors.
@@ -46,7 +47,7 @@ setups are available, see "Screenshots" below.
 
 ### Labwc (stacking)
 
-![Screenshot labwc](Labwc.png)
+![Screenshot labwc](lxqtlabwc.png)
 
 See: [lxqt-labwc-session](https://github.com/stefonarch/lxqt-labwc-session).
 
