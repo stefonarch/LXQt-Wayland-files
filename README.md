@@ -15,7 +15,10 @@ in all its elements now but some features are not ready yet.
 
 * Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositors.
 Until LXQt v2.1 comes out compiling is needed using git checkouts:
-[Wlroots-based compositors + kwin](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar)       [kwin_wayland only](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar). PKGBUILD  available in [AUR folder](./AUR).
+
+  * [Wlroots-based compositors + kwin](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar)  (PKGBUILD  available in [AUR folder](./AUR)).
+
+  * [kwin_wayland only](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar).
 
 For more details and workarounds see [lxqt-panel](lxqt-panel.md) page.
 
