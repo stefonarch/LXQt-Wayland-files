@@ -3,6 +3,11 @@
 > General files and dotfiles for a LXQt Wayland session. LXQt 2.0 has native wayland support
 in all its elements now but some features are not ready yet.
 
+<p align="center" width="100%">
+    <img src="sddm.png">
+</p>
+
+
 ### Folder Content
 
 * `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
