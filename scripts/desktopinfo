@@ -1,17 +1,18 @@
 #!/bin/bash
-# shows current desktop/window in custom command plugin or compositor version
+# displays current compositor or WM (X11) in lxqt-panel > custom command
 
-if [ "$wayland_compositor" = "sway" ]; then
+if [[ "$XDG_CURRENT_DESKTOP" == *"sway"* ]]; then
   swaymsg -t get_outputs | grep -i work | awk '{print $2 $3}' | tr -d '",'
-elif [ "$wayland_compositor" = "Hyprland" ]; then
-  WIN=$(hyprctl -j activewindow |jq '.title'| tr -d '"')
-  WSP=$(hyprctl monitors | grep active | awk '{print $3}')
-  echo $WSP: $WIN
-elif [ "$wayland_compositor" = "wayfire" ]; then
+elif [[ "$XDG_CURRENT_DESKTOP" == *"Hyprland"* ]]; then
+  wayfire -v | awk '{print "Hyprland " $1}'
+elif [[ "$XDG_CURRENT_DESKTOP" == *"wayfire"* ]]; then
   wayfire -v | awk '{print "Wayfire " $1}'
-elif [ "$wayland_compositor" = "labwc" ]; then
+elif [[ "$XDG_CURRENT_DESKTOP" == *"labwc"* ]]; then
   labwc -v
+elif [[ "$XDG_CURRENT_DESKTOP" == *"kwin_wayland"* ]]; then
+  echo kwin_wayland
+  #X11
 else
-   kwin -v
+   wmctrl -m | grep Name | cut -d: -f2
 fi
 

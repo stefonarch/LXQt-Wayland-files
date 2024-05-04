@@ -1,0 +1,24 @@
+#!/bin/bash
+# Script for multiple layouts in labwc
+# labwc > 0.7.1:  ~/.config/labwc/environment.d/keyboard_layout can be used
+#
+# Display  active layout in lxqt-panel > custom command plugin:
+# cat $XDG_CONFIG_HOME/labwc/environment |grep LAYOUT|cut -c 20-21
+# Use monospace font and leftclick=/path/to/togglelayout
+# Custom shortcut can be added in rc.xml
+
+LAYOUT_1=us
+LAYOUT_2=es
+LAYOUT_3=ru
+ACTIVE_LAYOUT=$(cat $XDG_CONFIG_HOME/labwc/environment |grep LAYOUT|cut -c 20-21)
+
+if [ $ACTIVE_LAYOUT = $LAYOUT_1 ]; then
+	sed -i "s/XKB_DEFAULT_LAYOUT=$LAYOUT_1/XKB_DEFAULT_LAYOUT=$LAYOUT_2/g" "$XDG_CONFIG_HOME/labwc/environment";
+elif  [ $ACTIVE_LAYOUT = $LAYOUT_2 ]; then
+	sed -i "s/XKB_DEFAULT_LAYOUT=$LAYOUT_2/XKB_DEFAULT_LAYOUT=$LAYOUT_3/g" "$XDG_CONFIG_HOME/labwc/environment";
+elif  [ $ACTIVE_LAYOUT = $LAYOUT_3 ]; then
+	sed -i "s/XKB_DEFAULT_LAYOUT=$LAYOUT_3/XKB_DEFAULT_LAYOUT=$LAYOUT_1/g" "$XDG_CONFIG_HOME/labwc/environment";
+fi
+labwc -r
+
+

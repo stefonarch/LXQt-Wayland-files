@@ -62,6 +62,9 @@ If you are using only 2 keyboard layouts and don't need a scrollock indicator a 
 if [ "$(cat /sys/class/leds/input3\:\:scrolllock/brightness)" == "1" ]; then echo ' DE';else echo ' US'; fi
 ```
 
+For more than 2 layouts see [togglelayout](https://github.com/stefonarch/LXQt-Wayland-files/blob/main/scripts/togglelayout) (labwc only but could be adapted to others).
+
+
 ###  Colorpicker
 
 Install [hyprpicker](https://github.com/hyprwm/hyprpicker) and create a `colorpicker.desktop` file in  `~/.local/share/applications:
