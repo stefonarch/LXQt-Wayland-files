@@ -3,7 +3,7 @@
 >Hacks and workarounds for `lxqt-panel` on wayland.
 
 The lxqt-panel v.2.0 doesn't include yet a taskbar plugin for wayland.
-It's recommended to compile the work-in progress [lxqt-panel-wlroots-taskbar](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar). For Arch the PKGBUILD in [AUR](../AUR)can be used.
+It's recommended to compile the work-in progress [lxqt-panel-wlroots-taskbar](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar). For Arch the PKGBUILD in [AUR](../AUR)can be used. At the moment copying `lxqt-panel.desktop` to `/etc/xdg/autostart` is needed as it's missing in the building.
 
 ## Replacements for widgets
 

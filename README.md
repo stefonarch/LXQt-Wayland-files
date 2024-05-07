@@ -8,20 +8,20 @@ in all its elements now but some features are not ready yet.
 </p>
 
 
-### Folder Content
+### Folder/Content
 
-* `/usr/bin/startlxqt<compositor>` : ENV variables, import settings, start compositor
-* `/usr/share/wayland-session/<compositor>_lxqt.desktop` : Entry in SDDM
+* `start_scripts`: `startlxqt<compositor>` : ENV variables, import settings, start compositor
+* `wayland-sessions`: `<compositor>_lxqt.desktop` : Entry in SDDM
 * `scripts`: some tools for autostart and else
-* `config` : configurations for LXQt > 2.0 and other components
-* `AUR` : PKGBUILD for lxqt-panel
+* `config` : configurations for LXQt < 2.0 and other components
+* `AUR` : PKGBUILD for lxqt-panel and desktop file
 
 ### lxqt-panel
 
 * Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositors.
 Until LXQt v2.1 comes out compiling is needed using git checkouts:
 
-  * [Wlroots-based compositors + kwin](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar)  (PKGBUILD  available in [AUR folder](./AUR)).
+  * [Wlroots-based compositors + kwin](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar)  (PKGBUILD  available in [AUR folder](./AUR)). Copying lxqt-panel.desktop manually to `/etc/xdg/autostart` is needed.
 
   * [kwin_wayland only](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar).
 
@@ -162,6 +162,12 @@ In `autostart`:
     <keybind key="W-k">
       <action name="Execute" command="pcmanfm-qt '/usr/share/applications/org.keepassxc.KeePassXC.desktop'" />
     </keybind>
+```
+
+* Featherpad single window doesn't focus if already open: copy `featherpad.desktop` from `/usr/share/applications` to to `~/.local/share/applications` and changed the line
+
+```
+Exec=bash -c "featherpad %U && wlrctl window focus featherpad"
 ```
 
 
