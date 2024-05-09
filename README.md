@@ -124,7 +124,7 @@ For `keyboard-state` working make sure your user is member of the "input" group.
 * `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 * `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
 * `grim`,`slurp` : screenshots [Example configuration](https://github.com/stefonarch/LXQt-Wayland-files/blob/3a7f36c8945eee874a5111ea3a425edbc7da9034/wayfire/wayfire.ini#L240)
-* `wshot` GUI for screenshots, see [wshot](https://github.com/stefonarch/wshot)
+* `wshot` GUI for screenshots, see [wshot](https://github.com/qtilities/wshot)
 * `wev` : xev for wayland
 * wayfire plugin for [per application keyboard layout switch](https://github.com/AlexJakeGreen/wayfire-kbdd-plugin)
 * `gammastep` replacement for redshift
