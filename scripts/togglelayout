@@ -7,17 +7,32 @@
 # Use monospace font and leftclick=/path/to/togglelayout
 # Custom shortcut can be added in rc.xml
 
-LAYOUT_1=us
-LAYOUT_2=es
-LAYOUT_3=ru
-ACTIVE_LAYOUT=$(cat $XDG_CONFIG_HOME/labwc/environment |grep LAYOUT|cut -c 20-21)
+
+for lang in it ch us
+do
+echo "Layout_1=$lang"
+Layout_1=$lang
+done
+LAYOUT_1=it
+LAYOUT_2=fr
+LAYOUT_3=us
+
+
+
+ACTIVE_LAYOUT=$(cat $XDG_CONFIG_HOME/labwc/environment.d/*.env |grep LAYOUT|cut -c 20-21)
+
+cd $XDG_CONFIG_HOME/labwc/environment.d/
 
 if [ $ACTIVE_LAYOUT = $LAYOUT_1 ]; then
-	sed -i "s/XKB_DEFAULT_LAYOUT=$LAYOUT_1/XKB_DEFAULT_LAYOUT=$LAYOUT_2/g" "$XDG_CONFIG_HOME/labwc/environment";
+	mv $LAYOUT_1.env LAYOUT_1
+	mv $LAYOUT_2 $LAYOUT_2.env
+
 elif  [ $ACTIVE_LAYOUT = $LAYOUT_2 ]; then
-	sed -i "s/XKB_DEFAULT_LAYOUT=$LAYOUT_2/XKB_DEFAULT_LAYOUT=$LAYOUT_3/g" "$XDG_CONFIG_HOME/labwc/environment";
+	mv $LAYOUT_2.env LAYOUT_2
+	mv $LAYOUT_3 $LAYOUT_3.env
 elif  [ $ACTIVE_LAYOUT = $LAYOUT_3 ]; then
-	sed -i "s/XKB_DEFAULT_LAYOUT=$LAYOUT_3/XKB_DEFAULT_LAYOUT=$LAYOUT_1/g" "$XDG_CONFIG_HOME/labwc/environment";
+	mv $LAYOUT_3.env $LAYOUT_3
+	mv $LAYOUT_1 $LAYOUT_1.env
 fi
 labwc -r
 
