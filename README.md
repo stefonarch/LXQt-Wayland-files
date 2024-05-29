@@ -44,7 +44,7 @@ setups are available, see "Screenshots" below.
 
 * Multiple user session are possible alongside a normal session started by sddm by simply login on tty and using one of the [start scripts](https://github.com/stefonarch/LXQt-Wayland-files/tree/main/start_scripts). Screenlocking is not handled though. Using `kwin_wayland` multiple user sessions are fully supported.
 * Module`lxqt-globalshortcuts`  loads but cannot register shortcuts on wayland. Global shortcuts are handled by the compositor only.
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useìing the autostart settings from the compositor is recommended.
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useing the autostart settings from the compositor is recommended.
 * Qterminal's dropdown mode is supported now in git. Adding manually a hotkey for `qterminal -d` in compositor settings is needed.
 * LXQt screenlock settings are supported now in wayland with `liblxqt-git`. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock`, `waylock`and `hyprlock` can be used in wlroots-based compositors.
 In `~/.config/lxqt/session.conf`:
