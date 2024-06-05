@@ -33,7 +33,7 @@ For more details and workarounds see [lxqt-panel](lxqt-panel.md) page.
 
 * Labwc and kwin_wayland start scripts will start `lxqt-session` automatically; in other compositors executing
 `lxqt-session` or some of its components has to be configured in their settings file. For both complete installation
-setups are available, see "Screenshots" below.
+setups are available, see "Screenshots" below. To exit also the compositor after exiting LXQt  `&& <exit_command>` should be used.
 * `startlxqt<compositor>` scripts can be executed also directly in tty.
 
 * `$XDG_CURRENT_DESKTOP` is now set to `LXQt:<compositor` including also `:wlroots` if not kwin-wayland.
@@ -82,7 +82,7 @@ Basic settings in `wayfire.ini`:
 [autostart]
 autostart_wf_shell = false
 background = swaybg -i /usr/share/lxqt/wallpapers/origami-dark.png
-lxqt = lxqt-session
+lxqt_session = lxqt-session && killall wayfire
 
 [command]
 command_launcher = lxqt-runner
@@ -96,13 +96,14 @@ In wayfire 0.8.1 `lxqt-runner` doesn't get focus automatically.
 Basic Settings:
 
 ```
-exec lxqt-session
+exec lxqt-session && sway exit
 
 for_window [app_id="^lxqt-.*$"] floating enable
 for_window [app_id="^lxqt-.*$"] floating enable
 
 bindsym alt+space exec lxqt-runner
 ```
+In sway 1.9 `lxqt-runner` and qterminal's dropdown don't get keyboard focus automatically.
 
 ### Hyprland (tiling)
 
@@ -118,7 +119,7 @@ env = QT_PLATFORM_PLUGIN,lxqt
 env = XDG_MENU_PREFIX,lxqt-
 env = XDG_CURRENT_DESKTOP,LXQt:Hyprland:wlroots
 
-exec-once=lxqt-session
+exec-once=lxqt-session && hyprctl dispatch exit
 ```
 
 ###  3rd party tools
