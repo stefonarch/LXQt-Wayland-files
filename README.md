@@ -132,7 +132,6 @@ exec-once=lxqt-session && hyprctl dispatch exit
 * `waybar` : taskbar, notification area, cpu/#windowrule = float,^(cmst)$
 windowrule = float,io.github.martinrotter.rssguardram/temp monitor, keyboard layout display
 For `keyboard-state` working make sure your user is member of the "input" group. Some icons need "font-icon" and "font-awesome" to be displayed.
-* `lxqt-wlogout` : Close session, see [lxqt-wlogout](https://github.com/stefonarch/lxqt-wlogout)
 * `wlrctr` and `wtype` : for some keybindings  - especially open applications menu in `lxqt-panel`
 * `wdisplay`: Screen management GUI, see [wdisplay](https://github.com/artizirk/wdisplays)
 * `clipman`, `dmenu`, `wl-clipboard` : cliboard manager (configuration see `wayfire.ini`)
