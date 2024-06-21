@@ -120,6 +120,13 @@ env = XDG_MENU_PREFIX,lxqt-
 env = XDG_CURRENT_DESKTOP,LXQt:Hyprland:wlroots
 
 exec-once=lxqt-session && hyprctl dispatch exit
+
+
+windowrule = float,^(lxqt-.*)$
+windowrule = float,^(pavucontrol-qt)$
+windowrule = float,^(sddm-conf)$
+windowrule = float,^(pcmanfm-qt)$
+windowrule = float,copyq
 ```
 
 ###  3rd party tools
