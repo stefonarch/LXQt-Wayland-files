@@ -4,11 +4,11 @@
 
 _pkgname=lxqt-panel
 pkgname=$_pkgname-git
-pkgver=2.0.0
+pkgver=0.16.1.r434.g0017a2f5
 pkgrel=1
 pkgdesc='The LXQt desktop panel'
 arch=('i686' 'x86_64')
-url='https://github.com/lxqt/lxqt-panel'
+url='https://github.com/stefonarch/lxqt-panel/tree/wayland_panel'
 license=("LGPL-2.1-only")
 depends=('libstatgrab' 'libsysstat' 'libxtst' 'alsa-lib' 'libpulse'
          'layer-shell-qt' 'solid' 'kwindowsystem'
@@ -16,7 +16,7 @@ depends=('libstatgrab' 'libsysstat' 'libxtst' 'alsa-lib' 'libpulse'
 makedepends=('git' 'cmake' 'qt6-tools' 'lxqt-build-tools')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-source=("git+https://github.com/LXQt-Marcus-Fork/lxqt-panel#branch=wlroots-taskbar")
+source=("git+https://github.com/stefonarch/lxqt-panel#branch=wayland_panel")
 sha256sums=('SKIP')
 
 pkgver() {

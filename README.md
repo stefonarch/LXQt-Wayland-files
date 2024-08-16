@@ -14,14 +14,14 @@ in all its elements now but some features are not ready yet.
 * `wayland-sessions`: `<compositor>_lxqt.desktop` : Entry in SDDM
 * `scripts`: some tools for autostart and else
 * `config` : configurations for LXQt < 2.0 and other components
-* `AUR` : PKGBUILD for lxqt-panel and desktop file
+* `AUR` : PKGBUILD for lxqt-panel
 
 ### lxqt-panel
 
 * Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositors.
 Until LXQt v2.1 comes out compiling is needed using git checkouts:
 
-  * [Wlroots-based compositors + kwin](https://github.com/LXQt-Marcus-Fork/lxqt-panel/tree/wlroots-taskbar)  (PKGBUILD  available in [AUR folder](./AUR)). Copying lxqt-panel.desktop manually to `/etc/xdg/autostart` is needed.
+  * [Wlroots-based compositors + kwin](https://github.com/stefonarch/lxqt-panel/tree/wayland_panel)  (PKGBUILD  available in [AUR folder](./AUR)). Note: desktop switcher under kwin_wayland is broken atm.
 
   * [kwin_wayland only](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar).
 
