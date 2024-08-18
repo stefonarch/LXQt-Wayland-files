@@ -18,7 +18,7 @@ in all its elements now but some features are not ready yet.
 
 ### lxqt-panel
 
-* Working in labwc, sway, hyrpland, kwin_wayland, wayfire and probably all wroots based compositors.
+* Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river and most probably with all wroots based compositors.
 Until LXQt v2.1 comes out compiling is needed using git checkouts:
 
   * [Wlroots-based compositors + kwin](https://github.com/stefonarch/lxqt-panel/tree/wayland_panel)  (PKGBUILD  available in [AUR folder](./AUR)). Note: desktop switcher under kwin_wayland is broken atm.
@@ -104,6 +104,26 @@ for_window [app_id="^lxqt-.*$"] floating enable
 bindsym alt+space exec lxqt-runner
 ```
 In sway 1.9 `lxqt-runner` and qterminal's dropdown don't get keyboard focus automatically.
+
+### River (tiling)
+
+![Screenshot River](river.png)
+
+The taskbar of `lxqt-panel` is most useless in river as it can't focus tags except when on tag 0, so lxqt-panel v.2.0 is fine.
+"Custom Command Plugin" allows building a tag switcher in the panel and much more.
+
+Basic Settings:
+
+```
+riverctl spawn "lxqt-session && riverctl exit"
+
+# Powerbutton
+for mode in normal
+do
+    riverctl map $mode None XF86PowerOff spawn lxqt-leave
+done
+
+```
 
 ### Hyprland (tiling)
 
