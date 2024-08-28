@@ -1,6 +1,6 @@
 # LXQt Desktop under Wayland
 
-> General files and dotfiles for a LXQt Wayland session. LXQt 2.0 has native wayland support
+> General files and dotfiles for configuring a LXQt Wayland session. LXQt 2.0 has native wayland support
 in all its elements now but some features are not ready yet.
 
 <p align="center" width="100%">
@@ -14,18 +14,13 @@ in all its elements now but some features are not ready yet.
 * `wayland-sessions`: `<compositor>_lxqt.desktop` : Entry in SDDM
 * `scripts`: some tools for autostart and else
 * `config` : configurations for LXQt < 2.0 and other components
-* `AUR` : PKGBUILD for lxqt-panel
 
 ### lxqt-panel
 
-* Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river and most probably with all wroots based compositors.
-Until LXQt v2.1 comes out compiling is needed using git checkouts:
+Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river and most probably with all wroots based compositors.
+Until LXQt v2.1 comes out compiling is needed using git checkouts or using [AUR](https://aur.archlinux.org/packages/lxqt-panel-git).
 
-  * [Wlroots-based compositors + kwin](https://github.com/stefonarch/lxqt-panel/tree/wayland_panel)  (PKGBUILD  available in [AUR folder](./AUR)). Note: desktop switcher under kwin_wayland is broken atm.
-
-  * [kwin_wayland only](https://github.com/lxqt/lxqt-panel/tree/work/gfgit/wayland_taskbar).
-
-For more details and workarounds see [lxqt-panel](lxqt-panel.md) page.
+For more details and workarounds see [lxqt-panel](lxqt-panel.md) page and the [Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings).
 
 ## Starting LXQt Session
 
