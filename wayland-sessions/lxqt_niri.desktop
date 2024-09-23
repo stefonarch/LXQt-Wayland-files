@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=LXQt Niri (Wayland)
+Exec=startlxqtniri
+TryExec=niri
+Type=Application
+DesktopNames=Niri

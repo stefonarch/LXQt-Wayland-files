@@ -17,7 +17,7 @@ in all its elements now but some features are not ready yet.
 
 ### lxqt-panel
 
-Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river and most probably with all wroots based compositors.
+Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river, niri and most probably with allcompositors which support wrloots protocols.
 Until LXQt v2.1 comes out compiling is needed using git checkouts or using [AUR](https://aur.archlinux.org/packages/lxqt-panel-git).
 
 For more details and workarounds see [lxqt-panel](lxqt-panel.md) page and the [Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings).
@@ -37,9 +37,10 @@ setups are available, see "Screenshots" below. To exit also the compositor after
 
 #### Notes and News
 
-* Multiple user session are possible alongside a normal session started by sddm by simply login on tty and using one of the [start scripts](https://github.com/stefonarch/LXQt-Wayland-files/tree/main/start_scripts). Screenlocking is not handled though. Using `kwin_wayland` multiple user sessions are fully supported.
-* Module`lxqt-globalshortcuts`  loads but cannot register shortcuts on wayland. Global shortcuts are handled by the compositor only.
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useing the autostart settings from the compositor is recommended.
+* LXQt Wayland Session is in git/AUR now: https://aur.archlinux.org/packages/lxqt-wayland-session-git
+* There is a [LXQt Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings)
+* Multiple user session are possible alongside a normal session started by sddm by simply login on tty and using one of the [start scripts](https://github.com/stefonarch/LXQt-Wayland-files/tree/main/start_scripts). Probably using different sessions types with the same user is not a good idea. Using `kwin_wayland` multiple user sessions are fully supported.
+* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useing the autostart settings from the compositor is recommended. Using Git packages autostart for apps can be limited to X11 only now.
 * Qterminal's dropdown mode is supported now in git. Adding manually a hotkey for `qterminal -d` in compositor settings is needed.
 * LXQt screenlock settings are supported now in wayland with `liblxqt-git`. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock`, `waylock`and `hyprlock` can be used in wlroots-based compositors.
 In `~/.config/lxqt/session.conf`:
@@ -85,6 +86,21 @@ binding_launcher = <alt> KEY_SPACE
 ```
 Exists a configation GUI tool WCM (wayfire configuration manager).
 In wayfire 0.8.1 `lxqt-runner` doesn't get focus automatically.
+
+### Niri
+
+Basic Settings:
+```
+spawn-at-startup "sh" "-c" "lxqt-session && niri msg action quit -s"
+
+    Mod+Shift+A { show-hotkey-overlay; }
+    Mod+T { spawn "qterminal"; }
+    F12 { spawn "qterminal" "-d"; }
+    Alt+Space { spawn "lxqt-runner"; }
+    Mod+P { spawn "pcmanfm-qt"; }
+    Super+Alt+L { spawn "lxqt-leave"; }
+```
+**Note**: "add to favorites" in fancy menu is broken atm. Favorites have to be configured editing `panel.conf` or better in another session type.
 
 ### Sway (tiling)
 
@@ -136,13 +152,15 @@ env = XDG_CURRENT_DESKTOP,LXQt:Hyprland:wlroots
 
 exec-once=lxqt-session && hyprctl dispatch exit
 
-
-windowrule = float,^(lxqt-.*)$
-windowrule = float,^(pavucontrol-qt)$
-windowrule = float,^(sddm-conf)$
-windowrule = float,^(pcmanfm-qt)$
-windowrule = float,copyq
+# Floating windows:
+windowrule = float,^(lxqt-.*|pavu.*|.*copyq|sddm-conf|qarma|.*portal-lxqt)$
+windowrule = float,title:^(Preferen.*)$
+windowrulev2 = dimaround,floating:1
+# No animations for lxqt-runner
+layerrule = noanim, launcher
+layerrule = dimaround, launcher
 ```
+**Note**: DND from menu to quicklauch is broken atm. Dragging from PCManFM-Qt windows works.
 
 ###  3rd party tools
 
