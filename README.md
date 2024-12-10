@@ -1,7 +1,8 @@
 # LXQt Desktop under Wayland
 
-> General files and dotfiles for configuring a LXQt Wayland session. LXQt 2.0 has native wayland support
-in all its elements now but some features are not ready yet.
+> General files and dotfiles for configuring a LXQt Wayland session. LXQt 2.1 has native wayland support
+in all its elements and content here is somehow outdated, except for some hacks and tricks.
+
 
 <p align="center" width="100%">
     <img src="sddm.png">
@@ -17,8 +18,7 @@ in all its elements now but some features are not ready yet.
 
 ### lxqt-panel
 
-Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river, niri and most probably with allcompositors which support wrloots protocols.
-Until LXQt v2.1 comes out compiling is needed using git checkouts or using [AUR](https://aur.archlinux.org/packages/lxqt-panel-git).
+Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river, niri and most probably with all compositors which support wrloots protocols.
 
 For more details and workarounds see [lxqt-panel](lxqt-panel.md) page and the [Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings).
 
@@ -37,12 +37,14 @@ setups are available, see "Screenshots" below. To exit also the compositor after
 
 #### Notes and News
 
-* LXQt Wayland Session is in git/AUR now: https://aur.archlinux.org/packages/lxqt-wayland-session-git
+* lxqt-wayland-session is available in most distributions now.
 * There is a [LXQt Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings)
 * Multiple user session are possible alongside a normal session started by sddm by simply login on tty and using one of the [start scripts](https://github.com/stefonarch/LXQt-Wayland-files/tree/main/start_scripts). Probably using different sessions types with the same user is not a good idea. Using `kwin_wayland` multiple user sessions are fully supported.
 * Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useing the autostart settings from the compositor is recommended. Using Git packages autostart for apps can be limited to X11 only now.
-* Qterminal's dropdown mode is supported now in git. Adding manually a hotkey for `qterminal -d` in compositor settings is needed.
-* LXQt screenlock settings are supported now in wayland with `liblxqt-git`. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock`, `waylock`and `hyprlock` can be used in wlroots-based compositors.
+* Qterminal's dropdown mode is supported now. Adding manually a hotkey for `qterminal -d` in compositor settings is needed.
+* LXQt screenlock settings are supported now in wayland. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock`, `waylock`and `hyprlock` can be used in wlroots-based compositors.
+
+
 In `~/.config/lxqt/session.conf`:
 
 ```
@@ -152,15 +154,17 @@ env = XDG_CURRENT_DESKTOP,LXQt:Hyprland:wlroots
 
 exec-once=lxqt-session && hyprctl dispatch exit
 
-# Floating windows:
-windowrule = float,^(lxqt-.*|pavu.*|.*copyq|sddm-conf|qarma|.*portal-lxqt)$
-windowrule = float,title:^(Preferen.*)$
+windowrule = float,^(?!lxqt-archiver)(lxqt-.*|pavu.*|.*copyq|sddm-conf|qarma|.*portal-lxqt|Preferen|cryptHider|meteo-qt.*|python3)$
+windowrule = float,title:^(Preferen.*|Crea.*|Search.*|Password.*|Elimina.*|Close.*|Execute.*)$
 windowrulev2 = dimaround,floating:1
-# No animations for lxqt-runner
+windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
+
 layerrule = noanim, launcher
-layerrule = dimaround, launcher
+layerrule = dimaround, ^(launcher|dialog|dropdown_terminal)$
+layerrule = animation slide top, dropdown_terminal
+layerrule = animation popin 80%, dialog
 ```
-**Note**: DND from menu to quicklauch is broken atm. Dragging from PCManFM-Qt windows works.
+**Note**: DND to quicklaunch is broken atm, another DE is needed for it.
 
 ###  3rd party tools
 
