@@ -102,7 +102,7 @@ spawn-at-startup "sh" "-c" "lxqt-session && niri msg action quit -s"
     Mod+P { spawn "pcmanfm-qt"; }
     Super+Alt+L { spawn "lxqt-leave"; }
 ```
-**Note**: "add to favorites" in fancy menu is broken atm. Favorites have to be configured editing `panel.conf` or better in another session type.
+[my config](https://raw.githubusercontent.com/stefonarch/LXQt-Wayland-files/refs/heads/main/dotfiles/lxqt-niri.kdl)
 
 ### Sway (tiling)
 
@@ -164,7 +164,7 @@ layerrule = dimaround, ^(launcher|dialog|dropdown_terminal)$
 layerrule = animation slide top, dropdown_terminal
 layerrule = animation popin 80%, dialog
 ```
-**Note**: DND to quicklaunch is broken atm, another DE is needed for it.
+[my config](https://raw.githubusercontent.com/stefonarch/LXQt-Wayland-files/refs/heads/main/dotfiles/lxqt-hyprland.kdl)
 
 ###  3rd party tools
 
