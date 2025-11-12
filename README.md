@@ -1,7 +1,7 @@
 # LXQt Desktop under Wayland
 
-> General files and dotfiles for configuring a LXQt Wayland session. LXQt 2.1 has native wayland support
-in all its elements and content here is somehow outdated, except for some hacks and tricks.
+> General files and dotfiles for configuring a LXQt Wayland session. LXQt 2.3 has native wayland support
+in all its elements and therefore content here is quite outdated, except for some hacks and tricks.
 
 
 <p align="center" width="100%">
@@ -18,9 +18,9 @@ in all its elements and content here is somehow outdated, except for some hacks 
 
 ### lxqt-panel
 
-Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river, niri and most probably with all compositors which support wrloots protocols.
+Working in labwc, sway, hyrpland, kwin_wayland, wayfire, river, niri and most probably with all compositors which support wlroots protocols.
 
-For more details and workarounds see [lxqt-panel](lxqt-panel.md) page and the [Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings).
+For more details and workarounds see [lxqt-panel](lxqt-panel.md) page and the [Wayland Wiki](https://lxqt-project.org/wiki/Wayland-Session).
 
 ## Starting LXQt Session
 
@@ -38,9 +38,9 @@ setups are available, see "Screenshots" below. To exit also the compositor after
 #### Notes and News
 
 * lxqt-wayland-session is available in most distributions now.
-* There is a [LXQt Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettings)
+* There is a [LXQt Wayland Wiki](https://github.com/lxqt/lxqt/wiki/ConfigWaylandSettingshttps://lxqt-project.org/wiki/Wayland-Session)
 * Multiple user session are possible alongside a normal session started by sddm by simply login on tty and using one of the [start scripts](https://github.com/stefonarch/LXQt-Wayland-files/tree/main/start_scripts). Probably using different sessions types with the same user is not a good idea. Using `kwin_wayland` multiple user sessions are fully supported.
-* Some applications in autostart may not work under wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useing the autostart settings from the compositor is recommended. Using Git packages autostart for apps can be limited to X11 only now.
+* Some applications in autostart may not work under Wayland and/or can cause high cpu usage - see "scripts" folder for a selective autostart of applications depending on session type x11/wayland. For wayland-only applications useing the autostart settings from the compositor is recommended. Using Git packages autostart for apps can be limited to X11 only now.
 * Qterminal's dropdown mode is supported now. Adding manually a hotkey for `qterminal -d` in compositor settings is needed.
 * LXQt screenlock settings are supported now in wayland. Using `kwin_wayland` screenlocking is provided by the compositor while `swaylock`, `waylock`and `hyprlock` can be used in wlroots-based compositors.
 

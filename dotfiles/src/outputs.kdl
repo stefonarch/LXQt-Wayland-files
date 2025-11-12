@@ -1,0 +1,5 @@
+// Niri Monitor Settings
+output "eDP-1" {
+    scale 1
+    position x=0 y=700
+    }

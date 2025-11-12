@@ -1,0 +1,10 @@
+// Autostart
+    spawn-sh-at-startup "swaybg -i ~/Immagini/sfondi/carraia.jpg"
+    spawn-sh-at-startup "lxqt-session && niri msg action quit -s"
+    spawn-sh-at-startup "systemctl --user import-environment XDG_CURRENT_DESKTOP"
+    //spawn-sh-at-startup "wlsunset -l 44 -L 10 -t 4800"
+    spawn-sh-at-startup "redland --lat 45.0 --lon 10 --low 4800"
+    spawn-at-startup "focus-urgent"
+    //spawn-at-startup "kanshi"
+    //spawn-sh-at-startup "swayidle -w timeout 300 'niri msg action power-off-monitors'"
+    //spawn-sh-at-startup "systemctl --user restart xdg-desktop-portal.service"

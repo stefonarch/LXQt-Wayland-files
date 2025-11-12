@@ -1,0 +1,77 @@
+// appearance and misc
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+    dbus-interfaces-in-non-session-instances
+}
+
+overview {
+    zoom 0.3
+}
+
+prefer-no-csd
+
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+layout {
+    gaps 8
+    center-focused-column "on-overflow"
+    preset-column-widths {
+        proportion 0.75
+        proportion 1.0
+        proportion 0.6
+        proportion 0.4
+    }
+    always-center-single-column
+    // You can change the default width of the new windows.
+    default-column-width {  } //apps will decide
+    focus-ring {
+   //off
+        width 2
+        active-gradient from="#33ccffee" to="#00ff99ee" angle=45 relative-to="workspace-view"
+        inactive-color "#00000099"
+    }
+    border {
+        width 2
+        active-gradient from="#33ccffee" to="#00ff99ee" angle=45 relative-to="workspace-view"//
+        inactive-color "#00000000"
+    }
+    tab-indicator {
+        hide-when-single-tab
+        place-within-column
+        gap 2
+        width 14
+        length total-proportion=0.5
+        position "left"
+        gaps-between-tabs 2
+        active-color "#33ccff80"
+        inactive-color "gray"
+    }
+    insert-hint {
+        gradient from="#69696940" to="#147eff70" angle=45 relative-to="workspace-view"
+    }
+    struts {
+         left 40
+         right 40
+         top 0
+         bottom 0
+    }
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000064"
+        inactive-color "#00000034"
+    }
+}
+
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+animations {
+    slowdown 1.2
+}
+screenshot-path "/tmp/Niri/Screenshot-%d-%H-%M-%S.png"

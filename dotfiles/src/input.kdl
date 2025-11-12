@@ -1,0 +1,38 @@
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+input {
+    disable-power-key-handling
+    warp-mouse-to-focus mode="center-xy"
+ //focus-follows-mouse max-scroll-amount="10%"
+    keyboard {
+        track-layout "window"
+        numlock
+        xkb {
+           layout "it,ch"
+           options "grp:caps_toggle,compose:rctrl"
+        }
+        repeat-delay 500
+        repeat-rate 30
+    }
+    touchpad {
+        tap
+        dwt
+        accel-speed 0.9
+        accel-profile "adaptive"
+    }
+}
+
+gestures {
+    dnd-edge-view-scroll {
+        trigger-width 10
+        delay-ms 50
+        max-speed 2500
+        }
+        hot-corners {
+        off
+   }
+}
+
+cursor {
+   // hide-when-typing
+   // hide-after-inactive-ms 3000
+}

@@ -1,0 +1,123 @@
+// Niri Keyboard Shortcuts
+binds {
+    Mod+Shift+A { show-hotkey-overlay; }
+    Mod+Return hotkey-overlay-title="QTerminal" { spawn-sh "lxqt-qdbus run qterminal"; }
+    F12 hotkey-overlay-title=null { spawn-sh "qdbus6 org.lxqt.session /LXQtSession execDesktopFile qterminal-drop.desktop"; }
+    Alt+Space hotkey-overlay-title="Runner" { spawn "lxqt-runner"; }
+    Mod+P hotkey-overlay-title="Filemanager" { spawn "pcmanfm-qt"; }
+    Mod+K hotkey-overlay-title="KeepassXC" { spawn-sh "lxqt-qdbus run keepassxc"; }
+    Mod+F hotkey-overlay-title="Featherpad" { spawn-sh "lxqt-qdbus run featherpad"; }
+    XF86Sleep hotkey-overlay-title="Exit Options" { spawn "lxqt-leave"; }
+    Mod+L allow-when-locked=true hotkey-overlay-title="Blocca schermo" {spawn "hyprlock"; }
+    Ctrl+Alt+V { spawn-sh "copyq show"; }
+    // Mod+X {expel-window-from-column; }
+    Mod+E hotkey-overlay-title="Open Menu" {spawn-sh "lxqt-qdbus openmenu"; }
+    MOD+1 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 1"; }
+    MOD+2 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 2"; }
+    MOD+3 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 3"; }
+    MOD+4 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 4"; }
+    MOD+5 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 5"; }
+    MOD+6 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 6"; }
+    MOD+7 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 7"; }
+    MOD+8 hotkey-overlay-title=null {spawn-sh "lxqt-qdbus task 8"; }
+    Mod+N hotkey-overlay-title="Translate Selected Text" {spawn "translate"; }
+    Mod+Z hotkey-overlay-title="Magnifier" {spawn "wooz"; }
+
+    //screenrecording
+    Mod+Print hotkey-overlay-title="Start Screenrecording" { spawn "sh" "-c" r#"
+            file=/tmp/"screenrec-$(date +%s)".mp4
+            notify-send -t 2000 -a "Screen Recording" "Screenrecord starting..."
+            wf-recorder -g "$(slurp -b '#00000090')" -f "$file"
+            wl-copy file:/"$file" -t text/uri-list
+        "#;
+    }
+
+    Mod+Shift+Print hotkey-overlay-title="Stop Screenrecording"{ spawn "sh" "-c" "killall -s SIGINT wf-recorder &&  notify-send -t 2000 -a Screen Recording 'Screenrecord stopped'"; }
+    //end screenrec
+
+    Mod+Shift+1 hotkey-overlay-title="Turn on/off eDP-1" {spawn-sh "niri msg outputs | grep -n2 eDP | grep -q Disabled && { echo off; niri msg output eDP-1 on; } || { echo on; niri msg output eDP-1 off; }";}
+    Mod+Shift+2 hotkey-overlay-title="Turn on/off HMDI-A" {spawn-sh "niri msg outputs | grep -n2 HDMI | grep -q Disabled && { echo off; niri msg output HDMI-A-1 on; } || { echo on; niri msg output HDMI-A-1 off; }";}
+    Mod+I hotkey-overlay-title="Window Information" {spawn "windowinfo";}
+    Mod+X hotkey-overlay-title="Detect XWayland" {spawn "xwayland-detect";}
+     Mod+Shift+k hotkey-overlay-title="wKill" {spawn-sh "kill -9 $(niri msg focused-window|grep PID|awk '{print $2}')";}
+    // XF86
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "lxqt-qdbus volume up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "lxqt-qdbus volume down"; }
+    XF86AudioMute allow-when-locked=true { spawn-sh "lxqt-qdbus volume mute"; }
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    //Brightness
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "lxqt-config-brightness -i"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "lxqt-config-brightness -d"; }
+    //Keyboard Brightness
+    XF86KbdBrightnessUp allow-when-locked=true { spawn-sh "keyboardbacklight +1"; }
+    XF86KbdBrightnessDown allow-when-locked=true { spawn-sh "keyboardbacklight -1"; }
+    XF86LightsToggle allow-when-locked=true { spawn-sh "keyboardbacklight on"; }
+    XF86KbdLightOnOff allow-when-locked=true { spawn-sh "keyboardbacklight off"; }
+
+    Mod+Q repeat=false { close-window; }
+
+    Mod+o hotkey-overlay-title="Toggle focus monitor" { focus-monitor-next; }
+    Mod+Left  { focus-column-or-monitor-left; }
+    Mod+Right { focus-column-or-monitor-right; }
+    Ctrl+Tab repeat=false { toggle-overview; }
+
+    Mod+Shift+Left  { move-column-left-or-to-monitor-left; }
+    Mod+Shift+Right { move-column-right-or-to-monitor-right; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+    Ctrl+Alt+Left  { move-column-to-monitor-left; }
+    Ctrl+Alt+Right { move-column-to-monitor-right; }
+    Mod+Alt+Left  { move-column-to-monitor-left; }
+    Mod+Alt+Right  { move-column-to-monitor-right; }
+
+    Mod+Down           {focus-window-or-workspace-down; }
+    Mod+Up             { focus-window-or-workspace-up; }
+    Mod+Shift+Down      { move-column-to-workspace-down; }
+    Mod+Shift+Up        { move-column-to-workspace-up; }
+    Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+    Mod+Shift+Ctrl+Right  { move-workspace-to-monitor-right; }
+    Mod+Alt+Shift+Down { move-workspace-down; }
+    Mod+Alt+Shift+Up   { move-workspace-up; }
+    Mod+Alt+Shift+Right { move-workspace-down; }
+    Mod+Alt+Shift+Left   { move-workspace-up; }
+
+
+
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+
+    Mod+Tab { focus-workspace-previous; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { reset-window-height; }
+    Mod+Alt+F  { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Plus { set-column-width "+10%"; }
+
+    // Finer height adjustments when in column with other windows.
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Plus { set-window-height "+10%"; }
+
+    Mod+V       { toggle-window-floating; }
+
+    Mod+W hotkey-overlay-title="Toggle Tabs"{ toggle-column-tabbed-display; }
+
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+a allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Ctrl+Print { screenshot; }
+    Shift+Print { screenshot-screen; }
+    Alt+Print { spawn-sh "niri msg action screenshot && sleep 2 && lximage-qt /tmp/Niri/$(ls -t /tmp/Niri |head -1)"; }
+
+    Mod+Shift+E { quit; }
+    Mod+Shift+P { power-off-monitors; }
+}

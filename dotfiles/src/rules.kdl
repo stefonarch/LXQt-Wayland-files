@@ -1,0 +1,136 @@
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+//dim-inactive
+window-rule {
+   match is-focused=false
+   exclude app-id="phototonic"
+   opacity 0.7
+   shadow {
+       on
+       inactive-color "#1D1D1FEB"
+       spread 0
+       softness 0
+       offset x=0 y=0
+       draw-behind-window true
+   }
+}
+
+window-rule  {
+    match is-urgent=true
+    open-focused true
+}
+window-rule {
+    match app-id=r#"^firefox$"#
+    open-on-workspace "Rete"
+    open-maximized-to-edges true
+    border {
+        off
+    }
+    focus-ring {
+    off
+    }
+    exclude title="Password richiesta - Mozilla Firefox"
+}
+
+window-rule {
+    match app-id=r#"^.*rss.*$"#
+    open-on-workspace "Rete"
+    default-column-width { proportion 0.73; }
+}
+window-rule {
+    match app-id=r#"^thunderbird$"#
+    open-on-workspace "Gente"
+    default-column-width { proportion 0.70; }
+}
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"#
+    match app-id=r#"^nheko$"#
+    match app-id=r#"^Element$"#
+    open-on-workspace "Gente"
+    default-column-width { fixed 1100; }
+    default-column-display "tabbed"
+}
+window-rule {
+    //match app-id="qps"
+    match app-id="rednotebook"
+    open-floating true
+    default-floating-position x=100 y=100 relative-to="top-left"
+}
+window-rule {
+    match app-id="kruler"
+    open-floating true
+    border {
+    off
+    }
+}
+window-rule {
+    match app-id="featherpad"
+    match app-id="qterminal"
+    match app-id="linguist"
+    match app-id="org.kde.kdiff3"
+    match app-id=r#"^Virtual.*"#
+    open-on-workspace "Git"
+    open-focused true
+    exclude title="Shell N° 1"
+}
+window-rule {
+    match app-id=r#"^Virtual.*"#
+    open-on-workspace "Git"
+    open-focused true
+}
+window-rule {
+    match app-id=r#"^qpdfview.*"#
+    open-on-output "HDMI-A-1"
+    open-focused true
+}
+window-rule {
+    match app-id=r#"Shotwell$"#
+    match app-id=r#"^darktable$"#
+    match app-id=r#"^strawberry$"#
+    match app-id=r#"^mpv$"#
+    match app-id=r#"^phototonic$"#
+    match app-id="Yiannis"
+    match app-id=r#"^libre.*$"#
+    open-on-workspace "Media"
+    open-focused true
+}
+window-rule {
+    match app-id=r#"^.*keepassxc.*$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    block-out-from "screen-capture"
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"^lxqt-.*|.*qruler|pavu.*|screengrab|.*copyq|qarma|.*portal-lxqt.*|cryptHider|meteo-qt.*|python3|.*conf|XEyes|.*tuxedo.*$"#
+    match title=r#"^Prefe.*|.*file.*|.*evento.*|edit.*|Crea.*|Cerca.*|Passw.*|Duplica.*|Chiudi.*|Propriet.*|Elimina.*|Close.*|Esegui.*|Cestina.*|Monta|.*Selez.*|.*found.*|.*rimovibile.*$"#
+    exclude app-id="lxqt-archiver"
+    exclude app-id="org.kde.filelight"
+    exclude app-id="media-downloader"
+    open-floating true
+}
+window-rule {
+    geometry-corner-radius 8 8 8 8
+    clip-to-geometry true
+}
+window-rule {
+    // exclude from dim inactive
+    //match is-active=true
+    match app-id="phototonic"
+    match app-id="darktable"
+    match app-id="shotwell"
+    focus-ring { off
+    }
+}
+
+layer-rule {
+    match namespace="launcher"
+    match namespace="notification"
+    match namespace="dialog"
+    shadow {
+        on
+    }
+    geometry-corner-radius 12
+}
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
